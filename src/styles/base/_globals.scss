@@ -1,0 +1,11 @@
+@use "../core" as *;
+
+body {
+  @include fluid-text(18, 14);
+
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-base), sans-serif;
+  color: var(--text);
+  background-color: var(--bg-blue);
+}
