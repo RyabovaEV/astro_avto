@@ -1,24 +1,37 @@
 ---
 import Footer from '../Footer/Footer.astro'
 import Header from "../Header/Header.astro";
-import "../../styles/mian.scss";
 import styles from './Layout.module.scss'
 
+import "../../styles/mian.scss";
 ---
 
 <!doctype html>
 <html lang="ru">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<Header />
-		<slot />
-		<Footer />
-	</body>
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width"
+  />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/favicon.svg"
+  />
+  <link
+    rel="icon"
+    href="/favicon.ico"
+  />
+  <meta
+    name="generator"
+    content={Astro.generator}
+  />
+  <title>Astro Basics</title>
+</head>
+<body class={styles.layout}>
+<Header />
+<main class={`${styles.main} container`}><slot /></main>
+<Footer />
+</body>
 </html>

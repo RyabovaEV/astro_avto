@@ -3,9 +3,23 @@
 body {
   @include fluid-text(18, 14);
 
+
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-base), sans-serif;
   color: var(--text);
   background-color: var(--bg-blue);
+}
+
+.container {
+  --container-width: #{fluid-to-laptop(
+      $container-desktop-width,
+      $container-laptop-width
+    )};
+  --container-padding-x: 16px;
+
+  width: 100%;
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin: 0 auto;
+  padding-inline: var(--container-padding-x);
 }
