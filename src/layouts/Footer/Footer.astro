@@ -1,7 +1,29 @@
 ---
 import styles from './Footer.module.scss'
+import Logo from "../../components/Logo/Logo.astro";
 ---
 
-<footer>
-    <div class="container">footer</div>
+<footer class={styles.footer}>
+  <div class={`${styles.footer__container} container`}>
+    <div class={styles.footer__left}>
+      <Logo />
+      <p class={styles.footer__copyright}>© {new Date().getFullYear()} Все права защищены</p>
+    </div>
+    <div class={`${styles.footer__right} &{contacts}`}>
+      <ul class={styles.contacts__list}>
+        <li class={styles.contacts__item}>
+          <p>Телефон:</p>
+          <a href="tel:+78136846750">+7(81368)46-750</a>
+        </li>
+        <li class={styles.contacts__item}>
+          <p>Email:</p>
+          <a href="mailto:kpap@inbox.ru">kpap@inbox.ru</a>
+        </li>
+        <li class={styles.contacts__item}>
+          <p>Адрес:</p>
+          <p>г.Кириши, пр. Победы д.20</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 </footer>
