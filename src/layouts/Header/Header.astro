@@ -1,7 +1,20 @@
 ---
 import styles from './header.module.scss'
+import Logo from "../../components/Logo/Logo.astro";
 ---
 
-<header>
-    <div class="container">header</div>
+<header class={styles.header}>
+    <div class={`${styles.header__container} container`}>
+        <div class={styles.header__top}>
+            <div class={styles.header__logo}>
+                <Logo />
+            </div>
+            <div class={styles.header__actions}>
+                тут кнопка и телефон
+            </div>
+        </div>
+        <div class={styles.header__bottom}>
+            тут будет меню
+        </div>
+    </div>
 </header>
