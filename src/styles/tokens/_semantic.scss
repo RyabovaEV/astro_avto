@@ -2,7 +2,7 @@
 
 :root {
   --bg-color: var(--color-white);
-  --bg-secondary: var(--color-primary-100);
+  --bg-secondary: var(--color-primary-50);
 
   --main-text-color: var(--color-gray-900);
   --accent-text-color: var(--color-dark-blue);
@@ -14,4 +14,5 @@
   --border-gray: var(--color-gray-200);
   --border-accent: var(--color-primary-600);
 
+  --color-link: var(--color-primary-600)
 }

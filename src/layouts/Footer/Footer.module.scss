@@ -1,0 +1,56 @@
+@use "../../styles/core" as *;
+
+.footer {
+  padding: fluid(30, 20);
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-gray);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 20px;
+
+    @include mobile {
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 30px;
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    row-gap: fluid(20,15);
+
+    @include mobile {
+      order: 2;
+    }
+  }
+
+  &__right {
+    @include mobile {
+      order: 1;
+    }
+  }
+
+  &__copyright {
+    font-size: fluid(14,12);
+  }
+
+  .contacts {
+    &__list{
+      display: flex;
+      flex-direction: column;
+      row-gap: fluid(10,7);
+    }
+    &__item {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      column-gap: fluid(20,10);
+    }
+  }
+}

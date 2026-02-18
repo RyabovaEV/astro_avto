@@ -1,13 +1,14 @@
 @use "../core" as *;
 
 body {
-  @include fluid-text(18, 14);
+  @include fluid-text(16, 14);
 
 
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-base), sans-serif;
-  color: var(--text);
+  color: var(--light-text-color);
+
   background-color: var(--bg-blue);
 }
 
@@ -22,4 +23,18 @@ body {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin: 0 auto;
   padding-inline: var(--container-padding-x);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    color: var(--color-link);
+  }
 }
