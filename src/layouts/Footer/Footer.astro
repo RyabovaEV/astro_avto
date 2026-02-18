@@ -1,7 +1,13 @@
 ---
 import styles from './Footer.module.scss'
+import Logo from "../../components/Logo/Logo.astro";
 ---
 
-<footer>
-    <div class="container">footer</div>
+<footer class={styles.footer}>
+    <div class={`${styles.footer__container} container`}>
+        <div class={styles.footer__left}>
+            <Logo />
+        </div>
+        <div class={styles.footer__right}>Право</div>
+    </div>
 </footer>

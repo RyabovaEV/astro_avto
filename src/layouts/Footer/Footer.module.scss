@@ -1,0 +1,14 @@
+@use "../../styles/core" as *;
+
+.footer {
+  padding: fluid(30, 20);
+  background-color: var(--bg-secondary);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+}
