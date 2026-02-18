@@ -1,6 +1,7 @@
 ---
 import styles from './Footer.module.scss'
 import Logo from "../../components/Logo/Logo.astro";
+import Link from "../../components/Link/Link.astro";
 ---
 
 <footer class={styles.footer}>
@@ -13,11 +14,11 @@ import Logo from "../../components/Logo/Logo.astro";
       <ul class={styles.contacts__list}>
         <li class={styles.contacts__item}>
           <p>Телефон:</p>
-          <a href="tel:+78136846750">+7(81368)46-750</a>
+          <Link href="tel:+78136846750" label="+7(81368)46-750" />
         </li>
         <li class={styles.contacts__item}>
           <p>Email:</p>
-          <a href="mailto:kpap@inbox.ru">kpap@inbox.ru</a>
+          <Link href="mailto:kpap@inbox.ru" label="kpap@inbox.ru"/>
         </li>
         <li class={styles.contacts__item}>
           <p>Адрес:</p>
