@@ -1,0 +1,47 @@
+@use "../../styles/core" as *;
+
+.header {
+  padding-top: fluid(30,20);
+  border-bottom: 1px solid var(--border-gray);
+
+  &__container {
+    display: grid;
+    grid-template-rows: 1/-1;
+    grid-template-columns: 1fr 1fr;
+    gap: fluid(20,15);
+    grid-template-areas:
+      "logo actions"
+      "menu menu";
+
+    @include mobile {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "logo"
+        "actions"
+        "menu";
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+  }
+
+
+  &__actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: fluid(30,20);
+
+    @include mobile {
+      justify-content: start;
+      display: none;
+    }
+  }
+
+  &__menu {
+    grid-area: menu;
+  }
+}

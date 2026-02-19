@@ -1,0 +1,29 @@
+@use "../../styles/core" as *;
+
+.link {
+  color: var(--color-link);
+  transition-duration: var(--transition-duration);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--bg-button-hover);
+    text-decoration: underline;
+  }
+}
+
+.button {
+  padding: fluid(10, 7) fluid(20,15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-button);
+  text-decoration: none;
+  background-color: var(--bg-button);
+  border: none;
+  border-radius: var(--radius-sm);
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    background-color: var(--bg-button-hover);
+  }
+}
