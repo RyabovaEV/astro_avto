@@ -2,6 +2,7 @@
 import styles from './header.module.scss'
 import Logo from "../../components/Logo/Logo.astro";
 import Link from "../../components/Link/Link.astro";
+import Menu from "../../components/Menu/Menu.astro";
 ---
 
 <header class={styles.header}>
@@ -22,7 +23,7 @@ import Link from "../../components/Link/Link.astro";
       <!--<Link href="/about/contacts" label="Купить билеты" isButton=true/>-->
     </div>
     <div class={styles.header__menu}>
-      тут будет меню
+      <Menu />
     </div>
   </div>
 </header>
