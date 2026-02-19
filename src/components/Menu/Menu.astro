@@ -1,0 +1,111 @@
+---
+import styles from './Menu.module.scss'
+
+const currentPath = Astro.url.pathname
+
+type MenuItem = {
+  href: string
+  title: string
+  ariaLabel?: string
+  children?: MenuItem[]
+}
+
+const menuItems: MenuItem[] = [
+  {
+    href: '/',
+    title: 'Главная',
+  },
+  {
+    href: '/schedule',
+    title: 'Расписание',
+    ariaLabel: 'Подменю Расписание',
+    children: [
+      {href: '/schedule/city', title: 'Городские'},
+      {href: '/schedule/suburban', title: 'Пригородные'},
+    ],
+  },
+  {
+    href: '/driving-school',
+    title: 'Автошкола',
+    ariaLabel: 'Подменю Автошкола',
+    children: [
+      {href: '/driving-school/info', title: 'Информация'},
+      {href: '/driving-school/training-plan', title: 'План обучения'},
+      {href: '/driving-school/documents', title: 'Документы'},
+    ],
+  },
+  {
+    href: '/about',
+    title: 'О предприятии',
+    ariaLabel: 'Подменю Автошкола',
+    children: [
+      {href: '/about/history', title: 'История'},
+      {href: '/about/vacancies', title: 'Вакансии'},
+      {href: '/about/documents', title: 'Документы'},
+      {href: '/about/contacts', title: 'Контакты'},
+    ],
+  },
+]
+---
+
+<nav
+  class={styles.menu}
+  aria-label="Главное меню"
+>
+  <ul
+    class={styles.menu__list}
+    role="menubar"
+  >
+    {menuItems.map(({href, title, ariaLabel,children}) => {
+      const isActive =
+        currentPath === href || currentPath.startsWith(href + '/')
+
+      return (
+        <li
+          key={href}
+          class={`
+            ${styles.menu__item}
+            ${children?.length ? styles.menu__dropdown : ''}
+            ${isActive ? styles.active : ''}
+          `}
+          role="none"
+        >
+          <a
+            href={href}
+            class={styles.menu__link}
+            role="menuitem"
+            aria-haspopup="true"
+            aria-expanded={isActive ? "true" : "false"}
+          >{title}</a>
+
+          {children?.length && (
+            <ul
+              class={styles.menu__submenu}
+              role="menu"
+              aria-label={ariaLabel}
+            >
+              {children.map(({href: subHref, title: subTitle}) => {
+                const isSubActive = currentPath === subHref
+                return (
+                  <li
+                    key={subHref}
+                    class={`
+                      ${styles.menu__submenu__item}
+                      ${isSubActive ? styles.active : ''}
+                    `}
+                  >
+                    <a
+                      href={subHref}
+                      class={styles.menu__submenu__link}
+                      role="menuitem"
+                    >{subTitle}</a>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+        </li>
+      )
+    })}
+  </ul>
+</nav>
