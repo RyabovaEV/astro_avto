@@ -6,9 +6,8 @@
 
   &__container {
     display: grid;
-    grid-template-rows: 1/-1;
     grid-template-columns: 1fr 1fr;
-    gap: fluid(20,15);
+    gap: fluid(30,15);
     grid-template-areas:
       "logo actions"
       "menu menu";
@@ -31,7 +30,7 @@
   &__actions {
     grid-area: actions;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: end;
     column-gap: fluid(30,20);
 
@@ -39,6 +38,11 @@
       justify-content: start;
       display: none;
     }
+  }
+
+  &__phone {
+    font-size: 18px;
+    font-weight: 600;
   }
 
   &__menu {

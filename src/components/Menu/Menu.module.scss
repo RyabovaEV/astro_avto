@@ -6,7 +6,7 @@
 
   &__list {
     display: flex;
-    gap: fluid(40, 20);
+    gap: fluid(100, 50);
     list-style: none;
   }
 
@@ -47,12 +47,13 @@
     top: 100%;
     left: 0;
     display: flex;
-    gap: 10px;
+    gap: 30px;
     padding: 10px;
     list-style: none;
     background: var(--bg-color);
     border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+//    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-gray);
     opacity: 0;
     transform: translateY(-10px);
     pointer-events: none;
@@ -62,8 +63,7 @@
     &__item {
       & > .menu__submenu__link {
         display: block;
-        padding: 8px 12px;
-        border-radius: 8px;
+        padding: 5px 12px;
         text-decoration: none;
         color: var(--text-primary);
         white-space: nowrap;

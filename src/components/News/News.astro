@@ -1,0 +1,25 @@
+---
+const news = [
+  {
+    date: '2023-01-01',
+    newsText: "Новое расписание пригородных автобусов"
+  },
+  {
+    date: '2023-01-10',
+    newsText: "Изменение тарифов на междугородние рейсы"
+  },
+]
+
+import styles from './News.module.scss'
+---
+
+<ul class={styles.newsList}>
+  {news.map(({ date, newsText }) => (
+    <li class={styles.newsItem}>
+      <time datetime={date} class={styles.newsDate}>
+        {new Date(date).toLocaleDateString('ru-RU')}
+      </time>
+      <p class={styles.newsText}>{newsText}</p>
+    </li>
+  ))}
+</ul>

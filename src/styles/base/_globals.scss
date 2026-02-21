@@ -1,7 +1,7 @@
 @use "../core" as *;
 
 body {
-  @include fluid-text(16, 14);
+  @include fluid-text(18, 14);
 
 
   display: flex;
@@ -32,4 +32,43 @@ ul {
 a {
   color: inherit;
   //text-decoration: none;
+}
+
+h1 {
+  margin: 0;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  font-family: var(--font-family-base);
+  color: var(--main-text-color);
+  line-height: .7;
+  font-weight: 600;
+}
+
+h1, .h1 {
+  font-size: fluid(32, 24);
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 30%; /* длиннее линии */
+    height: 4px;
+    margin-top: var(--space-2);
+    border-radius: var(--radius-sm);
+    background: linear-gradient(90deg, var(--color-primary-600), var(--color-white));
+  }
+}
+
+h2, .h2 {
+  font-size: fluid(24, 20);
+  color: var(--accent-text-color);
+}
+
+h3, .h3 {
+  font-size: fluid(20, 18);
+  color: var(--accent-text-color);
+  font-weight: 500;
 }

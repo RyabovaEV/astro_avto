@@ -1,7 +1,18 @@
 ---
 import Layout from '../layouts/Layout/Layout.astro';
+import Section from "../components/Section/Section.astro";
+import News from "../components/News/News.astro";
 ---
 
 <Layout>
-	<h1>Заголовок</h1>
+	<h1>Киришские пассажирские автоперевозки</h1>
+	<Section title="Новости" ariaName="news-block" isInfo=true>
+		<News />
+	</Section>
+	<Section title="Документы" ariaName="document-block">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+		</ul>
+	</Section>
 </Layout>

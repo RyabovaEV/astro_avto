@@ -31,7 +31,9 @@ import "../../styles/mian.scss";
 </head>
 <body class={styles.layout}>
 <Header />
-<main class={`${styles.main} container`}><slot /></main>
+<main class={`${styles.main} container`}>
+  <slot />
+</main>
 <Footer />
 </body>
 </html>

@@ -1,0 +1,34 @@
+@use "../../styles/core" as *;
+
+.newsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  //row-gap: fluid(15,10);
+}
+
+.newsItem {
+  width: 100%;
+  padding-block: fluid(10,7);
+  border-bottom: 1px solid var(--border-gray);
+  position: relative;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+}
+
+.newsDate {
+  font-size: fluid(14,12);
+  color: var(--light-text-color);
+
+}
+
+.newsText {
+  margin: 0;
+  font-weight: 500;
+}
