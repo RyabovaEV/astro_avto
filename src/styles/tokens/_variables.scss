@@ -1,40 +1,10 @@
-:root {
-  --color-primary-600: #295cc9;
-  --color-primary-700: #1f4699;
-  --color-primary-500: #3a74e0;
-  --color-primary-100: #c9d6f1;
-  --color-primary-50:  #e8effa;
-  --color-primary-10: #d0d8e8;
-  --color-primary-5: #f5f8fc;
+$color-primary: #005EB8; // Primary color for government-style design
+$color-secondary: #D1D1D1; // Secondary color
+$color-background: #FFFFFF; // Background color
+$color-text: #333333; // Main text color
 
-
-  --color-white: #FFFFFF;
-  --color-gray-900: #333333;
-  --color-gray-600: #475569;
-  --color-gray-500:  #576677;
-  --color-gray-200: #E5E7EB;
-
-  --color-dark-blue: #0F172A;
-
-  --shadow-sm: 0 2px 8px 0 rgba(41, 83, 138, 0.08);
-  --box-shadow-primary: 0 3px 12px 0 rgba(41, 92, 201, 0.5);
-  --shadow-md: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
-
-  --space-1: 8px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-5: 48px;
-  --space-6: 64px;
-
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-
-  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont,
-  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-  --transition-duration: .2s;
-
-  --z-index-submenu: 10;
-}
+// Spacing tokens
+$spacing-small: 8px;
+$spacing-medium: 16px;
+$spacing-large: 24px;
+$spacing-xlarge: 32px;
