@@ -1,19 +1,24 @@
 :root {
-  --color-primary-600: #1E88E5;
-  --color-primary-700: #1565C0;
-  --color-primary-500: #2f86d1;
-  --color-primary-100: #E3F2FD;
-  --color-primary-50:  #F5FAFF;
-  --color-primary-10: #f6f9fc;
+  --color-primary-600: #295cc9;
+  --color-primary-700: #1f4699;
+  --color-primary-500: #3a74e0;
+  --color-primary-100: #c9d6f1;
+  --color-primary-50:  #e8effa;
+  --color-primary-10: #d0d8e8;
+  --color-primary-5: #f5f8fc;
 
 
   --color-white: #FFFFFF;
-  --color-gray-900: #1e293b;
+  --color-gray-900: #333333;
   --color-gray-600: #475569;
-  --color-gray-500:  #d1d5db;
+  --color-gray-500:  #576677;
   --color-gray-200: #E5E7EB;
 
   --color-dark-blue: #0F172A;
+
+  --shadow-sm: 0 2px 8px 0 rgba(41, 83, 138, 0.08);
+  --box-shadow-primary: 0 3px 12px 0 rgba(41, 92, 201, 0.5);
+  --shadow-md: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 
   --space-1: 8px;
   --space-2: 16px;
@@ -22,12 +27,9 @@
   --space-5: 48px;
   --space-6: 64px;
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(15, 76, 129, 0.08);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
 
   --font-family-base: system-ui, -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

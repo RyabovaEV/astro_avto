@@ -9,6 +9,7 @@
   gap: fluid(25,15);
 
   &.block {
+    background-color: var(--color-primary-10);
     border: 1px solid var(--border-gray);
     padding: 20px;
     border-radius: var(--radius-lg);
