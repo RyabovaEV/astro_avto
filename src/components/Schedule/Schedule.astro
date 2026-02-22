@@ -1,0 +1,65 @@
+---
+import type { RouteSchedule } from "../../data/schedule";
+import { scheduleLegend } from "../../data/schedule";
+import styles from "./Schedule.module.scss";
+
+interface Props {
+  routes: RouteSchedule[];
+  showLegend?: boolean;
+  moreHref?: string;
+  moreLabel?: string;
+}
+
+const { routes, showLegend = true, moreHref = "/schedule/suburban", moreLabel = "Всё расписание пригородных маршрутов" } = Astro.props;
+---
+
+<div class={styles.schedule}>
+  {routes.map((route) => (
+    <article class={styles.route} aria-labelledby={`route-${route.number}`}>
+      <div class={styles.route__header}>
+        <span class={styles.route__number} id={`route-${route.number}`}>№ {route.number}</span>
+        <span class={styles.route__name}>{route.name}</span>
+      </div>
+      <div class={styles.route__tableWrap}>
+        <table class={styles.route__table}>
+          <thead>
+            <tr>
+              <th scope="col">Отправление</th>
+              <th scope="col">Прибытие</th>
+            </tr>
+          </thead>
+          <tbody>
+            {route.departure.map((_, i) => (
+              <tr>
+                <td>
+                  <span class={styles.route__time}>{route.departure[i]}</span>
+                </td>
+                <td>
+                  <span class={styles.route__time}>{route.arrival[i]}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </article>
+  ))}
+
+  {showLegend && (
+    <div class={styles.legend} role="region" aria-label="Расшифровка обозначений">
+      <p class={styles.legend__title}>Обозначения в расписании</p>
+      <ul class={styles.legend__list}>
+        {scheduleLegend.map(({ abbr, full }) => (
+          <li class={styles.legend__item}>
+            <span class={styles.legend__abbr}>{abbr}</span>
+            <span>— {full}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {moreHref && (
+    <a class={styles.linkMore} href={moreHref}>{moreLabel} →</a>
+  )}
+</div>

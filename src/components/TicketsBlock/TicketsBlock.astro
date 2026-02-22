@@ -1,0 +1,31 @@
+---
+import styles from "./TicketsBlock.module.scss";
+import Link from "../Link/Link.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ticketHref?: string;
+  ticketLabel?: string;
+  phone?: string;
+}
+
+const {
+  title = "Билеты",
+  description = "Приобрести билеты можно в кассе автовокзала, у водителя, а также онлайн.",
+  ticketHref = "/about/contacts",
+  ticketLabel = "Купить билеты / Контакты",
+  phone = "+7 (81368) 46-750",
+} = Astro.props;
+---
+
+<section class={styles.block} aria-labelledby="tickets-heading">
+  <h2 class={styles.title} id="tickets-heading">{title}</h2>
+  <p class={styles.description}>{description}</p>
+  <div class={styles.actions}>
+    <Link href={ticketHref} label={ticketLabel} isButton={true} className={styles.button} />
+    <a href={`tel:${phone.replace(/\s|\(|\)|-/g, "")}`} class={styles.phone}>
+      {phone}
+    </a>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+@use "../../styles/core" as *;
+
+.block {
+  width: 100%;
+  padding: var(--space-4) var(--space-3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-gray);
+  border-radius: var(--radius-lg);
+
+  .title {
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .description {
+    margin: 0 0 var(--space-3) 0;
+    color: var(--light-text-color);
+    font-size: fluid(16, 14);
+    line-height: 1.5;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.button {
+  flex-shrink: 0;
+}
+
+.phone {
+  font-weight: 600;
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: fluid(16, 14);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
