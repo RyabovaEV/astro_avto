@@ -12,17 +12,21 @@ import {linksIndex} from "../data/links";
     title=`ООО&nbsp;“Авто”, ООО&nbsp;“Киришиавто”`
     subtitle="Oфициальный сайт"
     ariaName="title-block"
+    isInfo
     isH1
   ></Section>
   <Section
     title="Новости"
     ariaName="news-block"
+    isInfo
+    buttonLabel="Все нововсти"
   >
     <News newsList={newsList} />
   </Section>
   <Section
     title="Документы"
     ariaName="document-block"
+    isInfo
   >
     <Docs links={linksIndex} />
   </Section>

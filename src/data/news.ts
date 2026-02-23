@@ -3,7 +3,7 @@ export interface News {
   description: string
   href?: string
   important?: boolean
-  ulList?: []
+  ulList?: string[]
 }
 
 export const newsList: News[] = [

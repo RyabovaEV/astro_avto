@@ -1,28 +1,54 @@
 ---
+import Link from "../Link/Link.astro";
+
 interface Props {
   title: string
   subtitle?: string
   ariaName: string
   isH1?: boolean
   isInfo?: boolean
+  buttonLabel?: string
+
 }
 
-const {title, subtitle = '', ariaName, isH1 = false, isInfo = false} = Astro.props
+const {
+  title,
+  subtitle = '',
+  ariaName,
+  isH1 = false,
+  isInfo = false,
+  buttonLabel = ''
+} = Astro.props
 
 import styles from './Section.module.scss'
 ---
 
-<section class={`${styles.section} ${isInfo ? styles.block : ''}`} aria-labelledby={ariaName}>
+<section
+  class={`${styles.section} ${isInfo ? styles.block : ''}`}
+  aria-labelledby={ariaName}
+>
   <header class={styles.header}>
-    {subtitle && (<p class={styles.subtitle}>{subtitle}</p>)}
+    {subtitle && (
+      <p class={styles.subtitle}>{subtitle}</p>)}
     {isH1 ? (
-      <h1 class={`${styles.title}`} title={ariaName}>{title}</h1>
+      <h1
+        class={`${styles.title}`}
+        title={ariaName}
+      >{title}</h1>
     ) : (
-      <h2 class={`${styles.title}`} title={ariaName}>{title}</h2>
+      <h2
+        class={`${styles.title}`}
+        title={ariaName}
+      >{title}</h2>
     )}
   </header>
 
   <div class={styles.content}>
     <slot />
+    {buttonLabel &&
+      <Link
+        label={buttonLabel}
+        className={styles.button}
+      />}
   </div>
 </section>

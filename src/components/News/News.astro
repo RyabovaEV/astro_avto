@@ -18,9 +18,9 @@ import styles from './News.module.scss'
       <div class=`${styles.newsText} ${important ? styles.important : ''}`>
         <p>{description}</p>
         {ulList && (
-          <ul>
+          <ul class="ul">
             {ulList.map((item) => (
-              <li>{item}</li>
+              <li class="ulItem">{item}</li>
             ))}
           </ul>
         )}
