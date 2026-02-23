@@ -1,0 +1,39 @@
+---
+export interface SidebarItem {
+  href: string;
+  title: string;
+}
+
+interface Props {
+  title: string;
+  items: SidebarItem[];
+}
+
+const { title, items } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+import styles from './Sidebar.module.scss';
+---
+
+<aside class={styles.sidebar} aria-label={title}>
+  <h2 class={styles.sidebar__title}>{title}</h2>
+  <nav>
+    <ul class={styles.sidebar__list}>
+      {items.map(({ href, title: itemTitle }) => {
+        const hrefNorm = href.replace(/\/$/, '') || '/';
+        const isActive = currentPath === hrefNorm || (hrefNorm !== '/' && currentPath.startsWith(hrefNorm));
+        return (
+          <li class={styles.sidebar__item}>
+            <a
+              href={href}
+              class={`${styles.sidebar__link} ${isActive ? styles.sidebar__link_active : ''}`}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {itemTitle}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+</aside>

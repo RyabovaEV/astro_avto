@@ -2,6 +2,12 @@
 import Layout from '../layouts/Layout/Layout.astro';
 import Section from "../components/Section/Section.astro";
 import News from "../components/News/News.astro";
+import Docs from "../components/Docs/Docs.astro";
+
+const docs = [
+  { href: '/docs/availability.jpg', title: 'Информация о доступности ТС для инвалидов и лиц с ограниченными возможностями' },
+  { href: '/docs/collectiveImmunity.pdf', title: 'Паспорт коллективного иммунитета' },
+];
 ---
 
 <Layout>
@@ -9,25 +15,20 @@ import News from "../components/News/News.astro";
   <Section
     title="Новости"
     ariaName="news-block"
-    isInfo=true
   >
     <News />
   </Section>
   <Section
     title="Документы"
     ariaName="document-block"
-    isInfo=true
   >
-    <ul>
-      <li>1</li>
-      <li>2</li>
-    </ul>
+    <Docs links={docs}/>
   </Section>
   <Section
     title="Страхование"
     ariaName="enchurias-block"
   >
-    <h3>номер страховки</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aut corporis ducimus ea eaque earum eos, ex itaque, laborum laudantium numquam officiis perspiciatis placeat porro quisquam quod reiciendis sequi sint, suscipit vel voluptate voluptatibus. A aliquid, amet beatae consectetur consequuntur iste nemo nobis, odit quam quia quibusdam, quis veritatis!</p>
-  </Section>
+    <p>В соответствиии с Федеральным законом «Об обязательном страховании гражданской ответственности перевозчика за причинение вреда жизни, здоровью, имуществу пассажиров» с Открытым страховым акционерным обществом «Ингосстрах», находящемуся по адресу: 196066, Санкт-Петербург, пр. Московский, д. 155, заключены следующие договора:</p>
+    <p>ООО "АВТО" № IGSX22540167821000 cрок страхования с 26 марта 2025 г. по 25 марта 2026 г.</p>
+</Section>
 </Layout>

@@ -1,0 +1,29 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
+import Link from '../../../components/Link/Link.astro';
+
+const sidebarItems = [
+  { href: '/about/history', title: 'История' },
+  { href: '/about/vacancies', title: 'Вакансии' },
+  { href: '/about/documents', title: 'Документы' },
+  { href: '/about/contacts', title: 'Контакты' },
+];
+---
+
+<SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
+  <h1>Контакты</h1>
+  <ul>
+    <li>
+      <p>Телефон:</p>
+      <Link href="tel:+78136846750" label="+7 (81368) 46-750" />
+    </li>
+    <li>
+      <p>Email:</p>
+      <Link href="mailto:kpap@inbox.ru" label="kpap@inbox.ru" />
+    </li>
+    <li>
+      <p>Адрес:</p>
+      <p>г. Кириши, пр. Победы д.20</p>
+    </li>
+  </ul>
+</SectionLayout>

@@ -1,0 +1,23 @@
+---
+import Layout from '../Layout/Layout.astro';
+import Sidebar from '../../components/Sidebar/Sidebar.astro';
+import type { SidebarItem } from '../../components/Sidebar/Sidebar.astro';
+
+interface Props {
+  title: string;
+  sidebarItems: SidebarItem[];
+}
+
+const { title, sidebarItems } = Astro.props;
+
+import styles from './SectionLayout.module.scss';
+---
+
+<Layout>
+  <div class={styles.wrapper}>
+    <Sidebar title={title} items={sidebarItems} />
+    <div class={styles.content}>
+      <slot />
+    </div>
+  </div>
+</Layout>

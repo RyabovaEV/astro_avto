@@ -1,0 +1,13 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
+
+const sidebarItems = [
+  { href: '/schedule/city', title: 'Городские' },
+  { href: '/schedule/suburban', title: 'Пригородные' },
+];
+---
+
+<SectionLayout title="Расписание" sidebarItems={sidebarItems}>
+  <h1>Расписание городских маршрутов</h1>
+  <p>Информация о расписании городских автобусов. Данные уточняются.</p>
+</SectionLayout>

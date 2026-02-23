@@ -1,0 +1,14 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
+
+const sidebarItems = [
+  { href: '/driving-school/info', title: 'Информация' },
+  { href: '/driving-school/training-plan', title: 'План обучения' },
+  { href: '/driving-school/documents', title: 'Документы' },
+];
+---
+
+<SectionLayout title="Автошкола" sidebarItems={sidebarItems}>
+  <h1>Документы автошколы</h1>
+  <p>Перечень документов и нормативных актов.</p>
+</SectionLayout>

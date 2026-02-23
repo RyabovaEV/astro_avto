@@ -1,0 +1,19 @@
+---
+import DocsModule from './Docs.module.scss'
+import Link from "../Link/Link.astro";
+
+interface Props {
+  links: []
+}
+
+const {links} = Astro.props
+---
+
+<ul class={DocsModule.linkList}>
+  {links.map(({href, title}) => (
+    <li class={DocsModule.linkList__item}>
+      <Link href={href} label={title}/>
+    </li>
+  ))}
+</ul>
+

@@ -1,0 +1,15 @@
+---
+import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
+
+const sidebarItems = [
+  { href: '/about/history', title: 'История' },
+  { href: '/about/vacancies', title: 'Вакансии' },
+  { href: '/about/documents', title: 'Документы' },
+  { href: '/about/contacts', title: 'Контакты' },
+];
+---
+
+<SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
+  <h1>Документы</h1>
+  <p>Документы предприятия.</p>
+</SectionLayout>
