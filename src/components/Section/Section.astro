@@ -1,17 +1,27 @@
 ---
 interface Props {
   title: string
+  subtitle?: string
   ariaName: string
+  isH1?: boolean
   isInfo?: boolean
 }
 
-const {title, ariaName, isInfo = false} = Astro.props
+const {title, subtitle = '', ariaName, isH1 = false, isInfo = false} = Astro.props
 
 import styles from './Section.module.scss'
 ---
 
 <section class={`${styles.section} ${isInfo ? styles.block : ''}`} aria-labelledby={ariaName}>
-  <h2 class={`${styles.title}`} title={ariaName}>{title}</h2>
+  <header class={styles.header}>
+    {subtitle && (<p class={styles.subtitle}>{subtitle}</p>)}
+    {isH1 ? (
+      <h1 class={`${styles.title}`} title={ariaName}>{title}</h1>
+    ) : (
+      <h2 class={`${styles.title}`} title={ariaName}>{title}</h2>
+    )}
+  </header>
+
   <div class={styles.content}>
     <slot />
   </div>

@@ -1,25 +1,31 @@
 ---
-const news = [
-  {
-    date: '2023-01-01',
-    newsText: "Новое расписание пригородных автобусов"
-  },
-  {
-    date: '2023-01-10',
-    newsText: "Изменение тарифов на междугородние рейсы"
-  },
-]
+interface Props {
+  newsList: []
+}
 
+const {newsList} = Astro.props
+
+import Link from '../Link/Link.astro'
 import styles from './News.module.scss'
 ---
 
 <ul class={styles.newsList}>
-  {news.map(({ date, newsText }) => (
+  {newsList.map(({ date, description,  href, important, ulList}) => (
     <li class={styles.newsItem}>
       <time datetime={date} class={styles.newsDate}>
         {new Date(date).toLocaleDateString('ru-RU')}
       </time>
-      <p class={styles.newsText}>{newsText}</p>
+      <div class=`${styles.newsText} ${important ? styles.important : ''}`>
+        <p>{description}</p>
+        {ulList && (
+          <ul>
+            {ulList.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )}
+        {href && (<Link href={href}/>)}
+      </div>
     </li>
   ))}
 </ul>

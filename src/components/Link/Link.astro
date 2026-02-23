@@ -1,12 +1,12 @@
 ---
 interface Props {
   href: string;
-  label: string;
+  label?: string;
   className?: string;
   isButton?: boolean;
 }
 
-const {href, label, className='', isButton = false} = Astro.props;
+const {href, label = 'Oзнакомиться с изменениями можно по ссылке', className='', isButton = false} = Astro.props;
 
 import styles from './Link.module.scss'
 ---

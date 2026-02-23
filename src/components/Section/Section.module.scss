@@ -15,8 +15,18 @@
     border-radius: var(--radius-lg);
   }
 
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .title {
     flex: 1;
+  }
+  .subtitle {
+    font-size: 20px;
+    font-weight: 200;
   }
 
   .content {
