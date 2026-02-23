@@ -1,0 +1,13 @@
+@use "../../styles/core" as *;
+
+.insurance {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  row-gap: fluid(15, 10);
+
+  & .number{
+    font-weight: 600;
+  }
+}

@@ -5,6 +5,7 @@ import News from "../components/News/News.astro";
 import Docs from "../components/Docs/Docs.astro";
 import {newsList} from '../data/news';
 import {linksIndex} from "../data/links";
+import Insurance from "../components/Insurance/Insurance.astro";
 ---
 
 <Layout>
@@ -15,6 +16,13 @@ import {linksIndex} from "../data/links";
     isInfo
     isH1
   ></Section>
+  <Section
+    title="Страхование"
+    ariaName="enchurias-block"
+    isInfo
+  >
+    <Insurance />
+  </Section>
   <Section
     title="Новости"
     ariaName="news-block"
@@ -30,11 +38,5 @@ import {linksIndex} from "../data/links";
   >
     <Docs links={linksIndex} />
   </Section>
-  <Section
-    title="Страхование"
-    ariaName="enchurias-block"
-  >
-    <p>В соответствиии с Федеральным законом «Об обязательном страховании гражданской ответственности перевозчика за причинение вреда жизни, здоровью, имуществу пассажиров» с Открытым страховым акционерным обществом «Ингосстрах», находящемуся по адресу: 196066, Санкт-Петербург, пр. Московский, д. 155, заключены следующие договора:</p>
-    <p>ООО "АВТО" № IGSX22540167821000 cрок страхования с 26 марта 2025 г. по 25 марта 2026 г.</p>
-  </Section>
+
 </Layout>
