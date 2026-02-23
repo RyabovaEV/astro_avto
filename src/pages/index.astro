@@ -3,59 +3,8 @@ import Layout from '../layouts/Layout/Layout.astro';
 import Section from "../components/Section/Section.astro";
 import News from "../components/News/News.astro";
 import Docs from "../components/Docs/Docs.astro";
-
-type docs =  [
-  {
-    href: string
-    title: string
-  }
-]
-
-type news = [
-  {
-    date: string
-    description: string
-    href?:string
-    important?: boolean
-    ulList?: []
-  }
-]
-
-const docs: docs[] = [
-  {
-    href: '/docs/availability.jpg',
-    title: 'Информация о доступности ТС для инвалидов и лиц с ограниченными возможностями'
-  },
-  {
-    href: '/docs/collectiveImmunity.pdf',
-    title: 'Паспорт коллективного иммунитета'
-  },
-];
-
-const newsList: news[] = [
-  {
-    date: '2026-01-25',
-    description:
-      'Уважаемые пассажиры! Обращаем Ваше  внимание, что с 01.06.2025 г. меняется расписание городских и пригородных маршрутов.',
-    href: '/schedule',
-  },
-  {
-    date: '2025-02-15',
-    description:
-      'Уважаемые пассажиры! Все рейсы на Санкт-Петербург временно отменены!',
-    important: true,
-  },
-  {
-    date: '2025-12-05',
-    description:
-      'Уважаемые пассажиры! Обращаем Ваше внимание, что с 01.05.2025 меняется расписание прогродных и городских автобусов, ознакомиться можно по ',
-    href: '/schedule',
-    ulList: [
-      '№ 255б Будогощь-Кириши отправлением в 09:10 и 10:10 на 09:25 и 10:15.',
-      '№ 251а Кириши-Глажево отправлением в 15:00 (р.дн.) на 15:30 (р.дн.). Время отправления рейса № 251а Глажево-Кириши в 16:15 (р.дн.) остается без изменений.',
-    ],
-  },
-]
+import {newsList} from '../data/news';
+import {linksIndex} from "../data/links";
 ---
 
 <Layout>
@@ -69,13 +18,13 @@ const newsList: news[] = [
     title="Новости"
     ariaName="news-block"
   >
-    <News newsList={newsList}/>
+    <News newsList={newsList} />
   </Section>
   <Section
     title="Документы"
     ariaName="document-block"
   >
-    <Docs links={docs} />
+    <Docs links={linksIndex} />
   </Section>
   <Section
     title="Страхование"
