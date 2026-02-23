@@ -41,4 +41,7 @@
   --transition-duration: .2s;
 
   --z-index-submenu: 10;
+  --z-index-menu-overlay: 100;   // оверлей с блюром
+  --z-index-menu: 110;           // само меню
+  --z-index-burger: 120;         // кнопка бургера
 }

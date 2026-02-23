@@ -33,5 +33,15 @@ import styles from './Header.module.scss'
     <div class={styles.header__menu}>
       <Menu />
     </div>
+    <button
+      class={styles.header__burger}
+      aria-label="Открыть меню"
+      aria-expanded="false"
+      type="button"
+    >
+      <span class={styles.header__burgerLine}></span>
+      <span class={styles.header__burgerLine}></span>
+      <span class={styles.header__burgerLine}></span>
+    </button>
   </div>
 </header>
