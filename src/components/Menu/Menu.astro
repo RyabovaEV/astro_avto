@@ -64,8 +64,8 @@ const menuItems: MenuItem[] = [
     role="menubar"
   >
     {menuItems.map(({href, title, ariaLabel,children}) => {
-      const isActive =
-        currentPath === href || currentPath.startsWith(href + '/')
+      const isSectionActive = currentPath === href || currentPath.startsWith(href + '/')
+      const isRootActive = currentPath === href
 
       return (
         <li
@@ -73,18 +73,18 @@ const menuItems: MenuItem[] = [
           class={`
             ${styles.menu__item}
             ${children?.length ? styles.menu__dropdown : ''}
-            ${isActive ? styles.active : ''}
+            ${isRootActive ? styles.active : ''}
           `}
           role="none"
           {...(children?.length ? { 'data-has-submenu': '' } : {})}
-          {...(children?.length && isActive ? { 'data-accordion-open': '' } : {})}
+          {...(children?.length && isSectionActive ? { 'data-accordion-open': '' } : {})}
         >
           <a
             href={href}
             class={styles.menu__link}
             role="menuitem"
             aria-haspopup="true"
-            aria-expanded={isActive ? "true" : "false"}
+            aria-expanded={isSectionActive ? "true" : "false"}
           >{title}</a>
 
           {children?.length && (
