@@ -1,6 +1,12 @@
 ---
 import styles from './Menu.module.scss'
 
+interface Props {
+  class?: string;
+  mobile?: boolean;
+}
+
+const { class: className, mobile = false } = Astro.props;
 const currentPath = Astro.url.pathname
 
 type MenuItem = {
@@ -49,8 +55,9 @@ const menuItems: MenuItem[] = [
 ---
 
 <nav
-  class={styles.menu}
+  class={[styles.menu, className].filter(Boolean).join(' ')}
   aria-label="Главное меню"
+  {...(mobile ? { 'data-menu-mobile': '' } : {})}
 >
   <ul
     class={styles.menu__list}
@@ -69,6 +76,8 @@ const menuItems: MenuItem[] = [
             ${isActive ? styles.active : ''}
           `}
           role="none"
+          {...(children?.length ? { 'data-has-submenu': '' } : {})}
+          {...(children?.length && isActive ? { 'data-accordion-open': '' } : {})}
         >
           <a
             href={href}

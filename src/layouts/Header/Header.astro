@@ -5,7 +5,7 @@ import Menu from "../../components/Menu/Menu.astro";
 import styles from './Header.module.scss'
 ---
 
-<header class={styles.header}>
+<header class={styles.header} id="header">
   <div class={`${styles.header__container} container`}>
     <div class={styles.header__logo}>
       <Logo />
@@ -38,10 +38,28 @@ import styles from './Header.module.scss'
       aria-label="Открыть меню"
       aria-expanded="false"
       type="button"
+      data-burger
     >
       <span class={styles.header__burgerLine}></span>
       <span class={styles.header__burgerLine}></span>
       <span class={styles.header__burgerLine}></span>
     </button>
   </div>
+
+  <div class={styles.header__overlay} data-overlay aria-hidden="true"></div>
+  <div class={styles.header__mobilePanel} data-mobile-panel aria-label="Мобильное меню">
+    <Menu mobile={true} />
+    <div class={styles.header__mobilePhones}>
+      <div>
+        <p>Приемная</p>
+        <a href="tel:+78136846750" class={styles.header__mobilePhone}>+7 (81368) 46-750</a>
+      </div>
+      <div>
+        <p>Диспетчерская</p>
+        <a href="tel:+78136846750" class={styles.header__mobilePhone}>+7 (81368) 46-750</a>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script src="../../scripts/header-mobile-menu.ts"></script>

@@ -76,6 +76,7 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
     z-index: var(--z-index-burger);
+    transition: background-color var(--transition-duration) ease;
 
     &:hover,
     &:active {
@@ -86,6 +87,20 @@
       display: none;
     }
 
+    &[data-burger-open] {
+      .header__burgerLine {
+        &:nth-child(1) {
+          transform: translateY(9px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+        &:nth-child(3) {
+          transform: translateY(-9px) rotate(-45deg);
+        }
+      }
+    }
   }
 
   &__burgerLine {
@@ -93,5 +108,81 @@
     height: 3px;
     border-radius: var(--radius-sm);
     background-color: var(--text-button);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+    transform-origin: center;
+  }
+
+  &__overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-index-menu-overlay);
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    pointer-events: none;
+
+    @include tablet {
+      display: block;
+    }
+  }
+
+  &[data-menu-open] &__overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  // Панель мобильного меню (высота по контенту, не на весь экран)
+  &__mobilePanel {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: min(320px, 85vw);
+    max-height: calc(100vh - 20px);
+    margin: 10px;
+    padding: var(--space-3);
+    z-index: var(--z-index-menu);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+    transform: translateX(calc(100% + 20px));
+    transition: transform 0.3s ease;
+    visibility: hidden;
+
+    @include tablet {
+      display: block;
+    }
+  }
+
+  &[data-menu-open] &__mobilePanel {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  &__mobilePhones {
+    padding-top: var(--space-2);
+    margin-top: var(--space-2);
+    border-top: 1px solid var(--border-gray);
+
+    p {
+      margin: 0 0 4px;
+      font-size: 12px;
+      color: var(--light-text-color);
+    }
+  }
+
+  &__mobilePhone {
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-2);
   }
 }

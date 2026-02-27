@@ -82,4 +82,84 @@
     transform: translateY(0);
     pointer-events: auto;
   }
+
+  // Мобильный вариант: вертикальный список + аккордеон подменю
+  &[data-menu-mobile] {
+    display: block;
+
+    .menu__list {
+      flex-direction: column;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .menu__item {
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--border-gray);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .menu__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      box-sizing: border-box;
+      gap: var(--space-1);
+
+      &::after {
+        display: none;
+      }
+    }
+
+    // Стрелка «открыть/закрыть» только у пунктов с подменю — справа от текста
+    .menu__item[data-has-submenu] > .menu__link::after {
+      content: '';
+      flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid currentColor;
+      margin-left: auto;
+      transition: transform 0.25s ease;
+    }
+
+    .menu__item[data-accordion-open][data-has-submenu] > .menu__link::after {
+      transform: rotate(180deg);
+    }
+
+    // Аккордеон: показываем все пункты подменю через max-height
+    .menu__submenu {
+      position: static;
+      display: block;
+      max-height: 0;
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: transparent;
+    }
+
+    .menu__item[data-accordion-open] > .menu__submenu {
+      max-height: 500px;
+    }
+
+    .menu__submenu__item {
+      border: none;
+    }
+
+    .menu__submenu__link {
+      padding: var(--space-1) 0 var(--space-1) var(--space-2);
+      font-size: 14px;
+    }
+  }
 }
