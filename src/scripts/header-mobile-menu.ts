@@ -4,41 +4,46 @@ const overlay = document.querySelector('[data-overlay]');
 const panel = document.querySelector('[data-mobile-panel]');
 
 if (header && burger && overlay && panel) {
+  const h = header;
+  const b = burger;
+  const o = overlay;
+  const p = panel;
+
   function openMenu() {
-    header.setAttribute('data-menu-open', '');
-    burger.setAttribute('aria-label', 'Закрыть меню');
-    burger.setAttribute('aria-expanded', 'true');
-    burger.setAttribute('data-burger-open', '');
+    h.setAttribute('data-menu-open', '');
+    b.setAttribute('aria-label', 'Закрыть меню');
+    b.setAttribute('aria-expanded', 'true');
+    b.setAttribute('data-burger-open', '');
     document.body.style.overflow = 'hidden';
-    overlay.setAttribute('aria-hidden', 'false');
+    o.setAttribute('aria-hidden', 'false');
   }
 
   function closeMenu() {
-    header.removeAttribute('data-menu-open');
-    burger.setAttribute('aria-label', 'Открыть меню');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.removeAttribute('data-burger-open');
+    h.removeAttribute('data-menu-open');
+    b.setAttribute('aria-label', 'Открыть меню');
+    b.setAttribute('aria-expanded', 'false');
+    b.removeAttribute('data-burger-open');
     document.body.style.overflow = '';
-    overlay.setAttribute('aria-hidden', 'true');
+    o.setAttribute('aria-hidden', 'true');
   }
 
   function isMenuOpen() {
-    return header.hasAttribute('data-menu-open');
+    return h.hasAttribute('data-menu-open');
   }
 
-  burger.addEventListener('click', () => {
+  b.addEventListener('click', () => {
     if (isMenuOpen()) closeMenu();
     else openMenu();
   });
 
-  overlay.addEventListener('click', closeMenu);
+  o.addEventListener('click', closeMenu);
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isMenuOpen()) closeMenu();
   });
 
   // Аккордеон в мобильном меню: клик по пункту с подменю
-  panel.querySelectorAll('[data-has-submenu]').forEach((item) => {
+  p.querySelectorAll('[data-has-submenu]').forEach((item) => {
     const link = item.querySelector('a');
     if (!link) return;
     link.addEventListener('click', (e) => {
@@ -48,7 +53,7 @@ if (header && burger && overlay && panel) {
   });
 
   // Закрыть меню при клике по обычной ссылке (переход)
-  panel.querySelectorAll('a').forEach((a) => {
+  p.querySelectorAll('a').forEach((a) => {
     const parent = a.closest('[data-has-submenu]');
     if (parent?.querySelector('a') === a) return;
     a.addEventListener('click', () => {

@@ -80,8 +80,8 @@
     }
   }
 
-  &__item:hover > &__submenu,
-  &__item.active > &__submenu {
+  // Подменю только по наведению — не оставляем открытым после перехода по ссылке
+  &__item:hover > &__submenu {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

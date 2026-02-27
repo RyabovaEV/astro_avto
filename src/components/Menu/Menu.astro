@@ -22,7 +22,8 @@ const menuItems: MenuItem[] = [
     title: 'Главная',
   },
   {
-    href: '/schedule',
+    // Нет страницы /schedule — клик ведёт на первый подпункт (городские маршруты)
+    href: '/schedule/city',
     title: 'Расписание',
     ariaLabel: 'Подменю Расписание',
     children: [
@@ -31,7 +32,8 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    href: '/driving-school',
+    // Нет страницы /driving-school — клик ведёт на первый подпункт
+    href: '/driving-school/info',
     title: 'Автошкола',
     ariaLabel: 'Подменю Автошкола',
     children: [
@@ -41,9 +43,10 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    href: '/about',
+    // Нет страницы /about — клик ведёт на первый подпункт
+    href: '/about/history',
     title: 'О предприятии',
-    ariaLabel: 'Подменю Автошкола',
+    ariaLabel: 'Подменю О предприятии',
     children: [
       {href: '/about/history', title: 'История'},
       {href: '/about/vacancies', title: 'Вакансии'},
@@ -63,8 +66,11 @@ const menuItems: MenuItem[] = [
     class={styles.menu__list}
     role="menubar"
   >
-    {menuItems.map(({href, title, ariaLabel,children}) => {
-      const isSectionActive = currentPath === href || currentPath.startsWith(href + '/')
+    {menuItems.map(({href, title, ariaLabel, children}) => {
+      const isSectionActive =
+        currentPath === href ||
+        currentPath.startsWith(href + '/') ||
+        (children?.length && children.some((ch) => currentPath === ch.href || currentPath.startsWith(ch.href + '/')))
       const isRootActive = currentPath === href
 
       return (
