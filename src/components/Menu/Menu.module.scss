@@ -52,7 +52,6 @@
     list-style: none;
     background: var(--bg-secondary);
     border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
-//    box-shadow: var(--shadow-md);
     border: 1px solid var(--border-gray);
     opacity: 0;
     transform: translateY(-10px);
@@ -80,14 +79,12 @@
     }
   }
 
-  // Подменю только по наведению — не оставляем открытым после перехода по ссылке
   &__item:hover > &__submenu {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
   }
 
-  // Мобильный вариант: вертикальный список + аккордеон подменю
   &[data-menu-mobile] {
     display: block;
 

@@ -8,12 +8,46 @@
   align-items: flex-start;
 }
 
+.sidebarDesktop {
+  @include tablet {
+    display: none;
+  }
+}
+
+.tabsScroll {
+  display: none;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-gray) transparent;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-gray);
+    border-radius: var(--radius-xs);
+  }
+
+  @include tablet {
+    display: block;
+  }
+}
+
 .content {
   flex: 1;
   min-width: 0;
 }
 
-@media (max-width: 768px) {
+@include tablet {
   .wrapper {
     flex-direction: column;
   }

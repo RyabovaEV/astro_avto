@@ -1,8 +1,8 @@
 export interface RouteSchedule {
   number: string;
   name: string;
-  departure: string[];
-  arrival: string[];
+  departure?: string[];
+  arrival?: string[];
 }
 
 export const scheduleLegend = [

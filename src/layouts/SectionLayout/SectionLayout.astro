@@ -1,6 +1,7 @@
 ---
 import Layout from '../Layout/Layout.astro';
 import Sidebar from '../../components/Sidebar/Sidebar.astro';
+import SidebarNav from '../../components/Sidebar/SidebarNav.astro';
 import type { SidebarItem } from '../../components/Sidebar/Sidebar.astro';
 
 interface Props {
@@ -15,7 +16,14 @@ import styles from './SectionLayout.module.scss';
 
 <Layout>
   <div class={styles.wrapper}>
-    <Sidebar title={title} items={sidebarItems} />
+    <div class={styles.sidebarDesktop}>
+      <Sidebar title={title} items={sidebarItems} />
+    </div>
+
+    <div class={styles.tabsScroll}>
+      <SidebarNav items={sidebarItems} layout="tabs" />
+    </div>
+
     <div class={styles.content}>
       <slot />
     </div>

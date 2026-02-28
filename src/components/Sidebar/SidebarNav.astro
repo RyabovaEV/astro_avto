@@ -1,0 +1,48 @@
+---
+import type { SidebarItem } from './Sidebar.astro';
+
+interface Props {
+  items: SidebarItem[];
+  layout?: 'list' | 'tabs';
+}
+
+const { items, layout = 'list' } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const links = items.map(({ href, title }) => {
+  const hrefNorm = href.replace(/\/$/, '') || '/';
+  const isActive =
+    currentPath === hrefNorm || (hrefNorm !== '/' && currentPath.startsWith(hrefNorm));
+  return { href, title, isActive };
+});
+
+import styles from './Sidebar.module.scss';
+---
+
+{layout === 'tabs' ? (
+  <nav class={styles.sidebar__tabs} aria-label="Разделы">
+    {links.map(({ href, title, isActive }) => (
+      <a
+        href={href}
+        class={`${styles.sidebar__tab} ${isActive ? styles.sidebar__tab_active : ''}`}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {title}
+      </a>
+    ))}
+  </nav>
+) : (
+  <ul class={styles.sidebar__list}>
+    {links.map(({ href, title, isActive }) => (
+      <li class={styles.sidebar__item}>
+        <a
+          href={href}
+          class={`${styles.sidebar__link} ${isActive ? styles.sidebar__link_active : ''}`}
+          aria-current={isActive ? 'page' : undefined}
+        >
+          {title}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}

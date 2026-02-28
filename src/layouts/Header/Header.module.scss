@@ -23,12 +23,6 @@
         "logo burger";
     }
 
-    @include mobile {
-      grid-template-rows: auto;
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        "logo burger";
-    }
   }
 
   &__logo {
@@ -136,7 +130,6 @@
     pointer-events: auto;
   }
 
-  // Панель мобильного меню (высота по контенту, не на весь экран)
   &__mobilePanel {
     display: none;
     position: fixed;
