@@ -39,6 +39,8 @@
     flex-wrap: nowrap;
     gap: var(--space-1);
     align-items: center;
+    padding-bottom: var(--space-1);
+    border-bottom: 1px solid var(--border-gray);
   }
 
   &__tab {

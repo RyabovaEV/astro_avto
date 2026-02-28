@@ -1,60 +1,15 @@
 ---
-import styles from './Menu.module.scss'
+import {menuItems} from "../../data/pathMenu";
 
 interface Props {
   class?: string;
   mobile?: boolean;
 }
 
-const { class: className, mobile = false } = Astro.props;
+const {class: className, mobile = false} = Astro.props;
 const currentPath = Astro.url.pathname
 
-type MenuItem = {
-  href: string
-  title: string
-  ariaLabel?: string
-  children?: MenuItem[]
-}
-
-const menuItems: MenuItem[] = [
-  {
-    href: '/',
-    title: 'Главная',
-  },
-  {
-    // Нет страницы /schedule — клик ведёт на первый подпункт (городские маршруты)
-    href: '/schedule/city',
-    title: 'Расписание',
-    ariaLabel: 'Подменю Расписание',
-    children: [
-      {href: '/schedule/city', title: 'Городские'},
-      {href: '/schedule/suburban', title: 'Пригородные'},
-    ],
-  },
-  {
-    // Нет страницы /driving-school — клик ведёт на первый подпункт
-    href: '/driving-school/info',
-    title: 'Автошкола',
-    ariaLabel: 'Подменю Автошкола',
-    children: [
-      {href: '/driving-school/info', title: 'Информация'},
-      {href: '/driving-school/training-plan', title: 'План обучения'},
-      {href: '/driving-school/documents', title: 'Документы'},
-    ],
-  },
-  {
-    // Нет страницы /about — клик ведёт на первый подпункт
-    href: '/about/history',
-    title: 'О предприятии',
-    ariaLabel: 'Подменю О предприятии',
-    children: [
-      {href: '/about/history', title: 'История'},
-      {href: '/about/vacancies', title: 'Вакансии'},
-      {href: '/about/documents', title: 'Документы'},
-      {href: '/about/contacts', title: 'Контакты'},
-    ],
-  },
-]
+import styles from './Menu.module.scss'
 ---
 
 <nav
