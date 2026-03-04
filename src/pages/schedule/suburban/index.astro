@@ -1,13 +1,20 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import Schedule from '../../../components/Schedule/Schedule.astro';
-import { sampleSchedule } from '../../../data/schedule';
+import { suburbanRoutes } from '../../../data/schedule';
 import { getSidebarItems } from '../../../data/pathMenu';
+import Section from "../../../components/Section/Section.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 ---
 
 <SectionLayout title="Расписание" sidebarItems={sidebarItems}>
-  <h1>Расписание пригородных маршрутов</h1>
-  <Schedule routes={sampleSchedule} />
+  <Section
+    title=`Пригородные маршруты`
+    subtitle="Расписание"
+    ariaName="title-block"
+    isInfo
+    isH1
+  ></Section>
+  <Schedule routes={suburbanRoutes} />
 </SectionLayout>

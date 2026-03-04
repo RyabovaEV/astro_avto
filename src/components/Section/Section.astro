@@ -43,12 +43,14 @@ import styles from './Section.module.scss'
     )}
   </header>
 
-  <div class={styles.content}>
-    <slot />
-    {buttonLabel &&
-      <Link
-        label={buttonLabel}
-        className={styles.button}
-      />}
-  </div>
+  {(Astro.slots.has('default') || buttonLabel) && (
+    <div class={styles.content}>
+      <slot />
+      {buttonLabel &&
+        <Link
+          label={buttonLabel}
+          className={styles.button}
+        />}
+    </div>
+  )}
 </section>

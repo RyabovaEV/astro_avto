@@ -10,35 +10,127 @@ interface Props {
   moreLabel?: string;
 }
 
-const { routes, showLegend = true, moreHref = "/schedule/suburban", moreLabel = "Всё расписание пригородных маршрутов" } = Astro.props;
+const {
+  routes = [],
+  showLegend = true,
+  moreHref = "/schedule/suburban",
+  moreLabel = "Всё расписание пригородных маршрутов",
+} = Astro.props;
 ---
 
 <div class={styles.schedule}>
-  {routes.map((route) => (
-    <article class={styles.route} aria-labelledby={`route-${route.number}`}>
-      <div class={styles.route__header}>
-        <span class={styles.route__number} id={`route-${route.number}`}>№ {route.number}</span>
+  {routes.map((route, index) => (
+    <article
+      class={styles.route}
+      aria-labelledby={`route-${route.number}`}
+      data-schedule-route
+      data-expanded={index === 0 ? "true" : "false"}
+    >
+      <button
+        type="button"
+        class={styles.route__header}
+        data-schedule-header
+        aria-expanded={index === 0 ? "true" : "false"}
+      >
+        <span class={styles.route__number} id={`route-${route.number}`}>{route.number}</span>
         <span class={styles.route__name}>{route.name}</span>
-      </div>
+      </button>
       <div class={styles.route__tableWrap}>
         <table class={styles.route__table}>
           <thead>
-            <tr>
-              <th scope="col">Отправление</th>
-              <th scope="col">Прибытие</th>
-            </tr>
+            {route.arrival && route.arrival.length > 0 ? (
+              <tr>
+                <th scope="col">Отправление</th>
+                <th scope="col">Прибытие</th>
+              </tr>
+            ) : (
+              <tr>
+                <th scope="col" colSpan={2}>Круговой маршрут</th>
+              </tr>
+            )}
           </thead>
           <tbody>
-            {route.departure.map((_, i) => (
-              <tr>
-                <td>
-                  <span class={styles.route__time}>{route.departure[i]}</span>
-                </td>
-                <td>
-                  <span class={styles.route__time}>{route.arrival[i]}</span>
-                </td>
-              </tr>
-            ))}
+            {route.arrival && route.arrival.length > 0
+              ? Array.from(
+                  {
+                    length: Math.max(
+                      route.departure?.length ?? 0,
+                      route.arrival?.length ?? 0
+                    ),
+                  },
+                  (_, i) => {
+                    const departure = route.departure?.[i];
+                    const arrival = route.arrival?.[i];
+
+                    return (
+                      <tr>
+                        <td>
+                          {departure ? (
+                            <span class={styles.route__time}>
+                              {departure.time}
+                              {departure.days && departure.days.length > 0 && (
+                                <span>
+                                  {" "}
+                                  {departure.days.join(", ")}
+                                </span>
+                              )}
+                              {departure.note && (
+                                <span>
+                                  {" "}
+                                  {departure.note}
+                                </span>
+                              )}
+                            </span>
+                          ) : (
+                            <span class={styles.route__time}>—</span>
+                          )}
+                        </td>
+                        <td>
+                          {arrival ? (
+                            <span class={styles.route__time}>
+                              {arrival.time}
+                              {arrival.days && arrival.days.length > 0 && (
+                                <span>
+                                  {" "}
+                                  {arrival.days.join(", ")}
+                                </span>
+                              )}
+                              {arrival.note && (
+                                <span>
+                                  {" "}
+                                  {arrival.note}
+                                </span>
+                              )}
+                            </span>
+                          ) : (
+                            <span class={styles.route__time}>—</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  }
+                )
+              : (route.departure ?? []).map((departure) => (
+                  <tr>
+                    <td colSpan={2}>
+                      <span class={styles.route__time}>
+                        {departure.time}
+                        {departure.days && departure.days.length > 0 && (
+                          <span>
+                            {" "}
+                            {departure.days.join(", ")}
+                          </span>
+                        )}
+                        {departure.note && (
+                          <span>
+                            {" "}
+                            {departure.note}
+                          </span>
+                        )}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>
@@ -63,3 +155,22 @@ const { routes, showLegend = true, moreHref = "/schedule/suburban", moreLabel = 
     <a class={styles.linkMore} href={moreHref}>{moreLabel} →</a>
   )}
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const routes = document.querySelectorAll("[data-schedule-route]");
+
+    routes.forEach((route) => {
+      const header = route.querySelector("[data-schedule-header]");
+      if (!header) return;
+
+      header.addEventListener("click", () => {
+        const isExpanded = route.getAttribute("data-expanded") === "true";
+        const newValue = isExpanded ? "false" : "true";
+
+        route.setAttribute("data-expanded", newValue);
+        header.setAttribute("aria-expanded", newValue);
+      });
+    });
+  });
+</script>
