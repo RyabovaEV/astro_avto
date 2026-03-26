@@ -1,0 +1,190 @@
+@use "../../styles/core" as *;
+
+.shedule {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-gray);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.thead {
+  background-color: var(--bg-submenu);
+}
+
+.headCell {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: fluid(16, 14);
+  font-weight: 600;
+  color: var(--accent-text-color);
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.tbody {
+  .row {
+    transition: background-color var(--transition-duration);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    &:hover {
+      background-color: var(--color-primary-5);
+    }
+  }
+}
+
+.dataCell,
+.numberCell,
+.nameCell {
+  padding: 14px 16px;
+  vertical-align: top;
+}
+
+.numberCell {
+  width: 12%;
+  font-weight: 600;
+  color: var(--main-text-color);
+}
+
+.nameCell {
+  width: 32%;
+  font-weight: 500;
+  color: var(--main-text-color);
+}
+
+.dataCell {
+  width: 28%;
+}
+
+.tripList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tripItem {
+  line-height: 1.35;
+}
+
+.time {
+  font-weight: 600;
+  color: var(--accent-text-color);
+}
+
+.days {
+  color: var(--light-text-color);
+}
+
+.note {
+  color: var(--color-gray-500);
+}
+
+.empty {
+  color: var(--light-text-color);
+}
+
+@include laptop {
+  .shedule {
+    overflow-x: visible;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .table {
+    min-width: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .thead {
+    display: none;
+  }
+
+  .tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    .row {
+      display: block;
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-secondary);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--border-gray);
+      }
+    }
+  }
+
+  .numberCell,
+  .nameCell,
+  .dataCell {
+    width: 100%;
+    display: block;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+
+  .dataCell:last-child {
+    border-bottom: none;
+  }
+
+  .numberCell::before,
+  .nameCell::before,
+  .dataCell::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--light-text-color);
+    font-weight: 200;
+  }
+
+  .numberCell {
+    background-color: var(--bg-submenu);
+  }
+
+  .nameCell {
+    font-weight: 600;
+  }
+
+  .tripItem {
+    display: flex;
+  }
+
+  .tripTime {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+    padding: 6px 8px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary-5);
+  }
+
+  .tripList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .empty {
+    color: var(--light-text-color);
+  }
+}

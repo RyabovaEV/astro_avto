@@ -1,6 +1,6 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import Schedule from '../../../components/Schedule/Schedule.astro';
+import SheduleTable from '../../../components/SheduleTable/SheduleTable.astro';
 import { suburbanRoutes } from '../../../data/schedule';
 import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
@@ -16,5 +16,7 @@ const sidebarItems = getSidebarItems('/schedule');
     isInfo
     isH1
   ></Section>
-  <Schedule routes={suburbanRoutes} />
+  <!--<Schedule routes={suburbanRoutes} />-->
+  <SheduleTable routes={suburbanRoutes}/>
+
 </SectionLayout>
