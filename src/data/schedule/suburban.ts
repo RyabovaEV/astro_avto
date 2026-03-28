@@ -4,6 +4,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "251",
     name: "Кириши – Черенцево",
+    kind: "linear",
     departure: [
       { time: "07:15", days: ["р.д."] },
     ],
@@ -14,12 +15,14 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "251б",
     name: "Кириши – кладбище «Мерятино» – Черенцево",
+    kind: "linear",
     departure: [{ time: "12:50", days: ["р.д."] }],
     arrival: [{ time: "14:00", days: ["р.д."] }],
   },
   {
     number: "251а",
     name: "Кириши – Глажево",
+    kind: "linear",
     departure: [
       { time: "05:50" },
       { time: "07:30", days: ["сб."] },
@@ -40,6 +43,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "251в",
     name: "Кириши – кладбище «Мерятино» – Глажево",
+    kind: "linear",
     departure: [
       { time: "10:00" },
       { time: "12:50", days: ["вых.д.", "кр.вс."] },
@@ -52,6 +56,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "253а",
     name: "Кириши – Садоводство-2 – Кусино",
+    kind: "linear",
     departure: [
       { time: "06:05" },
       { time: "08:40" },
@@ -74,6 +79,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "254",
     name: "Кириши – Городище",
+    kind: "linear",
     departure: [{ time: "14:25" }, { time: "17:55" }],
     arrival: [
       { time: "08:30", days: ["р.д."] },
@@ -84,12 +90,14 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "254г",
     name: "Кириши – Чирково – Городище",
+    kind: "linear",
     departure: [{ time: "07:30", note: "*" }],
     arrival: [{ time: "08:30", days: ["вых.д."] }],
   },
   {
     number: "254а",
     name: "Кириши – Пчева",
+    kind: "linear",
     departure: [
       { time: "06:20", days: ["р.д."] },
       { time: "11:25", days: ["р.д."] },
@@ -106,6 +114,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "255",
     name: "Кириши – Будогощь",
+    kind: "linear",
     departure: [
       { time: "06:05" },
       { time: "07:25" },
@@ -128,18 +137,21 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "255б",
     name: "Кириши – Будогощь",
+    kind: "linear",
     departure: [{ time: "06:25" }, { time: "11:00" }, { time: "14:00" }],
     arrival: [{ time: "09:25" }, { time: "10:15" }, { time: "12:00" }],
   },
   {
     number: "256",
     name: "Кириши – Чирково",
+    kind: "linear",
     departure: [{ time: "09:40" }, { time: "10:50" }],
     arrival: [{ time: "10:13" }, { time: "11:23" }],
   },
   {
     number: "257, 257а",
     name: "Кириши – Дубняги",
+    kind: "linear",
     departure: [
       { time: "06:00", days: ["р.д."] },
       { time: "13:50", days: ["чт."] },
@@ -153,6 +165,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "257б",
     name: "Кириши – Чирково – Дубняги",
+    kind: "linear",
     departure: [{ time: "18:25", note: "Дуняково чт." }],
     arrival: [
       { time: "07:00", days: ["р.д."], note: "Дуняково чт." },
@@ -162,6 +175,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "258",
     name: "Кириши – Мемино",
+    kind: "linear",
     departure: [
       { time: "08:10", days: ["пт."] },
       { time: "18:30", days: ["пт."] },
@@ -176,6 +190,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "259",
     name: "Кириши – Гороховец",
+    kind: "linear",
     departure: [
       { time: "08:10", days: ["вт.", "чт."] },
       { time: "17:30", days: ["вт.", "чт."] },
@@ -188,12 +203,14 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "259а",
     name: "Кириши – кладбище «Мерятино» – Гороховец",
+    kind: "linear",
     departure: [{ time: "12:50", days: ["вс."] }],
     arrival: [{ time: "14:18", days: ["вс."] }],
   },
   {
     number: "260",
     name: "Кириши – Садоводство-3",
+    kind: "linear",
     departure: [
       { time: "08:20" },
       { time: "09:30" },
@@ -215,11 +232,13 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "240",
     name: "Будогощь – (круговой)",
+    kind: "circular",
     departure: [{ time: "08:30" }, { time: "18:10" }],
   },
   {
     number: "244",
     name: "Будогощь – Смолино",
+    kind: "linear",
     departure: [
       { time: "08:20", days: ["вт.", "чт."] },
       { time: "16:38", days: ["вт.", "чт."] },
@@ -232,6 +251,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "245",
     name: "Будогощь – Клинково",
+    kind: "linear",
     departure: [
       { time: "07:20" },
       { time: "16:50", days: ["пн.", "ср.", "пт.", "сб.", "вс."] },
@@ -244,6 +264,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "246",
     name: "Будогощь – Половинник",
+    kind: "linear",
     departure: [
       { time: "06:50", days: ["пн.", "чт.", "сб."] },
       { time: "15:00", days: ["пн.", "чт.", "сб."] },
@@ -256,6 +277,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   {
     number: "247",
     name: "Будогощь – Луг",
+    kind: "linear",
     departure: [
       {
         time: "06:55",

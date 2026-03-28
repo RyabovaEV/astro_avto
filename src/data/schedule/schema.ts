@@ -20,9 +20,12 @@ export interface TimeEntry {
   note?: string; // заезды, пометки и т.д.
 }
 
+type RouteKind = "linear" | "circular";
+
 export interface RouteSchedule {
   number: string;
   name: string;
+  kind?: RouteKind;
   departure?: TimeEntry[];
   arrival?: TimeEntry[];
 }

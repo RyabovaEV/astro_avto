@@ -3,12 +3,14 @@ import type { RouteSchedule } from "./schema";
 export const cityRoutes: RouteSchedule[] = [{
   number: "7",
   name: "Проспект Победы – Черная речка",
+  kind: "linear",
   departure: [{ time: "12:00" }],
   arrival:   [{ time: "12:35" }]
 },
   {
     number: "7Б",
     name: "Проспект Победы – Заводоуправление",
+    kind: "linear",
     departure: [
       { time: "08:40" },
       { time: "14:10", days: ["р.д."] },
@@ -23,6 +25,7 @@ export const cityRoutes: RouteSchedule[] = [{
   {
     number: "6",
     name: "Вокзал – вокзал (круговой)",
+    kind: "circular",
     departure: [
       { time: "05:25" },
       { time: "06:02" },
@@ -45,6 +48,7 @@ export const cityRoutes: RouteSchedule[] = [{
   {
     number: "6л",
     name: "Вокзал – вокзал (круговой)",
+    kind: "circular",
     departure: [
       { time: "06:55" },
       { time: "07:20" },
@@ -60,6 +64,7 @@ export const cityRoutes: RouteSchedule[] = [{
   {
     number: "9",
     name: "Вокзал – вокзал (круговой)",
+    kind: "circular",
     departure: [
       { time: "08:58" },
       { time: "09:25" },
@@ -77,17 +82,20 @@ export const cityRoutes: RouteSchedule[] = [{
   {
     number: "9-1",
     name: "Вокзал – ОКБ – Вокзал (круговой)",
+    kind: "circular",
     departure: [{ time: "07:34" }]
     // arrival не указан явно
   },
   {
     number: "9-2",
     name: "Вокзал – ОКБ – Вокзал (круговой)",
+    kind: "circular",
     departure: [{ time: "17:52" }]
   },
   {
     number: "9л",
     name: "Вокзал – вокзал (круговой)",
+    kind: "circular",
     departure: [
       { time: "13:28" },
       { time: "14:53" },

@@ -72,6 +72,13 @@
   gap: 6px;
 }
 
+.tripListCircular {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+}
+
 .tripItem {
   line-height: 1.35;
 }

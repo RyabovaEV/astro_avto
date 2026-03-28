@@ -1,0 +1,115 @@
+---
+import styles from './ScheduleTable.module.scss'
+import type {RouteSchedule} from "../../data/schedule";
+
+interface Props {
+  routes: RouteSchedule[];
+}
+
+const {
+  routes = [],
+} = Astro.props
+---
+
+<div class={styles.shedule}>
+  <table class={styles.table}>
+    <thead class={styles.thead}>
+      <tr class={styles.headRow}>
+        <th class={styles.headCell}>№</th>
+        <th class={styles.headCell}>Наименование маршрута</th>
+        <th class={styles.headCell}>Отправление</th>
+        <th class={styles.headCell}>Отправление с конечной</th>
+      </tr>
+    </thead>
+    <tbody class={styles.tbody}>
+      {routes.map((route) => {
+        const {number, name, departure, arrival, kind} = route
+        const isCircular = kind === 'circular'
+        return (
+          <tr class={styles.row}>
+            <td
+              class={styles.numberCell}
+              data-label="№ м-та"
+            >{number}</td>
+            <td
+              class={styles.nameCell}
+              data-label="Наименование маршрута"
+            >{name}</td>
+            {isCircular ? (
+              <td
+                class={styles.dataCell}
+                data-label="Круговой маршрут"
+                colspan="2"
+              >
+                {departure?.length ? (
+                  <div class={`${styles.tripList} ${styles.tripListCircular}`}>
+                    {departure.map((dep) => (
+                      <div class={styles.tripItem}>
+                        <div class={styles.tripTime}>
+                          <span class={styles.time}>{dep.time}</span>
+                          {dep.days?.length &&
+                            <small class={styles.days}> ({dep.days.join(', ')})</small>}
+                          {dep.note &&
+                            <small class={styles.note}> {dep.note}</small>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <span class={styles.empty}>—</span>
+                )}
+              </td>
+            ) : (
+              <>
+                <td
+                  class={styles.dataCell}
+                  data-label="Отправление"
+                >
+                  {departure?.length ? (
+                    <div class={styles.tripList}>
+                      {departure.map((dep) => (
+                        <div class={styles.tripItem}>
+                          <div class={styles.tripTime}>
+                            <span class={styles.time}>{dep.time}</span>
+                            {dep.days?.length &&
+                              <small class={styles.days}> ({dep.days.join(', ')})</small>}
+                            {dep.note &&
+                              <small class={styles.note}> {dep.note}</small>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <span class={styles.empty}>-</span>
+                  )}
+                </td>
+                <td
+                  class={styles.dataCell}
+                  data-label="Отправление с конечной"
+                >
+                  {arrival?.length ? (
+                    <div class={styles.tripList}>
+                      {arrival.map((arr) => (
+                        <div class={styles.tripItem}>
+                          <div class={styles.tripTime}>
+                            <span class={styles.time}>{arr.time}</span>
+                            {arr.days?.length &&
+                              <small class={styles.days}> ({arr.days.join(', ')})</small>}
+                            {arr.note &&
+                              <small class={styles.note}> {arr.note}</small>}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <span class={styles.empty}>—</span>
+                  )}
+                </td>
+              </>
+            )}
+          </tr>
+        )
+      })}
+    </tbody>
+  </table>
+</div>
