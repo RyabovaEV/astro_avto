@@ -30,3 +30,8 @@ export interface RouteSchedule {
   arrival?: TimeEntry[];
 }
 
+export interface RoutesComments {
+  number: string;
+  times?: string[];
+  comment: string;
+}

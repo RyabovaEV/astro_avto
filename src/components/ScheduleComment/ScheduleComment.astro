@@ -1,0 +1,37 @@
+---
+import type {RoutesComments} from "../../data/schedule";
+import styles from './ScheduleComment.module.scss'
+import Section from "../Section/Section.astro";
+
+interface Props {
+  comments: RoutesComments[]
+}
+
+const {
+  comments = [],
+} = Astro.props
+---
+
+<Section title="Примечания" ariaName="title-comments" isInfo>
+  <ul class={styles.list}>
+    {comments.map((routeComment, routeCommentKey) => {
+      const {number, times, comment} = routeComment
+      return (
+        <li
+          class={styles.item}
+          key={routeCommentKey}
+        >
+          <div class={styles.number}>{number}</div>
+          {times && times.length > 0 && (
+            <ul class={styles.timeslist}>
+              {times.map((time) => (
+                <li class={styles.timeItem}>{time}</li>
+              ))}
+            </ul>
+          )}
+          <div class={styles.comment}>{comment}</div>
+        </li>
+      )
+    })}
+  </ul>
+</Section>

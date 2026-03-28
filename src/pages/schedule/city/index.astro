@@ -2,9 +2,14 @@
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
-import {cityRoutes} from "../../../data/schedule";
+import {
+  cityComments,
+  cityRoutes
+} from "../../../data/schedule";
 import ScheduleTable
   from "../../../components/ScheduleTable/ScheduleTable.astro";
+import ScheduleComment
+  from "../../../components/ScheduleComment/ScheduleComment.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 ---
@@ -18,4 +23,5 @@ const sidebarItems = getSidebarItems('/schedule');
     isH1
   ></Section>
   <ScheduleTable routes={cityRoutes} />
+  <ScheduleComment comments={cityComments}/>
 </SectionLayout>
