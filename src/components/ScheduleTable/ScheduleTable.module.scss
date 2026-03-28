@@ -100,7 +100,7 @@
   color: var(--light-text-color);
 }
 
-@include laptop {
+@include tablet {
   .shedule {
     overflow-x: visible;
     border: none;
