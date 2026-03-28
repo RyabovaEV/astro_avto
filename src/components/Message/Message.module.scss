@@ -1,0 +1,28 @@
+@use "../../styles/core" as *;
+
+.root {
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--attention);
+}
+
+.text {
+  line-height: 1.45;
+  color: var(--light-text-color);
+}
+
+.attention {
+  border-inline-start-color: var(--attention);
+  background-color: color-mix(in srgb, var(--color-red) 5%, var(--color-white));
+}
+
+.information {
+  border-inline-start-color: var(--information);
+  background-color: var(--color-primary-50);
+}
+
+.comment {
+  border-inline-start-color: var(--comment-accent);
+  background-color: color-mix(in srgb, var(--color-green) 10%, var(--color-white));
+}

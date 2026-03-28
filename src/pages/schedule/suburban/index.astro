@@ -1,24 +1,41 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import ScheduleTable from '../../../components/ScheduleTable/ScheduleTable.astro';
-import { suburbanRoutes, suburbanComments } from '../../../data/schedule';
-import { getSidebarItems } from '../../../data/pathMenu';
+import ScheduleTable
+  from '../../../components/ScheduleTable/ScheduleTable.astro';
+import {suburbanRoutes, suburbanComments} from '../../../data/schedule';
+import {getSidebarItems} from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
 import ScheduleComment
   from "../../../components/ScheduleComment/ScheduleComment.astro";
+import Message from "../../../components/Message/Message.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 ---
 
-<SectionLayout title="Расписание" sidebarItems={sidebarItems}>
+<SectionLayout
+  title="Расписание"
+  sidebarItems={sidebarItems}
+>
   <Section
     title=`Пригородные маршруты`
     subtitle="Расписание"
     ariaName="title-block"
     isInfo
     isH1
-  ></Section>
-  <ScheduleTable routes={suburbanRoutes}/>
-  <ScheduleComment comments={suburbanComments}/>
-
+  >
+    <Message
+      message="Рейсы на СПБ отменены"
+      type="attention"
+    />
+    <Message
+      message="C 01.04.2026 действует новое расписание"
+      type="comment"
+    />
+  </Section>
+  <ScheduleTable routes={suburbanRoutes} />
+  <ScheduleComment comments={suburbanComments} />
+  <Message
+    message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."
+    type="information"
+  />
 </SectionLayout>

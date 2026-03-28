@@ -22,7 +22,9 @@
   --color-link: var(--color-primary-600);
 
   --attention: var(--color-red);
-  --information: var(--color-green);
+  /* информационные сообщения в UI — голубой (акцент бренда) */
+  --information: var(--color-primary-600);
+  --comment-accent: var(--color-green);
 
   --bg-submenu: var(--color-primary-50);
   --text-submenu: var(--color-primary-700);

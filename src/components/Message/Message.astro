@@ -1,0 +1,26 @@
+---
+import styles from "./Message.module.scss";
+
+export type MessageType = "attention" | "information" | "comment";
+
+interface Props {
+  message: string;
+  type?: MessageType;
+  className?: string;
+}
+
+const { message, type = "information", className = "" } = Astro.props;
+
+const typeClass = {
+  attention: styles.attention,
+  information: styles.information,
+  comment: styles.comment,
+}[type];
+---
+
+<div
+  class:list={[styles.root, typeClass, className]}
+  role="status"
+>
+  <p class={styles.text}>{message}</p>
+</div>

@@ -10,6 +10,7 @@ import ScheduleTable
   from "../../../components/ScheduleTable/ScheduleTable.astro";
 import ScheduleComment
   from "../../../components/ScheduleComment/ScheduleComment.astro";
+import Message from "../../../components/Message/Message.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 ---
@@ -21,7 +22,10 @@ const sidebarItems = getSidebarItems('/schedule');
     ariaName="title-block"
     isInfo
     isH1
-  ></Section>
+  >
+    <p>c 01.01.2026 по 30.01.2026</p>
+  </Section>
   <ScheduleTable routes={cityRoutes} />
   <ScheduleComment comments={cityComments}/>
+  <Message message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано." type="information"/>
 </SectionLayout>
