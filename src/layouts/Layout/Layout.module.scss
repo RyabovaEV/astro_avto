@@ -19,11 +19,15 @@
 
 :global([data-back-to-top]) {
   position: fixed;
-  inset: auto var(--space-2) var(--space-2) auto;
+  right: var(--space-2);
+  bottom: var(--space-2);
   z-index: calc(var(--z-index-menu-overlay) + 1);
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity var(--transition-duration), transform var(--transition-duration);
+  transition:
+    opacity var(--transition-duration),
+    transform var(--transition-duration),
+    bottom var(--transition-duration);
 }
 
 :global([data-back-to-top][data-visible]) {
