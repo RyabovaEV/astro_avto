@@ -1,9 +1,17 @@
 @use "../../styles/core" as *;
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-header);
   padding-top: fluid(30,20);
   border-bottom: 1px solid var(--border-gray);
   background-color: var(--bg-secondary);
+  transition: box-shadow var(--transition-duration) ease;
+
+  &[data-stuck] {
+    box-shadow: var(--shadow-sm);
+  }
 
   @include tablet {
     padding-bottom: fluid(25,20);

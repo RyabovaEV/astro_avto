@@ -1,6 +1,6 @@
 class HeaderMobileMenu {
   static SELECTORS = {
-    header: '#header',
+    header: '[data-header]',
     burger: '[data-burger]',
     overlay: '[data-overlay]',
     panel: '[data-mobile-panel]',

@@ -1,5 +1,14 @@
 @use "../../styles/core" as *;
 
+.headerStickySentinel {
+  flex-shrink: 0;
+  height: 1px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
 .layout {
   min-width: 100vw;
   display: flex;
