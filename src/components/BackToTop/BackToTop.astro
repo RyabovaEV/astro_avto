@@ -1,0 +1,33 @@
+---
+import Link from "../Link/Link.astro";
+import styles from "./BackToTop.module.scss";
+
+const { threshold = 1000 } = Astro.props;
+---
+
+<div
+  class={styles.wrap}
+  data-back-to-top
+  data-threshold={threshold}
+>
+  <Link
+    href="#"
+    isButton={true}
+    type="button"
+    ariaLabel="Наверх"
+    title="Наверх"
+    className={styles.button}
+  >
+    <span class={styles.icon} aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 5L5 12M12 5L19 12M12 5V19"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
+  </Link>
+</div>

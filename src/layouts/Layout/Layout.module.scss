@@ -4,6 +4,7 @@
   min-width: 100vw;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .main{
     flex-grow: 1;
@@ -14,4 +15,18 @@
     justify-content: start;
     row-gap: fluid(50,30);
   }
+}
+
+:global([data-back-to-top]) {
+  position: fixed;
+  inset: auto var(--space-2) var(--space-2) auto;
+  z-index: calc(var(--z-index-menu-overlay) + 1);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transition-duration), transform var(--transition-duration);
+}
+
+:global([data-back-to-top][data-visible]) {
+  opacity: 1;
+  transform: translateY(0);
 }

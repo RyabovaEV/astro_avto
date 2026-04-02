@@ -1,6 +1,7 @@
 ---
 import Footer from '../Footer/Footer.astro'
 import Header from "../Header/Header.astro";
+import BackToTop from "../../components/BackToTop/BackToTop.astro";
 import styles from './Layout.module.scss'
 
 import "../../styles/main.scss";
@@ -35,5 +36,8 @@ import "../../styles/main.scss";
   <slot />
 </main>
 <Footer />
+<BackToTop threshold={1000} />
+
+<script src="../../scripts/main.ts"></script>
 </body>
 </html>

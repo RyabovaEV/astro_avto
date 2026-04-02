@@ -3,23 +3,41 @@ interface Props {
   href?: string;
   label?: string;
   className?: string;
+  ariaLabel?: string;
+  title?: string;
+  isButton?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const {
   href,
   label = 'Oзнакомиться с изменениями можно по ссылке',
   className = '',
-  isButton = false
+  ariaLabel,
+  title,
+  isButton = false,
+  type = 'button',
 } = Astro.props;
 
 import styles from './Link.module.scss'
 ---
 
-{href ? (
-<a
-  href={href}
-  class={`${styles.link} ${className ? className : ''}`}
->
-  {label}
-</a>) : (
-<button class={`${styles.button} ${className ? className : ''}`}>{label}</button>)}
+{href && !isButton ? (
+  <a
+    href={href}
+    class={`${styles.link} ${className ? className : ''}`}
+    aria-label={ariaLabel}
+    title={title}
+  >
+    <slot>{label}</slot>
+  </a>
+) : (
+  <button
+    class={`${styles.button} ${className ? className : ''}`}
+    aria-label={ariaLabel}
+    title={title}
+    type={type}
+  >
+    <slot>{label}</slot>
+  </button>
+)}

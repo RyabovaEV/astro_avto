@@ -1,63 +1,86 @@
-const header = document.getElementById('header');
-const burger = document.querySelector('[data-burger]');
-const overlay = document.querySelector('[data-overlay]');
-const panel = document.querySelector('[data-mobile-panel]');
+class HeaderMobileMenu {
+  static SELECTORS = {
+    header: '#header',
+    burger: '[data-burger]',
+    overlay: '[data-overlay]',
+    panel: '[data-mobile-panel]',
+    hasSubmenu: '[data-has-submenu]',
+    links: 'a',
+  };
 
-if (header && burger && overlay && panel) {
-  const h = header;
-  const b = burger;
-  const o = overlay;
-  const p = panel;
+  private readonly header: HTMLElement | null;
+  private readonly burger: HTMLElement | null;
+  private readonly overlay: HTMLElement | null;
+  private readonly panel: HTMLElement | null;
 
-  function openMenu() {
-    h.setAttribute('data-menu-open', '');
-    b.setAttribute('aria-label', 'Закрыть меню');
-    b.setAttribute('aria-expanded', 'true');
-    b.setAttribute('data-burger-open', '');
+  constructor() {
+    this.header = document.querySelector<HTMLElement>(HeaderMobileMenu.SELECTORS.header);
+    this.burger = document.querySelector<HTMLElement>(HeaderMobileMenu.SELECTORS.burger);
+    this.overlay = document.querySelector<HTMLElement>(HeaderMobileMenu.SELECTORS.overlay);
+    this.panel = document.querySelector<HTMLElement>(HeaderMobileMenu.SELECTORS.panel);
+
+    if (!this.header || !this.burger || !this.overlay || !this.panel) return;
+
+    this.bindEvents();
+  }
+
+  private openMenu() {
+    if (!this.header || !this.burger || !this.overlay) return;
+
+    this.header.setAttribute('data-menu-open', '');
+    this.burger.setAttribute('aria-label', 'Закрыть меню');
+    this.burger.setAttribute('aria-expanded', 'true');
+    this.burger.setAttribute('data-burger-open', '');
     document.body.style.overflow = 'hidden';
-    o.setAttribute('aria-hidden', 'false');
+    this.overlay.setAttribute('aria-hidden', 'false');
   }
 
-  function closeMenu() {
-    h.removeAttribute('data-menu-open');
-    b.setAttribute('aria-label', 'Открыть меню');
-    b.setAttribute('aria-expanded', 'false');
-    b.removeAttribute('data-burger-open');
+  private closeMenu = () => {
+    if (!this.header || !this.burger || !this.overlay) return;
+
+    this.header.removeAttribute('data-menu-open');
+    this.burger.setAttribute('aria-label', 'Открыть меню');
+    this.burger.setAttribute('aria-expanded', 'false');
+    this.burger.removeAttribute('data-burger-open');
     document.body.style.overflow = '';
-    o.setAttribute('aria-hidden', 'true');
+    this.overlay.setAttribute('aria-hidden', 'true');
+  };
+
+  private isMenuOpen() {
+    return this.header?.hasAttribute('data-menu-open') ?? false;
   }
 
-  function isMenuOpen() {
-    return h.hasAttribute('data-menu-open');
+  private onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && this.isMenuOpen()) {
+      this.closeMenu();
+    }
+  };
+
+  private bindEvents() {
+    this.burger?.addEventListener('click', () => {
+      if (this.isMenuOpen()) this.closeMenu();
+      else this.openMenu();
+    });
+
+    this.overlay?.addEventListener('click', this.closeMenu);
+    document.addEventListener('keydown', this.onKeyDown);
+
+    this.panel?.querySelectorAll(HeaderMobileMenu.SELECTORS.hasSubmenu).forEach((item) => {
+      const link = item.querySelector('a');
+      if (!link) return;
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        item.toggleAttribute('data-accordion-open');
+      });
+    });
+
+    this.panel?.querySelectorAll(HeaderMobileMenu.SELECTORS.links).forEach((a) => {
+      const parent = a.closest(HeaderMobileMenu.SELECTORS.hasSubmenu);
+      if (parent?.querySelector('a') === a) return;
+      a.addEventListener('click', this.closeMenu);
+    });
   }
-
-  b.addEventListener('click', () => {
-    if (isMenuOpen()) closeMenu();
-    else openMenu();
-  });
-
-  o.addEventListener('click', closeMenu);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isMenuOpen()) closeMenu();
-  });
-
-  // Аккордеон в мобильном меню: клик по пункту с подменю
-  p.querySelectorAll('[data-has-submenu]').forEach((item) => {
-    const link = item.querySelector('a');
-    if (!link) return;
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      item.toggleAttribute('data-accordion-open');
-    });
-  });
-
-  // Закрыть меню при клике по обычной ссылке (переход)
-  p.querySelectorAll('a').forEach((a) => {
-    const parent = a.closest('[data-has-submenu]');
-    if (parent?.querySelector('a') === a) return;
-    a.addEventListener('click', () => {
-      closeMenu();
-    });
-  });
 }
+
+export default HeaderMobileMenu;
