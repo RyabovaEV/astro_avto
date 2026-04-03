@@ -1,33 +1,45 @@
 ---
 import styles from './CardPrice.module.scss'
 
-import type {PriceCard} from "../../data/driving-school";
+import type {PriceCard} from '../../data/driving-school'
 
 interface Props {
   prices: PriceCard[]
 }
 
-const {
-  prices = []
-} = Astro.props
+const {prices = []} = Astro.props
+const isTwoCards = prices.length === 2
 ---
 
-<div class={styles.cardPrice}>
-  {prices.map((priceItem, priceKey) => {
-    const {category, price, termOfStudy} = priceItem
-    return (
-      <article class={styles.item}>
-        <header>
-          <h2 class={styles.title}>{category.description}</h2>
-          {category.note && (
-            <div class={styles.note}>{category.note}</div>
-          )}
-        </header>
-        <div class={styles.content}>
-          <div class={styles.price}>{price}</div>
-          <div class={styles.termOfStudy}>{termOfStudy}</div>
-        </div>
-      </article>
-    )
-  })}
+<div
+  class:list={[styles.cardPrice, isTwoCards && styles.cardPriceTwo]}
+>
+  {
+    prices.map((priceItem) => {
+      const {category, price, termOfStudy} = priceItem
+      return (
+        <article class={styles.item}>
+          <header class={styles.header}>
+            {category.map((cat) => (
+              <div class={styles.categoryBlock}>
+                <h2 class={styles.title}>{cat.description}</h2>
+                {cat.note &&
+                  <p class={styles.note}>{cat.note}</p>}
+              </div>
+            ))}
+          </header>
+          <div class={styles.content}>
+            <div class={styles.block}>
+              <div class={styles.name}>Стоимость*</div>
+              <p class={styles.price}>{price}</p>
+            </div>
+            <div class={styles.block}>
+              <div class={styles.name}>Срок обучения</div>
+              <p class={styles.termOfStudy}>{termOfStudy}</p>
+            </div>
+          </div>
+        </article>
+      )
+    })
+  }
 </div>
