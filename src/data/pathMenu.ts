@@ -33,9 +33,10 @@ export const menuItems: MenuItem[] = [
     title: 'Автошкола',
     ariaLabel: 'Подменю Автошкола',
     children: [
-      {href: '/driving-school/info', title: 'Информация'},
+      {href: '/driving-school/info', title: 'Общая информация'},
+      {href: '/driving-school/danger-goods', title: 'Перевозка опасных грузов'},
       {href: '/driving-school/training-plan', title: 'План обучения'},
-      {href: '/driving-school/documents', title: 'Документы'},
+      {href: '/driving-school/documents', title: 'Сведения об образовательной организации'},
     ],
   },
   {
