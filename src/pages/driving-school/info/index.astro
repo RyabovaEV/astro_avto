@@ -2,6 +2,11 @@
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
+import CardPrice from "../../../components/CardPrice/CardPrice.astro";
+import {basePrice} from "../../../data/driving-school";
+import Message from "../../../components/Message/Message.astro";
+import PaymentAndEnrollment
+  from "../../../components/PaymentAndEnrollment/PaymentAndEnrollment.astro";
 
 const sidebarItems = getSidebarItems('/driving-school');
 ---
@@ -25,4 +30,16 @@ const sidebarItems = getSidebarItems('/driving-school');
 
     <p>Телефон для справок: <span>8(813-68)46-751, 8-965-009-11-09</span> </p>
   </Section>
+  <CardPrice prices={basePrice}/>
+  <Message
+    message="Стоимость обучения в автошколе включает в себя: занятия по теоретическому курсу и занятия по практическому вождению."
+  />
+  <Section
+    title="Порядок оплаты, график занятий и документы для поступления"
+    ariaName="info-block"
+    isInfo
+  >
+    <PaymentAndEnrollment />
+  </Section>
+
 </SectionLayout>

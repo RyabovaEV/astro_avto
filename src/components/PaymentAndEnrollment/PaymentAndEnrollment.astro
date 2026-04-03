@@ -1,0 +1,110 @@
+---
+import styles from './PaymentAndEnrollment.module.scss'
+
+interface Props {
+  isDangerGoods?: boolean
+}
+
+const {
+  isDangerGoods = false
+} = Astro.props
+---
+
+{isDangerGoods ? (
+<div class={styles.paymentAndEnrollment}>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Оплата:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        Производиться через кассу ООО «КПАП» единовременно в полном объеме;
+      </li>
+      <li class={styles.listItem}>
+        Гос. пошлина за выдачу свидетельства ДОПОГ (оплачивается отдельно через сбербанк на р/с Северо-Западного межрегионального УГАДН и предоставляется в СПб, квитанцию можно взять в автошколе).
+      </li>
+    </ol>
+  </div>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Режим занятий:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Первичное и повторное обучение:</span> пн., вт., ср., чт., пт. с 09 час. 00 мин.
+      </li>
+    </ol>
+  </div>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Документы:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        заявление
+      </li>
+      <li class={styles.listItem}>
+        копия паспорта
+      </li>
+      <li class={styles.listItem}>
+        копия водительского удостоверения;
+      </li>
+      <li class={styles.listItem}>
+        1 фото на съёмном носителе:
+        <ul>
+          <li>формат изображения файл Windows Bitmap (*.bmp);</li>
+          <li>размеры: ширина – 352 пикселя, высота – 506 пикселей;</li>
+          <li>размер головы на снимке должен занимать от 65 до 75 %;</li>
+          <li>фотография должна быть выполнена на сером фоне.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>
+  ) : (
+<div class={styles.paymentAndEnrollment}>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Оплата:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        Производиться через кассу ООО «КПАП» (бухгалтерия – 2-й этаж) единовременно в полном объеме или в рассрочку на период обучения. Первый взнос не позднее 10-ти дней с начала обучения.
+      </li>
+      <li class={styles.listItem}>
+                  <span class={styles.listItemBold}>
+                    гос. пошлина за выдачу в/у (оплата в сбербанк на р/с ГИБДД).
+                  </span>
+      </li>
+    </ol>
+  </div>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Режим занятий:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Теоретическая подготовка:</span>
+        пн, вт, ср, чт. с 17:45 до 21:00 час.;
+      </li>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Практическая подготовка:</span>
+        пн, вт, ср, чт, пт, сб. с 08:00 до 18:00 час. (согласно индивидуально составляемому графику).
+      </li>
+    </ol>
+  </div>
+  <div class={styles.item}>
+    <h3 class={styles.title}>Основные требования к документам для поступления на обучение:</h3>
+    <ol class={styles.list}>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Паспорт РФ.</span>
+        Если Вам в процессе обучения, а также на момент сдачи аттестационных и квалификационных экзаменов исполняется 20 или 45 лет, то Вам необходимо, по достижению указанного возраста, заменить паспорт (ИЗВЛЕЧЕНИЕ из Положения о паспорте гражданина РФ). При предъявлении не действующего паспорта к экзаменам Вас не допустят. Если Вы поменяли фамилию, имя или отчество, либо регистрацию (прописку), Вам необходимо в кротчайшие сроки уведомить об этом учебную часть (принести оригинал и ксерокопии Свидетельства о перемене Ф.И.О. и паспорта с нужной страницы).
+      </li>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Медицинская справка</span>
+        (водительская комиссия), утверждена Приказом Минздравсоцразвития России №831-н от 28 сентября 2010 года.
+        При получении справки обязательно проверить правильность написания ваших данных – Ф.И.О., дата рождения, регистрация, открытие категорий ТС.
+      </li>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>Фотография </span>
+        1-2 шт. матовые, черно-белые или цветные.
+      </li>
+      <li class={styles.listItem}>
+        <span class={styles.listItemBold}>При наличае водительского удостоверения</span>
+        - экзаменационную карточку водителя и копию водительского удостоверения
+      </li>
+    </ol>
+  </div>
+</div>
+  )}
+

@@ -1,0 +1,33 @@
+---
+import styles from './CardPrice.module.scss'
+
+import type {PriceCard} from "../../data/driving-school";
+
+interface Props {
+  prices: PriceCard[]
+}
+
+const {
+  prices = []
+} = Astro.props
+---
+
+<div class={styles.cardPrice}>
+  {prices.map((priceItem, priceKey) => {
+    const {category, price, termOfStudy} = priceItem
+    return (
+      <article class={styles.item}>
+        <header>
+          <h2 class={styles.title}>{category.description}</h2>
+          {category.note && (
+            <div class={styles.note}>{category.note}</div>
+          )}
+        </header>
+        <div class={styles.content}>
+          <div class={styles.price}>{price}</div>
+          <div class={styles.termOfStudy}>{termOfStudy}</div>
+        </div>
+      </article>
+    )
+  })}
+</div>

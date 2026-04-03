@@ -1,12 +1,20 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import { getSidebarItems } from '../../../data/pathMenu';
+import {getSidebarItems} from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
+import CardPrice from "../../../components/CardPrice/CardPrice.astro";
+import {dangerGoodsPrice} from "../../../data/driving-school";
+import Message from "../../../components/Message/Message.astro";
+import PaymentAndEnrollment
+  from "../../../components/PaymentAndEnrollment/PaymentAndEnrollment.astro";
 
 const sidebarItems = getSidebarItems('/driving-school');
 ---
 
-<SectionLayout title="Автошкола" sidebarItems={sidebarItems}>
+<SectionLayout
+  title="Автошкола"
+  sidebarItems={sidebarItems}
+>
   <Section
     title=`Перевозка опасных грузов`
     subtitle="Автошкола"
@@ -14,5 +22,13 @@ const sidebarItems = getSidebarItems('/driving-school');
     isInfo
     isH1
   />
-
+  <CardPrice prices={dangerGoodsPrice} />
+  <Message message="Повторное обучение проводится только при действующем свидетельстве ДОПОГ, при просроченном свидетельстве проводится только Первичное обучение." />
+  <Section
+    ariaName="info-title"
+    title="Порядок оплаты, график занятий и документы для поступления"
+    isInfo
+  >
+    <PaymentAndEnrollment isDangerGoods/>
+  </Section>
 </SectionLayout>
