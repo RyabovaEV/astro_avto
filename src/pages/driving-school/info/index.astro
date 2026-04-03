@@ -7,6 +7,8 @@ import {basePrice} from "../../../data/driving-school";
 import Message from "../../../components/Message/Message.astro";
 import PaymentAndEnrollment
   from "../../../components/PaymentAndEnrollment/PaymentAndEnrollment.astro";
+import DrivingSchoolGeneralInfo
+  from "../../../components/DrivingSchoolGeneralInfo/DrivingSchoolGeneralInfo.astro";
 
 const sidebarItems = getSidebarItems('/driving-school');
 ---
@@ -19,16 +21,7 @@ const sidebarItems = getSidebarItems('/driving-school');
     isInfo
     isH1
   >
-    <p>Ведется обучение на категорию: <span>"B", "C", "D", Перевозка опасных грузов</span></p>
-
-    <div>
-      <p>Режим работы:</p>
-      <p>C понедельника по четверг: <span></span> с 8:00 до 17:15</p>
-      <p>Пятница: <span>с 8:00 до 16:00</span> </p>
-      <p>Обед: <span>с 12:00 до 13:00</span> </p>
-    </div>
-
-    <p>Телефон для справок: <span>8(813-68)46-751, 8-965-009-11-09</span> </p>
+    <DrivingSchoolGeneralInfo />
   </Section>
   <CardPrice prices={basePrice}/>
   <Message

@@ -1,0 +1,46 @@
+---
+import Link from '../Link/Link.astro';
+import styles from './DrivingSchoolGeneralInfo.module.scss';
+---
+
+<div class={styles.root}>
+  <p class={styles.categories}>
+    <span class={styles.categoriesLabel}>Ведется обучение на категорию:</span>
+    {' '}
+    «B», «C», «D», перевозка опасных грузов
+  </p>
+
+  <section
+    class={styles.scheduleSection}
+    aria-labelledby="driving-school-schedule-heading"
+  >
+    <p id="driving-school-schedule-heading" class={styles.scheduleTitle}>
+      Режим работы
+    </p>
+    <dl class={styles.schedule}>
+      <div class={styles.scheduleRow}>
+        <dt class={styles.term}>С понедельника по четверг</dt>
+        <dd class={styles.value}>с 8:00 до 17:15</dd>
+      </div>
+      <div class={styles.scheduleRow}>
+        <dt class={styles.term}>Пятница</dt>
+        <dd class={styles.value}>с 8:00 до 16:00</dd>
+      </div>
+      <div class={styles.scheduleRow}>
+        <dt class={styles.term}>Обед</dt>
+        <dd class={styles.value}>с 12:00 до 13:00</dd>
+      </div>
+    </dl>
+  </section>
+
+  <address class={styles.contacts}>
+    <p class={styles.contactsLine}>
+      <span class={styles.contactsLabel}>Телефон для справок:</span>
+      <span class={styles.phoneRow}>
+        <Link href="tel:+78136846751">8&nbsp;(813-68)&nbsp;46-751</Link>
+        <span class={styles.phoneSep} aria-hidden="true">,</span>
+        <Link href="tel:+79650091109">8-965-009-11-09</Link>
+      </span>
+    </p>
+  </address>
+</div>
