@@ -1,0 +1,29 @@
+---
+import styles from './Accordion.module.scss';
+
+interface Props {
+  class?: string;
+  'aria-label'?: string;
+  size?: 'default' | 'compact';
+}
+
+const {
+  class: className,
+  'aria-label': ariaLabel,
+  size = 'default',
+} = Astro.props;
+
+const rootClass = [
+  styles.root,
+  size === 'compact' ? styles.root_sizeCompact : '',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div
+  class={rootClass}
+  data-accordion
+  {...(ariaLabel ? { 'aria-label': ariaLabel } : {})}
+>
+  <slot />
+</div>

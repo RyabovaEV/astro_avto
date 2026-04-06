@@ -1,0 +1,107 @@
+@use "../../styles/core" as *;
+
+.root {
+  --accordion-trigger-font: #{fluid(17, 16)};
+  --accordion-panel-font: #{fluid(15, 14)};
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.root_sizeCompact {
+  --accordion-trigger-font: #{fluid(15, 14)};
+  --accordion-panel-font: #{fluid(14, 13)};
+}
+
+.item {
+  border-bottom: 1px solid var(--border-light);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.itemHeading {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  background: transparent;
+  font-size: var(--accordion-trigger-font, #{fluid(17, 16)});
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--accent-text-color);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-duration) ease;
+
+  &:hover {
+    background-color: var(--color-primary-5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+  }
+}
+
+.triggerLabel {
+  min-width: 0;
+}
+
+.triggerIcon {
+  flex-shrink: 0;
+  width: 0.55em;
+  height: 0.55em;
+  margin-top: 0.15em;
+  border-right: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+  transform: rotate(45deg);
+  transition: transform var(--transition-duration) ease;
+}
+
+.trigger[aria-expanded="true"] .triggerIcon {
+  transform: rotate(-135deg);
+  margin-top: 0.35em;
+}
+
+.panel {
+  font-size: var(--accordion-panel-font, #{fluid(15, 14)});
+  line-height: 1.55;
+  color: var(--main-text-color);
+}
+
+.panelInner {
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.panel:not([hidden]) .panelInner {
+  padding-top: 0;
+}
+
+.panel :global(a) {
+  color: var(--color-link);
+}
+
+.panel :global(ul),
+.panel :global(ol) {
+  margin: 0 0 var(--space-2);
+  padding-left: 1.25em;
+}
+
+.panel :global(p:last-child) {
+  margin-bottom: 0;
+}

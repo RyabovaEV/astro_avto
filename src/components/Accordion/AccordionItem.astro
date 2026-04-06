@@ -1,0 +1,43 @@
+---
+import styles from './Accordion.module.scss';
+
+interface Props {
+  title: string;
+  /** Открыт при первой отрисовке (SSR). Для выбора по индексу: `initiallyOpen={i === defaultOpenIndex}`. */
+  initiallyOpen?: boolean;
+}
+
+const { title, initiallyOpen = false } = Astro.props;
+
+const uid = crypto.randomUUID();
+const triggerId = `acc-trigger-${uid}`;
+const panelId = `acc-panel-${uid}`;
+---
+
+<div class={styles.item} data-accordion-item>
+  <h3 class={styles.itemHeading}>
+    <button
+      type="button"
+      class={styles.trigger}
+      id={triggerId}
+      data-accordion-trigger
+      aria-expanded={initiallyOpen ? 'true' : 'false'}
+      aria-controls={panelId}
+    >
+      <span class={styles.triggerLabel}>{title}</span>
+      <span class={styles.triggerIcon} aria-hidden="true"></span>
+    </button>
+  </h3>
+  <div
+    class={styles.panel}
+    id={panelId}
+    data-accordion-panel
+    role="region"
+    aria-labelledby={triggerId}
+    {...(!initiallyOpen ? { hidden: true } : {})}
+  >
+    <div class={styles.panelInner}>
+      <slot />
+    </div>
+  </div>
+</div>

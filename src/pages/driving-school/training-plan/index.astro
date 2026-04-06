@@ -2,8 +2,16 @@
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
+import Accordion from "../../../components/Accordion/Accordion.astro";
+import AccordionItem from "../../../components/Accordion/AccordionItem.astro";
 
 const sidebarItems = getSidebarItems('/driving-school');
+
+const defaultOpenIndex = 0; // или undefined — все закрыты
+const sections = [
+  { title: 'Учебный план профессиональной подготовки водителей транспортных средств категории “В”', slug: 'В' },
+  { title: 'Учебный план профессиональной переподготовки водителей транспортных средств с категории “В” на категорию “D”', slug: 'ВД' },
+];
 ---
 
 <SectionLayout title="Автошкола" sidebarItems={sidebarItems}>
@@ -14,4 +22,11 @@ const sidebarItems = getSidebarItems('/driving-school');
     isInfo
     isH1
   />
+  <Accordion aria-label="Разделы" size="compact">
+    {sections.map((s, i) => (
+      <AccordionItem title={s.title} initiallyOpen={i === defaultOpenIndex}>
+        <p>Содержимое «{s.title}»…</p>
+      </AccordionItem>
+    ))}
+  </Accordion>
 </SectionLayout>
