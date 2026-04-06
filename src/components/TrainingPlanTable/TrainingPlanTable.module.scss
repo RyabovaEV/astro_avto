@@ -1,0 +1,158 @@
+@use "../../styles/core" as *;
+
+.wrapper {
+  padding-block: var(--space-3);
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--bg-secondary);
+
+  @include tablet {
+    padding-block: var(--space-2);
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.thead {
+  background-color: var(--bg-submenu);
+}
+
+.headRow {
+  .headCell {
+    padding: 10px 12px;
+    text-align: center;
+    font-size: fluid(15, 13);
+    font-weight: 600;
+    color: var(--accent-text-color);
+    border: 1px solid var(--border-light);
+    vertical-align: middle;
+  }
+}
+
+.tbody {
+  .sectionRow {
+    .sectionCell {
+      padding: 12px 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: fluid(16, 14);
+      color: var(--main-text-color);
+      border: 1px solid var(--border-gray);
+      background-color: var(--color-primary-5);
+    }
+  }
+
+  .dataRow {
+    .nameCell,
+    .numCell {
+      padding: 12px 14px;
+      vertical-align: middle;
+      border: 1px solid var(--border-gray);
+      font-size: fluid(16, 14);
+      color: var(--main-text-color);
+    }
+
+    .nameCell {
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .numCell {
+      text-align: center;
+    }
+  }
+
+  .summaryRow {
+    .nameCell,
+    .numCell {
+      font-weight: 700;
+    }
+  }
+}
+
+@include tablet {
+  .wrapper {
+    overflow-x: visible;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .table {
+    min-width: 0;
+    //border-collapse: separate;
+    //border-spacing: 0;
+  }
+
+  .thead {
+    display: none;
+  }
+
+  .tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    .sectionRow {
+      display: block;
+
+      .sectionCell {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid var(--border-gray);
+        border-radius: var(--radius-lg);
+        background-color: var(--bg-submenu);
+        box-shadow: var(--shadow-sm);
+      }
+    }
+
+    .dataRow {
+      display: block;
+      //border: 1px solid var(--border-gray);
+      //border-radius: var(--radius-lg);
+      background-color: var(--bg-secondary);
+      //box-shadow: var(--shadow-sm);
+      overflow: hidden;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--border-gray);
+      }
+    }
+
+    .nameCell,
+    .numCell {
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border: none;
+      border-bottom: 1px solid var(--border-light);
+      text-align: left;
+    }
+
+    .numCell:last-child {
+      border-bottom: none;
+    }
+
+    .nameCell::before,
+    .numCell::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 4px;
+      color: var(--light-text-color);
+      font-size: fluid(14, 12);
+      font-weight: 400;
+    }
+
+    .summaryRow .nameCell,
+    .summaryRow .numCell {
+      font-weight: 700;
+    }
+  }
+}

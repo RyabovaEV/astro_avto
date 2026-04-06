@@ -4,13 +4,17 @@ import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
 import Accordion from "../../../components/Accordion/Accordion.astro";
 import AccordionItem from "../../../components/Accordion/AccordionItem.astro";
+import TrainingPlanTable from "../../../components/TrainingPlanTable/TrainingPlanTable.astro";
+import { programsMap } from "../../../data/driving-school";
 
 const sidebarItems = getSidebarItems('/driving-school');
 
-const defaultOpenIndex = 0; // или undefined — все закрыты
+const defaultOpenIndex = 0;
 const sections = [
-  { title: 'Учебный план профессиональной подготовки водителей транспортных средств категории “В”', slug: 'В' },
-  { title: 'Учебный план профессиональной переподготовки водителей транспортных средств с категории “В” на категорию “D”', slug: 'ВД' },
+  { title: 'Учебный план профессиональной подготовки водителей транспортных средств категории “В”', program: programsMap.B },
+  { title: 'Учебный план профессиональной переподготовки водителей транспортных средств с категории “В” на категорию “D”', program: programsMap.BD },
+  { title: 'Учебный план профессиональной переподготовки водителей транспортных средств с категории “С” на категорию “D”', program: programsMap.CD },
+  { title: 'Учебный план профессиональной переподготовки водителей транспортных средств с категории “В” на категорию “С”', program: programsMap.BC },
 ];
 ---
 
@@ -22,10 +26,10 @@ const sections = [
     isInfo
     isH1
   />
-  <Accordion aria-label="Разделы" size="compact">
-    {sections.map((s, i) => (
-      <AccordionItem title={s.title} initiallyOpen={i === defaultOpenIndex}>
-        <p>Содержимое «{s.title}»…</p>
+  <Accordion aria-label="Разделы" >
+    {sections.map((section, i) => (
+      <AccordionItem title={section.title} initiallyOpen={i === defaultOpenIndex}>
+        <TrainingPlanTable program={section.program} />
       </AccordionItem>
     ))}
   </Accordion>

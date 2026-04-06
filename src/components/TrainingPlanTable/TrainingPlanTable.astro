@@ -1,0 +1,120 @@
+---
+import type { Program } from '../../data/driving-school/programs/schema';
+import styles from './TrainingPlanTable.module.scss';
+
+interface Props {
+  program: Program;
+}
+
+const { program } = Astro.props;
+
+const LABEL_SUBJECT = 'Предмет';
+const LABEL_TOTAL = 'Всего часов';
+const LABEL_THEORY = 'Количество часов теории';
+const LABEL_PRACTICE = 'Количество часов практики';
+const LABEL_EXAM = 'Экзамен';
+
+function formatHours(value: number | null): string {
+  return value === null ? '–' : String(value);
+}
+
+function formatExam(value: string): string {
+  const t = value.trim();
+  if (t === '' || t === '-') return '–';
+  return value;
+}
+---
+
+<div class={styles.wrapper}>
+  <table class={styles.table}>
+    <thead class={styles.thead}>
+      <tr class={styles.headRow}>
+        <th class={styles.headCell} rowspan="3" scope="col">
+          Предметы
+        </th>
+        <th class={styles.headCell} colspan="3" scope="colgroup">
+          Количество часов
+        </th>
+        <th class={styles.headCell} rowspan="3" scope="col">
+          Форма промежуточной аттестации
+        </th>
+      </tr>
+      <tr class={styles.headRow}>
+        <th class={styles.headCell} rowspan="2" scope="col">Всего</th>
+        <th class={styles.headCell} colspan="2" scope="colgroup">В том числе</th>
+      </tr>
+      <tr class={styles.headRow}>
+        <th class={styles.headCell} scope="col">
+          теоретические<br />занятия
+        </th>
+        <th class={styles.headCell} scope="col">
+          практические<br />занятия
+        </th>
+      </tr>
+    </thead>
+    <tbody class={styles.tbody}>
+      {
+        program.sections.map((section) => (
+          <>
+            <tr class={styles.sectionRow}>
+              <td class={styles.sectionCell} colspan="5">
+                {section.title}
+              </td>
+            </tr>
+            {section.subjects.map((subject) => (
+              <tr class={styles.dataRow}>
+                <td
+                  class={styles.nameCell}
+                  data-label={LABEL_SUBJECT}
+                >
+                  {subject.name}
+                </td>
+                <td
+                  class={styles.numCell}
+                  data-label={LABEL_TOTAL}
+                >
+                  {subject.total}
+                </td>
+                <td
+                  class={styles.numCell}
+                  data-label={LABEL_THEORY}
+                >
+                  {formatHours(subject.theory)}
+                </td>
+                <td
+                  class={styles.numCell}
+                  data-label={LABEL_PRACTICE}
+                >
+                  {formatHours(subject.practice)}
+                </td>
+                <td
+                  class={styles.numCell}
+                  data-label={LABEL_EXAM}
+                >
+                  {formatExam(subject.exam)}
+                </td>
+              </tr>
+            ))}
+          </>
+        ))
+      }
+      <tr class:list={[styles.dataRow, styles.summaryRow]}>
+        <td class={styles.nameCell} data-label={LABEL_SUBJECT}>
+          Итого
+        </td>
+        <td class={styles.numCell} data-label={LABEL_TOTAL}>
+          {program.summary.total}
+        </td>
+        <td class={styles.numCell} data-label={LABEL_THEORY}>
+          {program.summary.theory}
+        </td>
+        <td class={styles.numCell} data-label={LABEL_PRACTICE}>
+          {program.summary.practice}
+        </td>
+        <td class={styles.numCell} data-label={LABEL_EXAM}>
+          –
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

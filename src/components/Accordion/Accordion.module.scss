@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-gray);
   border-radius: var(--radius-md);
   overflow: hidden;
   background-color: var(--bg-secondary);
@@ -19,7 +19,7 @@
 }
 
 .item {
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-gray);
 
   &:last-child {
     border-bottom: none;
