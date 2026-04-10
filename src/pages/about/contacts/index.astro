@@ -1,25 +1,30 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import Link from '../../../components/Link/Link.astro';
-import { getSidebarItems } from '../../../data/pathMenu';
+import Contacts from '../../../components/Contacts/Contacts.astro';
+import YandexMap from '../../../components/YandexMap/YandexMap.astro';
+import {getSidebarItems} from '../../../data/pathMenu';
+import Section from "../../../components/Section/Section.astro";
 
 const sidebarItems = getSidebarItems('/about');
+const mapSrc = 'https://yandex.ru/map-widget/v1/?um=constructor%3Aaf61be22668ab14b7ea27d4ca0c4764e22afd4c1f0cd53d84624df58ec442b9a&source=constructor';
 ---
 
-<SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
-  <h1>Контакты</h1>
-  <ul>
-    <li>
-      <p>Телефон:</p>
-      <Link href="tel:+78136846750" label="+7 (81368) 46-750" />
-    </li>
-    <li>
-      <p>Email:</p>
-      <Link href="mailto:kpap@inbox.ru" label="kpap@inbox.ru" />
-    </li>
-    <li>
-      <p>Адрес:</p>
-      <p>г. Кириши, пр. Победы д.20</p>
-    </li>
-  </ul>
+<SectionLayout
+  title="О предприятии"
+  sidebarItems={sidebarItems}
+>
+  <Section
+    title=`Контакты`
+    subtitle=" предприятии"
+    ariaName="title-block"
+    isInfo
+    isH1
+  >
+    <Contacts />
+    <YandexMap
+      src={mapSrc}
+      title="Карта проезда: Кириши, пр. Победы, д.20"
+      ratio="16 / 9"
+    />
+  </Section>
 </SectionLayout>

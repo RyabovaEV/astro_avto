@@ -1,0 +1,66 @@
+---
+import Link from '../Link/Link.astro';
+import styles from './Contacts.module.scss';
+---
+
+<ul class={styles.list}>
+  <li class={styles.item}>
+    <p class={styles.label}>Директор:</p>
+    <p>Майоров Владимир Михайлович</p>
+  </li>
+  <li class={styles.item}>
+    <p class={styles.label}>Заместитель директора:</p>
+    <p>Горошков Николай Николаевич</p>
+  </li>
+  <li class={styles.item}>
+    <p class={styles.label}>Телефоны:</p>
+    <ul class={styles.phones}>
+      <li class={styles.phoneItem}>
+        <p>Секретарь</p>
+        <Link
+          href="tel:+78136846750"
+          label="+7 (81368) 46-750"
+        />
+      </li>
+      <li class={styles.phoneItem}>
+        <p>Бухгалтерия/Факс</p>
+        <Link
+          href="tel:+78136846752"
+          label="+7 (81368) 46-752"
+        />
+      </li>
+      <li class={styles.phoneItem}>
+        <p>Автошкола</p>
+        <Link
+          href="tel:+78136846751"
+          label="+7 (81368) 46-751"
+        />
+      </li>
+      <li class={styles.phoneItem}>
+        <p>Отдел кадров</p>
+        <Link
+          href="tel:+78136846754"
+          label="+7 (81368) 46-754"
+        />
+      </li>
+      <li class={styles.phoneItem}>
+        <p>Экономический отдел (договорной)</p>
+        <Link
+          href="tel:+78136846755"
+          label="+7 (81368) 46-755"
+        />
+      </li>
+    </ul>
+  </li>
+  <li class={styles.item}>
+    <p class={styles.label}>Email:</p>
+    <Link
+      href="mailto:kpap@inbox.ru"
+      label="kpap@inbox.ru"
+    />
+  </li>
+  <li class={styles.item}>
+    <p class={styles.label}>Адрес:</p>
+    <p>г. Кириши, пр. Победы д.20</p>
+  </li>
+</ul>

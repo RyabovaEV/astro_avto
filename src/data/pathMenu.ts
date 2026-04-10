@@ -45,10 +45,10 @@ export const menuItems: MenuItem[] = [
     title: 'О предприятии',
     ariaLabel: 'Подменю О предприятии',
     children: [
-      {href: '/about/history', title: 'История'},
+      {href: '/about/contacts', title: 'Контакты'},
       {href: '/about/vacancies', title: 'Вакансии'},
       {href: '/about/documents', title: 'Документы'},
-      {href: '/about/contacts', title: 'Контакты'},
+      {href: '/about/history', title: 'История'},
     ],
   },
 ]

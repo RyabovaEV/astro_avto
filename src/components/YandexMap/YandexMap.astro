@@ -1,0 +1,30 @@
+---
+import styles from './YandexMap.module.scss';
+
+interface Props {
+  src: string;
+  title?: string;
+  ratio?: string;
+  className?: string;
+}
+
+const {
+  src,
+  title = 'Карта проезда',
+  ratio = '16 / 9',
+  className = '',
+} = Astro.props;
+---
+
+<div class={[styles.root, className].filter(Boolean).join(' ')}>
+  <div class={styles.frameWrap} style={`--map-ratio:${ratio};`}>
+    <iframe
+      src={src}
+      title={title}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+      class={styles.frame}
+    ></iframe>
+  </div>
+</div>
