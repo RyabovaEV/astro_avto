@@ -1,0 +1,102 @@
+---
+import Accordion from '../Accordion/Accordion.astro';
+import AccordionItem from '../Accordion/AccordionItem.astro';
+import { documentSections } from '../../data/driving-school';
+import type { DocumentSection, LinkItem } from '../../data/driving-school/document';
+import styles from './DrivingSchoolDocumentsAccordion.module.scss';
+
+interface Props {
+  sections?: DocumentSection[];
+  ariaLabel?: string;
+}
+
+const {
+  sections = documentSections,
+  ariaLabel = 'Сведения об организации',
+} = Astro.props;
+
+const hasExternalLink = (href: string) => /^https?:\/\//.test(href);
+---
+
+<div class={styles.root}>
+  <Accordion aria-label={ariaLabel}>
+    {sections.map((section) => (
+      <AccordionItem title={section.title} initiallyOpen={section.initiallyOpen}>
+        {section.blocks.map((block) => {
+          if (block.type === 'paragraphs') {
+            return (
+              <div class={styles.block}>
+                {block.items.map((paragraph) => (
+                  <p class={styles.paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            );
+          }
+
+          if (block.type === 'links') {
+            const renderLink = (link: LinkItem) => (
+              <>
+                {link.href ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel={hasExternalLink(link.href) ? 'noopener noreferrer' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <span class={styles.itemLabel}>{link.label}</span>
+                )}
+                {link.note && <p class={styles.itemNote}>{link.note}</p>}
+                {link.children?.length ? (
+                  <ul class={styles.nestedList}>
+                    {link.children.map((childLink) => (
+                      <li class={styles.item}>{renderLink(childLink)}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </>
+            );
+
+            return (
+              <div class={styles.block}>
+                {block.title && <h4 class={styles.blockTitle}>{block.title}</h4>}
+                <ul class={styles.list}>
+                  {block.items.map((link) => (
+                    <li class={styles.item}>{renderLink(link)}</li>
+                  ))}
+                </ul>
+              </div>
+            );
+          }
+
+          return (
+            <div class={styles.block}>
+              {block.title && <h4 class={styles.blockTitle}>{block.title}</h4>}
+              {block.paragraphs?.map((paragraph) => (
+                <p class={styles.paragraph}>{paragraph}</p>
+              ))}
+              <ul class={styles.list}>
+                {block.items.map((category) => (
+                  <li class={styles.item}>
+                    <h5 class={styles.categoryTitle}>{category.title}</h5>
+                    <p class={styles.categoryDescription}>{category.description}</p>
+                    {category.links?.length ? (
+                      <ul class={styles.nestedList}>
+                        {category.links.map((link) => (
+                          <li class={styles.item}>
+                            <a href={link.href}>{link.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </AccordionItem>
+    ))}
+  </Accordion>
+</div>

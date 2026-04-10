@@ -85,8 +85,6 @@
 
   .table {
     min-width: 0;
-    //border-collapse: separate;
-    //border-spacing: 0;
   }
 
   .thead {
@@ -114,10 +112,7 @@
 
     .dataRow {
       display: block;
-      //border: 1px solid var(--border-gray);
-      //border-radius: var(--radius-lg);
       background-color: var(--bg-secondary);
-      //box-shadow: var(--shadow-sm);
       overflow: hidden;
 
       &:not(:last-child) {

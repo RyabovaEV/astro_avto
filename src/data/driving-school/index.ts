@@ -1,6 +1,7 @@
 export * from './schema'
 export {basePrice} from './basePrice'
 export {dangerGoodsPrice} from './dangerGoodsPrice'
+export { documentSections } from './document';
 
 import {program_B} from './programs/program_B'
 import {program_BC} from './programs/program_BC'

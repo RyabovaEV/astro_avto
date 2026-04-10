@@ -2,16 +2,18 @@
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
+import DrivingSchoolDocumentsAccordion from '../../../components/DrivingSchoolDocumentsAccordion/DrivingSchoolDocumentsAccordion.astro';
 
 const sidebarItems = getSidebarItems('/driving-school');
 ---
 
 <SectionLayout title="Автошкола" sidebarItems={sidebarItems}>
   <Section
-    title=`Документы автошколы`
+    title=`Сведения об образовательной организации`
     subtitle="Автошкола"
     ariaName="title-block"
     isInfo
     isH1
   />
+  <DrivingSchoolDocumentsAccordion />
 </SectionLayout>

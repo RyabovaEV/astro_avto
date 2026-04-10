@@ -4,11 +4,24 @@ class Accordion {
     item: '[data-accordion-item]',
     trigger: '[data-accordion-trigger]',
     panel: '[data-accordion-panel]',
+    header: '[data-header]',
   };
 
   constructor() {
     document.querySelectorAll<HTMLElement>(Accordion.SELECTORS.root).forEach((root) => {
       this.bindRoot(root);
+    });
+  }
+
+  private scrollPanelIntoView(panel: HTMLElement) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const header = document.querySelector<HTMLElement>(Accordion.SELECTORS.header);
+    const headerOffset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+    const targetTop = window.scrollY + panel.getBoundingClientRect().top - headerOffset;
+
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
   }
 
@@ -50,6 +63,12 @@ class Accordion {
           return;
         }
         items.forEach((other) => this.setItemOpen(other, other === item));
+        const panel = item.querySelector<HTMLElement>(Accordion.SELECTORS.panel);
+        if (panel) {
+          requestAnimationFrame(() => {
+            this.scrollPanelIntoView(panel);
+          });
+        }
       });
     });
   }

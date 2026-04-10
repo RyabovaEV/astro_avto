@@ -5,11 +5,11 @@ export interface Links {
 
 export const linksIndex: Links[] = [
   {
-    href: '/docs/availability.jpg',
+    href: '/documents/availability.jpg',
     title: 'Информация о доступности ТС для инвалидов и лиц с ограниченными возможностями'
   },
   {
-    href: '/docs/collectiveImmunity.pdf',
+    href: '/documents/collectiveImmunity.pdf',
     title: 'Паспорт коллективного иммунитета'
   },
 ]

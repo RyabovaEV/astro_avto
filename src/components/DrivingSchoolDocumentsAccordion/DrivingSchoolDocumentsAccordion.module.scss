@@ -1,0 +1,64 @@
+@use "../../styles/core" as *;
+
+.root {
+  width: 100%;
+}
+
+.block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.block + .block {
+  margin-top: var(--space-2);
+}
+
+.blockTitle {
+  margin: 0;
+  font-size: fluid(18, 16);
+  line-height: 1.35;
+  color: var(--accent-text-color);
+}
+
+.paragraph {
+  margin: 0;
+  color: var(--main-text-color);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.item {
+  color: var(--main-text-color);
+}
+
+.itemLabel {
+  font-weight: 600;
+  color: var(--accent-text-color);
+}
+
+.itemNote {
+  margin: var(--space-1) 0 0;
+}
+
+.nestedList {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-1) 0 0;
+  padding-left: 1.25rem;
+}
+
+.categoryTitle {
+  margin: 0 0 var(--space-1);
+  font-size: fluid(16, 15);
+  line-height: 1.4;
+  color: var(--accent-text-color);
+}
+
+.categoryDescription {
+  margin: 0;
+}
