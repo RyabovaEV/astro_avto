@@ -18,7 +18,6 @@ export const menuItems: MenuItem[] = [
     title: 'Главная',
   },
   {
-    // Нет страницы /schedule — клик ведёт на первый подпункт (городские маршруты)
     href: '/schedule/suburban',
     title: 'Расписание',
     ariaLabel: 'Подменю Расписание',
@@ -28,7 +27,6 @@ export const menuItems: MenuItem[] = [
     ],
   },
   {
-    // Нет страницы /driving-school — клик ведёт на первый подпункт
     href: '/driving-school/info',
     title: 'Автошкола',
     ariaLabel: 'Подменю Автошкола',
@@ -36,18 +34,21 @@ export const menuItems: MenuItem[] = [
       {href: '/driving-school/info', title: 'Общая информация'},
       {href: '/driving-school/danger-goods', title: 'Перевозка опасных грузов'},
       {href: '/driving-school/training-plan', title: 'План обучения'},
-      {href: '/driving-school/documents', title: 'Сведения об образовательной организации'},
+      {
+        href: '/driving-school/documents',
+        title: 'Сведения об образовательной организации'
+      },
     ],
   },
   {
-    // Нет страницы /about — клик ведёт на первый подпункт
-    href: '/about/history',
+    href: '/about/contacts',
     title: 'О предприятии',
     ariaLabel: 'Подменю О предприятии',
     children: [
       {href: '/about/contacts', title: 'Контакты'},
       {href: '/about/vacancies', title: 'Вакансии'},
       {href: '/about/documents', title: 'Документы'},
+      {href: '/about/news', title: 'Новости'},
       {href: '/about/history', title: 'История'},
     ],
   },

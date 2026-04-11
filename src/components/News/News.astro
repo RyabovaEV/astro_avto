@@ -1,31 +1,82 @@
 ---
+import {
+  NEWS_PER_PAGE,
+  getNewsTotalPages,
+  type News,
+} from '../../data/news'
+import Link from '../Link/Link.astro'
+import Pagination from '../Pagination/Pagination.astro'
+import styles from './News.module.scss'
+
 interface Props {
-  newsList: []
+  newsList: News[]
+  /** Сколько новостей показать без пагинации. Если не передано — все из массива */
+  numberNewsItems?: number
+  /** Показывать пагинацию и резать список по страницам */
+  showPagination?: boolean
+  /** Номер текущей страницы (при showPagination) */
+  currentPage?: number
+  /** Сколько новостей на странице при пагинации */
+  itemsPerPage?: number
+  /** Базовый URL для ссылок пагинации */
+  paginationBasePath?: string
 }
 
-const {newsList} = Astro.props
+const {
+  newsList,
+  numberNewsItems,
+  showPagination = false,
+  currentPage = 1,
+  itemsPerPage = NEWS_PER_PAGE,
+  paginationBasePath = '/about/news',
+} = Astro.props
 
-import Link from '../Link/Link.astro'
-import styles from './News.module.scss'
+let items: News[]
+let totalPages = 1
+let activePage = 1
+
+if (showPagination) {
+  totalPages = getNewsTotalPages(newsList, itemsPerPage)
+  activePage = Math.min(
+    Math.max(1, Math.floor(currentPage)),
+    totalPages,
+  )
+  const start = (activePage - 1) * itemsPerPage
+  items = newsList.slice(start, start + itemsPerPage)
+} else {
+  items =
+    numberNewsItems !== undefined
+      ? newsList.slice(0, numberNewsItems)
+      : newsList
+}
 ---
 
-<ul class={styles.newsList}>
-  {newsList.map(({ date, description,  href, important, ulList}) => (
-    <li class={styles.newsItem}>
-      <time datetime={date} class={styles.newsDate}>
-        {new Date(date).toLocaleDateString('ru-RU')}
-      </time>
-      <div class=`${styles.newsText} ${important ? styles.important : ''}`>
-        <p>{description}</p>
-        {ulList && (
-          <ul class="ul">
-            {ulList.map((item) => (
-              <li class="ulItem">{item}</li>
-            ))}
-          </ul>
-        )}
-        {href && (<Link href={href}/>)}
-      </div>
-    </li>
-  ))}
-</ul>
+<div class={styles.newsBlock}>
+  <ul class={styles.newsList}>
+    {items.map(({ date, description, href, important, ulList }) => (
+      <li class={styles.newsItem}>
+        <time datetime={date} class={styles.newsDate}>
+          {new Date(date).toLocaleDateString('ru-RU')}
+        </time>
+        <div class=`${styles.newsText} ${important ? styles.important : ''}`>
+          <p>{description}</p>
+          {ulList && (
+            <ul class="ul">
+              {ulList.map((item) => (
+                <li class="ulItem">{item}</li>
+              ))}
+            </ul>
+          )}
+          {href && <Link href={href} />}
+        </div>
+      </li>
+    ))}
+  </ul>
+  {showPagination && (
+    <Pagination
+      currentPage={activePage}
+      totalPages={totalPages}
+      basePath={paginationBasePath}
+    />
+  )}
+</div>

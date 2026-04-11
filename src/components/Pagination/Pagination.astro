@@ -1,0 +1,81 @@
+---
+import styles from './Pagination.module.scss'
+
+interface Props {
+  currentPage: number
+  totalPages: number
+  /** Базовый URL раздела: первая страница — сам путь, остальные — `${basePath}/${n}` */
+  basePath: string
+}
+
+const { currentPage, totalPages, basePath } = Astro.props
+
+const root = basePath.replace(/\/$/, '')
+
+function hrefForPage(page: number): string {
+  return page <= 1 ? root : `${root}/${page}`
+}
+
+const prevPage = currentPage > 1 ? currentPage - 1 : null
+const nextPage = currentPage < totalPages ? currentPage + 1 : null
+
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+---
+
+<nav class={styles.nav} aria-label="Постраничная навигация по новостям">
+  <ul class={styles.list}>
+    <li>
+      {prevPage ? (
+        <a
+          class={styles.control}
+          href={hrefForPage(prevPage)}
+          aria-label="Предыдущая страница"
+        >
+          <span aria-hidden="true" class={styles.arrow}>←</span>
+        </a>
+      ) : (
+        <span
+          class={`${styles.control} ${styles.controlDisabled}`}
+          aria-disabled="true"
+          aria-label="Предыдущая страница"
+        >
+          <span aria-hidden="true" class={styles.arrow}>←</span>
+        </span>
+      )}
+    </li>
+    {
+      pages.map((page) => (
+        <li>
+          {page === currentPage ? (
+            <span class={`${styles.page} ${styles.pageCurrent}`} aria-current="page">
+              {page}
+            </span>
+          ) : (
+            <a class={styles.page} href={hrefForPage(page)}>
+              {page}
+            </a>
+          )}
+        </li>
+      ))
+    }
+    <li>
+      {nextPage ? (
+        <a
+          class={styles.control}
+          href={hrefForPage(nextPage)}
+          aria-label="Следующая страница"
+        >
+          <span aria-hidden="true" class={styles.arrow}>→</span>
+        </a>
+      ) : (
+        <span
+          class={`${styles.control} ${styles.controlDisabled}`}
+          aria-disabled="true"
+          aria-label="Следующая страница"
+        >
+          <span aria-hidden="true" class={styles.arrow}>→</span>
+        </span>
+      )}
+    </li>
+  </ul>
+</nav>

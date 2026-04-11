@@ -27,16 +27,20 @@ import Insurance from "../components/Insurance/Insurance.astro";
     title="Новости"
     ariaName="news-block"
     isInfo
-    buttonLabel="Все нововсти"
+    buttonLabel="Все новости"
+    href="/about/news"
+    style='button'
   >
-    <News newsList={newsList} />
+    <News newsList={newsList} numberNewsItems={3}/>
   </Section>
   <Section
     title="Документы"
     ariaName="document-block"
     isInfo
+    buttonLabel="Все документы"
+    href="/about/documents"
+    style='button'
   >
     <Docs links={linksIndex} />
   </Section>
-
 </Layout>

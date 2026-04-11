@@ -6,6 +6,7 @@ interface Props {
   ariaLabel?: string;
   title?: string;
   isButton?: boolean;
+  style?: 'link' | 'button';
   type?: 'button' | 'submit' | 'reset';
 }
 
@@ -15,6 +16,7 @@ const {
   className = '',
   ariaLabel,
   title,
+  style = 'link',
   isButton = false,
   type = 'button',
 } = Astro.props;
@@ -25,7 +27,8 @@ import styles from './Link.module.scss'
 {href && !isButton ? (
   <a
     href={href}
-    class={`${styles.link} ${className ? className : ''}`}
+    class= {`${style === 'link' ? styles.link : styles.button} 
+            ${className ? className : ''}`}
     aria-label={ariaLabel}
     title={title}
   >

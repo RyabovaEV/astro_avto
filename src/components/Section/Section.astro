@@ -8,7 +8,8 @@ interface Props {
   isH1?: boolean
   isInfo?: boolean
   buttonLabel?: string
-
+  href?: string
+  style?: 'link' | 'button'
 }
 
 const {
@@ -17,7 +18,9 @@ const {
   ariaName,
   isH1 = false,
   isInfo = false,
-  buttonLabel = ''
+  buttonLabel = '',
+  href = '',
+  style = 'link'
 } = Astro.props
 
 import styles from './Section.module.scss'
@@ -49,6 +52,8 @@ import styles from './Section.module.scss'
       {buttonLabel &&
         <Link
           label={buttonLabel}
+          href={href}
+          style={style}
           className={styles.button}
         />}
     </div>

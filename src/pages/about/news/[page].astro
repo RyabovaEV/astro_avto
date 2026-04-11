@@ -1,0 +1,52 @@
+---
+import { getSidebarItems } from '../../../data/pathMenu'
+import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro'
+import Section from '../../../components/Section/Section.astro'
+import News from '../../../components/News/News.astro'
+import {
+  newsList,
+  NEWS_PER_PAGE,
+  getNewsTotalPages,
+} from '../../../data/news'
+
+export function getStaticPaths() {
+  const totalPages = getNewsTotalPages(newsList, NEWS_PER_PAGE)
+  if (totalPages <= 1) {
+    return []
+  }
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+  }))
+}
+
+const raw = Astro.params.page
+const pageNum = Number(raw)
+const totalPages = getNewsTotalPages(newsList, NEWS_PER_PAGE)
+
+if (
+  raw === undefined ||
+  !Number.isInteger(pageNum) ||
+  pageNum < 2 ||
+  pageNum > totalPages
+) {
+  return Astro.redirect('/about/news')
+}
+
+const sidebarItems = getSidebarItems('/about')
+---
+
+<SectionLayout
+  title="О предприятии"
+  sidebarItems={sidebarItems}
+>
+  <Section
+    title=`Новости`
+    subtitle="О предприятии"
+    ariaName="title-block"
+    isInfo
+    isH1
+  />
+  <Section ariaName="title-news" title="Все новости" isInfo>
+    <News newsList={newsList} showPagination currentPage={pageNum} />
+  </Section>
+</SectionLayout>

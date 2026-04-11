@@ -1,0 +1,92 @@
+@use "../../styles/core" as *;
+
+.nav {
+  width: 100%;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: fluid(10, 6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: fluid(36, 32);
+  min-height: fluid(36, 32);
+  padding: 0;
+  color: var(--light-text-color);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    color: var(--color-link);
+  }
+}
+
+.arrow {
+  font-size: fluid(18, 16);
+  line-height: 1;
+}
+
+.controlDisabled {
+  color: var(--light-text-color);
+  cursor: default;
+  text-decoration: none;
+
+  &:hover,
+  &:hover .arrow {
+    color: var(--light-text-color);
+    text-decoration: none;
+  }
+}
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: fluid(32, 28);
+  min-height: fluid(32, 28);
+  padding: 0 fluid(4, 3);
+  font-size: fluid(14, 13);
+  color: var(--main-text-color);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-gray);
+  background-color: transparent;
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    border-color: var(--border-accent);
+    color: var(--color-link);
+  }
+}
+
+.pageCurrent {
+  font-weight: 500;
+  color: var(--color-link);
+  background-color: var(--bg-color);
+  border-color: var(--color-link);
+  cursor: default;
+
+  &:hover {
+    color: var(--color-link);
+    border-color: var(--color-link);
+  }
+}
+
+@include mobile {
+  .list {
+    justify-content: flex-start;
+  }
+}

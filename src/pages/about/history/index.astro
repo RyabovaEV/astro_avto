@@ -1,11 +1,24 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import { getSidebarItems } from '../../../data/pathMenu';
+import {getSidebarItems} from '../../../data/pathMenu';
+import Section from "../../../components/Section/Section.astro";
+import History from "../../../components/History/History.astro";
 
 const sidebarItems = getSidebarItems('/about');
 ---
 
-<SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
-  <h1>История предприятия</h1>
-  <p>История Киришских пассажирских автоперевозок.</p>
+<SectionLayout
+  title="О предприятии"
+  sidebarItems={sidebarItems}
+>
+  <Section
+    title=`История предприятия`
+    subtitle="О предприятии"
+    ariaName="title-block"
+    isInfo
+    isH1
+  >
+    <History />
+  </Section>
+
 </SectionLayout>

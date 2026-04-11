@@ -1,11 +1,26 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
+import Section from "../../../components/Section/Section.astro";
+import Vacansies from "../../../components/Vacansies/Vacansies.astro";
+import { vacansiesData } from '../../../data/vacansies';
 
 const sidebarItems = getSidebarItems('/about');
 ---
 
 <SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
-  <h1>Вакансии</h1>
-  <p>Актуальные вакансии предприятия.</p>
+  <Section
+    title=`Вакансии`
+    subtitle="О предприятии"
+    ariaName="title-block"
+    isInfo
+    isH1
+  />
+  <Section
+    title={vacansiesData.title}
+    ariaName="title-vacans"
+    isInfo
+  >
+    <Vacansies data={vacansiesData} />
+  </Section>
 </SectionLayout>

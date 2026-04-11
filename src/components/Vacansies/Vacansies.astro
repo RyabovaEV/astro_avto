@@ -1,0 +1,36 @@
+---
+import Link from '../Link/Link.astro';
+import { vacansiesData } from '../../data/vacansies';
+import type { VacansiesData } from '../../data/vacansies';
+import styles from './Vacansies.module.scss';
+
+interface Props {
+  data?: VacansiesData;
+}
+
+const { data = vacansiesData } = Astro.props;
+---
+
+<div class={styles.root}>
+  {data.list.map((vacancy) => (
+    <div class={styles.vacancy}>
+      <h3 class={styles.title}>{vacancy.title}</h3>
+      <ul class={styles.conditions}>
+        {vacancy.conditions.map((condition) => (
+          <li class={styles.condition}>{condition}</li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  <div class={styles.contacts}>
+    <p class={styles.contactsTitle}>{data.contactsTitle}</p>
+    <ul class={styles.contactsList}>
+      {data.contacts.map((contact) => (
+        <li class={styles.contactsItem}>
+          <Link href={contact.href} label={contact.label} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
