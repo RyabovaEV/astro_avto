@@ -243,7 +243,7 @@ export const documentSections: DocumentSection[] = [
           {
             label:
               'Приказ Минобрнауки России от 26 декабря 2013 г. № 1408 «Об утверждении примерных программ профессионального обучения водителей транспортных средств соответствующих категорий и подкатегорий» (зарегистрирован Минюстом России 9 июля 2014 г., регистрационный № 33026)',
-            href: 'http://avtoshkolaperspektiva.ru/upload/docs/prikaz-2.pdf',
+            href: 'https://avtoshkolaperspektiva.ru/upload/docs/prikaz-2.pdf',
           },
           {
             label:

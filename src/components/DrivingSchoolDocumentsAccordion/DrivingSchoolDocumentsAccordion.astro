@@ -16,6 +16,10 @@ const {
 } = Astro.props;
 
 const hasExternalLink = (href: string) => /^https?:\/\//.test(href);
+
+/** Для target="_blank": внешним — noreferrer (реферер не уходит), всегда noopener (tabnabbing). */
+const relForNewTab = (href: string) =>
+  hasExternalLink(href) ? 'noopener noreferrer' : 'noopener';
 ---
 
 <div class={styles.root}>
@@ -40,7 +44,7 @@ const hasExternalLink = (href: string) => /^https?:\/\//.test(href);
                   <a
                     href={link.href}
                     target="_blank"
-                    rel={hasExternalLink(link.href) ? 'noopener noreferrer' : undefined}
+                    rel={relForNewTab(link.href)}
                   >
                     {link.label}
                   </a>
@@ -85,7 +89,13 @@ const hasExternalLink = (href: string) => /^https?:\/\//.test(href);
                       <ul class={styles.nestedList}>
                         {category.links.map((link) => (
                           <li class={styles.item}>
-                            <a href={link.href}>{link.label}</a>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel={relForNewTab(link.href)}
+                            >
+                              {link.label}
+                            </a>
                           </li>
                         ))}
                       </ul>

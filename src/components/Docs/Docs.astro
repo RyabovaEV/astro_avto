@@ -21,7 +21,13 @@ itemsLink =
 <ul class={DocsModule.linkList}>
   {itemsLink.map(({href, title}) => (
     <li class={DocsModule.linkList__item}>
-      <Link href={href} label={title}/>
+      <Link
+        href={href}
+        label={title}
+        target="_blank"
+        rel="noopener"
+        ariaLabel={`${title}, откроется в новой вкладке`}
+      />
     </li>
   ))}
 </ul>

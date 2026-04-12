@@ -5,6 +5,8 @@ interface Props {
   className?: string;
   ariaLabel?: string;
   title?: string;
+  target?: string;
+  rel?: string;
   isButton?: boolean;
   style?: 'link' | 'button';
   type?: 'button' | 'submit' | 'reset';
@@ -12,10 +14,12 @@ interface Props {
 
 const {
   href,
-  label = 'Oзнакомиться с изменениями можно по ссылке',
+  label = 'Ознакомиться с изменениями можно по ссылке',
   className = '',
   ariaLabel,
   title,
+  target,
+  rel,
   style = 'link',
   isButton = false,
   type = 'button',
@@ -31,6 +35,8 @@ import styles from './Link.module.scss'
             ${className ? className : ''}`}
     aria-label={ariaLabel}
     title={title}
+    target={target}
+    rel={rel}
   >
     <slot>{label}</slot>
   </a>
