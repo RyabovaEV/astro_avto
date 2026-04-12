@@ -1,16 +1,25 @@
 ---
 import DocsModule from './Docs.module.scss'
 import Link from "../Link/Link.astro";
+import type {News} from "../../data/news";
 
 interface Props {
   links: []
+  numberDocsItems?: number
 }
 
-const {links} = Astro.props
+const {links,   numberDocsItems} = Astro.props
+
+let itemsLink: News[]
+
+itemsLink =
+  numberDocsItems !== undefined
+    ? links.slice(0, numberDocsItems)
+    : links
 ---
 
 <ul class={DocsModule.linkList}>
-  {links.map(({href, title}) => (
+  {itemsLink.map(({href, title}) => (
     <li class={DocsModule.linkList__item}>
       <Link href={href} label={title}/>
     </li>

@@ -1,11 +1,23 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
+import Section from "../../../components/Section/Section.astro";
+import {linksIndex} from "../../../data/links";
+import Docs from "../../../components/Docs/Docs.astro";
 
 const sidebarItems = getSidebarItems('/about');
 ---
 
 <SectionLayout title="О предприятии" sidebarItems={sidebarItems}>
-  <h1>Документы</h1>
-  <p>Документы предприятия.</p>
+  <Section
+    title=`Документы`
+    subtitle="О предприятии"
+    ariaName="title-block"
+    isInfo
+    isH1
+  />
+  <Section ariaName="title-news" title="Все документы" isInfo>
+    <Docs links={linksIndex}/>
+  </Section>
+
 </SectionLayout>
