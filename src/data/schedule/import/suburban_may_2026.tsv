@@ -20,8 +20,7 @@ route_number	route_name	kind	dep_time	dep_days	dep_note	arr_time	arr_days	arr_no
 			16:00			16:30		
 			18:00			18:35		
 			20:30			21:00		
-252	Кириши – Садоводство-2
- Рабочие дни	FALSE						
+252	Кириши – Садоводство-2 Рабочие дни	FALSE
 			08:00			08:25		
 			10:00			10:25		
 			11:00			11:25		
@@ -35,8 +34,7 @@ route_number	route_name	kind	dep_time	dep_days	dep_note	arr_time	arr_days	arr_no
 			13:00			13:25		
 			17:00			17:25		
 			19:00			19:25		
-252а	От пл. Бровко по пр.Ленина-Садоводство-2
- Выходные дни	FALSE						
+252а	От пл. Бровко по пр.Ленина-Садоводство-2 Выходные дни	FALSE
 			09:50			10:15		
 			17:30			17:55		
 254	Кириши – Городище	FALSE						
@@ -89,8 +87,7 @@ route_number	route_name	kind	dep_time	dep_days	dep_note	arr_time	arr_days	arr_no
 			17:30	вт., чт.		19:00	вт., чт.	
 			12:50	вс.		14:18	вс.	
 			20:15	пт.		21:43	пт.	*
-260	Кириши – Садоводство-3
- Рабочие дни	FALSE						
+260	Кириши – Садоводство-3 Рабочие дни	FALSE
 			06:00			06:30		
 			08:20			08:50		
 			08:50			09:20		
@@ -104,8 +101,7 @@ route_number	route_name	kind	dep_time	dep_days	dep_note	arr_time	arr_days	arr_no
 			17:50			18:20		
 			19:00			19:30		
 			20:30			21:00		
-260	Кириши – Садоводство-3
- Выходные дни	FALSE						
+260	Кириши – Садоводство-3 Выходные дни	FALSE
 			06:00			06:30		
 			07:10			07:40		
 			08:20			08:50		
@@ -119,8 +115,7 @@ route_number	route_name	kind	dep_time	dep_days	dep_note	arr_time	arr_days	arr_no
 			17:50			18:20		
 			19:00			19:30		
 			20:30			21:00		
-260а	От пл. Бровко по пр.Ленина–Садоводство 3
- Выходные дни	FALSE						
+260а	От пл. Бровко по пр.Ленина–Садоводство 3 Выходные дни	FALSE
 			07:30			08:00		
 			08:40			09:10		
 			11:20			11:50		

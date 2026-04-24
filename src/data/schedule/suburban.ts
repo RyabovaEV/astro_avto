@@ -203,12 +203,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   },
   {
     number: "252",
-    name: "Кириши – Садоводство-2",
-    kind: "linear"
-  },
-  {
-    number: "Рабочие дни",
-    name: "FALSE",
+    name: "Кириши – Садоводство-2 Рабочие дни",
     kind: "linear",
     departure: [
       {
@@ -298,12 +293,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   },
   {
     number: "252а",
-    name: "От пл. Бровко по пр.Ленина-Садоводство-2",
-    kind: "linear"
-  },
-  {
-    number: "Выходные дни",
-    name: "FALSE",
+    name: "От пл. Бровко по пр.Ленина-Садоводство-2 Выходные дни",
     kind: "linear",
     departure: [
       {
@@ -749,12 +739,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   },
   {
     number: "260",
-    name: "Кириши – Садоводство-3",
-    kind: "linear"
-  },
-  {
-    number: "Рабочие дни",
-    name: "FALSE",
+    name: "Кириши – Садоводство-3 Рабочие дни",
     kind: "linear",
     departure: [
       {
@@ -841,12 +826,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   },
   {
     number: "260",
-    name: "Кириши – Садоводство-3",
-    kind: "linear"
-  },
-  {
-    number: "Выходные дни",
-    name: "FALSE",
+    name: "Кириши – Садоводство-3 Выходные дни",
     kind: "linear",
     departure: [
       {
@@ -933,12 +913,7 @@ export const suburbanRoutes: RouteSchedule[] = [
   },
   {
     number: "260а",
-    name: "От пл. Бровко по пр.Ленина–Садоводство 3",
-    kind: "linear"
-  },
-  {
-    number: "Выходные дни",
-    name: "FALSE",
+    name: "От пл. Бровко по пр.Ленина–Садоводство 3 Выходные дни",
     kind: "linear",
     departure: [
       {
