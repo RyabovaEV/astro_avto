@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "import:schedule": "node ./tools/import_schedule_tsv.mjs"
   },
   "dependencies": {
     "astro": "^5.17.1",
