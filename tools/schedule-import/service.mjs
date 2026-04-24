@@ -20,74 +20,89 @@ export class ScheduleImportService {
     this.importDir = path.join(this.scheduleDir, "import");
   }
 
-  run() {
+  run({ inputFileName, outputFileName }) {
     const warnings = [];
-    const files = this.listImportFiles();
+    const inputPath = this.resolveInputPath(inputFileName);
+    const outputPath = this.resolveOutputPath(outputFileName);
+    const parsed = this.parser.parse(fs.readFileSync(inputPath, "utf8"));
+    const fileType = this.detectFileType(parsed.headers);
 
-    const suburbanFile = this.pickLatest(files, (name) => name.startsWith("suburban_"));
-    const cityFile = this.pickLatest(files, (name) => name.startsWith("city_"));
-    const suburbanCommentsFile = this.pickLatest(files, (name) => name.startsWith("subcomments_"));
-    const cityCommentsFile = this.pickLatest(files, (name) => name.startsWith("citycomments_"));
+    let importedRoutes = 0;
+    let importedTrips = 0;
+    let importedComments = 0;
+    let exportName = "";
 
-    if (!suburbanFile || !cityFile || !suburbanCommentsFile) {
-      throw new Error("Не найдены обязательные TSV-файлы (suburban/city/subcomments).");
+    if (fileType === "routes") {
+      const routes = this.routeImporter.parse(parsed.rows, warnings, inputFileName);
+      exportName = this.buildExportName(outputFileName, "routes");
+      this.writer.writeRoutesFile(outputPath, exportName, routes);
+      importedRoutes = routes.length;
+      importedTrips = this.countTripEntries(routes);
+    } else {
+      const comments = this.commentImporter.parse(parsed.rows, warnings, inputFileName);
+      exportName = this.buildExportName(outputFileName, "comments");
+      this.writer.writeCommentsFile(outputPath, exportName, comments);
+      importedComments = comments.length;
     }
-
-    const suburbanRows = this.readRowsFromFile(suburbanFile.fullPath);
-    const cityRows = this.readRowsFromFile(cityFile.fullPath);
-    const suburbanCommentRows = this.readRowsFromFile(suburbanCommentsFile.fullPath);
-
-    const suburbanRoutes = this.routeImporter.parse(suburbanRows, warnings, suburbanFile.name);
-    const cityRoutes = this.routeImporter.parse(cityRows, warnings, cityFile.name);
-    const suburbanComments = this.commentImporter.parse(suburbanCommentRows, warnings, suburbanCommentsFile.name);
-
-    this.writer.writeRoutesFile(path.join(this.scheduleDir, "suburban.ts"), "suburbanRoutes", suburbanRoutes);
-    this.writer.writeRoutesFile(path.join(this.scheduleDir, "city.ts"), "cityRoutes", cityRoutes);
-    this.writer.writeCommentsFile(path.join(this.scheduleDir, "suburbanComments.ts"), "suburbanComments", suburbanComments);
-
-    if (cityCommentsFile) {
-      const cityCommentRows = this.readRowsFromFile(cityCommentsFile.fullPath);
-      const cityComments = this.commentImporter.parse(cityCommentRows, warnings, cityCommentsFile.name);
-      this.writer.writeCommentsFile(path.join(this.scheduleDir, "cityComments.ts"), "cityComments", cityComments);
-    }
-
-    const importedRoutes = suburbanRoutes.length + cityRoutes.length;
-    const importedTrips = this.countTripEntries(suburbanRoutes) + this.countTripEntries(cityRoutes);
-    const importedComments = suburbanComments.length;
 
     return {
       importedRoutes,
       importedTrips,
       importedComments,
       warnings,
-      files: {
-        suburban: suburbanFile.name,
-        city: cityFile.name,
-        suburbanComments: suburbanCommentsFile.name,
-        ...(cityCommentsFile ? { cityComments: cityCommentsFile.name } : {}),
-      },
+      files: { input: inputFileName, output: outputFileName },
+      fileType,
+      exportName,
     };
   }
 
-  listImportFiles() {
-    return fs.readdirSync(this.importDir)
-      .filter((fileName) => fileName.toLowerCase().endsWith(".tsv"))
-      .map((fileName) => ({
-        name: fileName,
-        fullPath: path.join(this.importDir, fileName),
-        mtimeMs: fs.statSync(path.join(this.importDir, fileName)).mtimeMs,
-      }));
+  resolveInputPath(inputFileName) {
+    const fullPath = path.join(this.importDir, inputFileName);
+    if (!fs.existsSync(fullPath)) {
+      throw new Error(`Входной файл не найден: ${inputFileName}`);
+    }
+    return fullPath;
   }
 
-  pickLatest(files, predicate) {
-    return files
-      .filter((file) => predicate(file.name.toLowerCase()))
-      .sort((a, b) => b.mtimeMs - a.mtimeMs)[0];
+  resolveOutputPath(outputFileName) {
+    if (!outputFileName.toLowerCase().endsWith(".ts")) {
+      throw new Error("Имя выходного файла должно заканчиваться на .ts");
+    }
+    return path.join(this.scheduleDir, outputFileName);
   }
 
-  readRowsFromFile(filePath) {
-    const text = fs.readFileSync(filePath, "utf8");
-    return this.parser.parse(text).rows;
+  detectFileType(headers) {
+    const headerSet = new Set(headers);
+    const routeHeaders = ["route_number", "route_name", "kind", "dep_time", "arr_time"];
+    const commentHeaders = ["number", "comment", "times"];
+
+    if (routeHeaders.every((header) => headerSet.has(header))) {
+      return "routes";
+    }
+    if (commentHeaders.every((header) => headerSet.has(header))) {
+      return "comments";
+    }
+
+    throw new Error("Не удалось определить тип TSV. Ожидаются заголовки маршрутов или комментариев.");
+  }
+
+  buildExportName(outputFileName, fileType) {
+    const baseName = path.basename(outputFileName, ".ts");
+    const parts = baseName.split(/[^a-zA-Z0-9а-яА-Я]+/).filter(Boolean);
+    const camelBase = parts
+      .map((part, index) => {
+        const lowered = part.toLowerCase();
+        if (index === 0) {
+          return lowered;
+        }
+        return lowered.charAt(0).toUpperCase() + lowered.slice(1);
+      })
+      .join("");
+
+    if (!camelBase) {
+      return fileType === "routes" ? "generatedRoutes" : "generatedComments";
+    }
+    return camelBase;
   }
 
   countTripEntries(routes) {

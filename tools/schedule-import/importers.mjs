@@ -53,10 +53,6 @@ export class RouteBlockImporter {
         return;
       }
 
-      if (!depEntry || !arrEntry) {
-        warnings.push(`${rowLabel}: неполная пара времени (departure/arrival)`);
-      }
-
       if (depEntry) {
         currentRoute.departure.push(depEntry);
       }
