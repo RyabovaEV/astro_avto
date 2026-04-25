@@ -1,0 +1,17 @@
+---
+import styles from './SchedulePeriodSelect.module.scss';
+
+interface Props {
+  switchAtLabel: string;
+}
+
+const { switchAtLabel } = Astro.props;
+---
+
+<div class={styles.control} data-schedule-period-control>
+  <label class={styles.label} for="schedule-period-select">Период расписания</label>
+  <select class={styles.select} id="schedule-period-select" data-schedule-period-select>
+    <option value="old">Текущее расписание</option>
+    <option value="new">Новое расписание (с {switchAtLabel})</option>
+  </select>
+</div>

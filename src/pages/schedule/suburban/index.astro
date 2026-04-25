@@ -2,39 +2,85 @@
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import ScheduleTable
   from '../../../components/ScheduleTable/ScheduleTable.astro';
+import type {RouteSchedule} from '../../../data/schedule';
 import {suburbanRoutes, suburbanComments} from '../../../data/schedule';
 import {getSidebarItems} from '../../../data/pathMenu';
 import Section from "../../../components/Section/Section.astro";
 import ScheduleComment
   from "../../../components/ScheduleComment/ScheduleComment.astro";
 import Message from "../../../components/Message/Message.astro";
+import SchedulePeriodSelect
+  from "../../../components/SchedulePeriodSelect/SchedulePeriodSelect.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
+const switchAt = '2026-05-01T00:00:00+03:00';
+const switchAtLabel = '01.05.2026';
+const nextModulePath = '../../../data/schedule/suburban_next.ts';
+const nextModules = import.meta.glob('../../../data/schedule/suburban_next.ts');
+
+let suburbanNextRoutes: RouteSchedule[] = [];
+
+if (nextModulePath in nextModules) {
+  const moduleLoader = nextModules[nextModulePath];
+  const module = await moduleLoader();
+  const maybeNextRoutes = (module as {
+    suburbanNew?: RouteSchedule[]
+  }).suburbanNew;
+
+  if (Array.isArray(maybeNextRoutes)) {
+    suburbanNextRoutes = maybeNextRoutes;
+  }
+}
+
+const hasSuburbanNext = suburbanNextRoutes.length > 0;
 ---
 
 <SectionLayout
   title="Расписание"
   sidebarItems={sidebarItems}
 >
-  <Section
-    title=`Пригородные маршруты`
-    subtitle="Расписание"
-    ariaName="title-block"
-    isInfo
-    isH1
+
+  <div
+    data-schedule-period-root
+    data-schedule-switch-at={switchAt}
+    data-schedule-has-next={hasSuburbanNext ? 'true' : 'false'}
   >
-    <p>c 01.01.2026 по 30.01.2026</p>
-    <Message
-      message="Рейсы на СПБ отменены"
-      type="attention"
-    />
-    <Message
-      message="C 01.04.2026 действует новое расписание"
-      type="comment"
-    />
-  </Section>
-  <ScheduleTable routes={suburbanRoutes} />
-  <ScheduleComment comments={suburbanComments} />
+    <Section
+      title=`Пригородные маршруты`
+      subtitle="Расписание"
+      ariaName="title-block"
+      isInfo
+      isH1
+    >
+      {hasSuburbanNext && (
+        <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
+      )}
+      <Message
+        message={`До ${switchAtLabel} действует текущее расписание. Новое можно посмотреть заранее.`}
+        type="comment"
+        data-schedule-period-note="before"
+      />
+      <Message
+        message={`С ${switchAtLabel} действует новое расписание.`}
+        type="comment"
+        data-schedule-period-note="after"
+        hidden
+      />
+    </Section>
+    <div data-schedule-period="old">
+      <ScheduleTable routes={suburbanRoutes} />
+      <ScheduleComment comments={suburbanComments} />
+    </div>
+    {hasSuburbanNext && (
+      <div
+        data-schedule-period="new"
+        hidden
+      >
+        <ScheduleTable routes={suburbanNextRoutes} />
+        <ScheduleComment comments={suburbanComments} />
+      </div>
+    )}
+  </div>
   <Message
     message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."
     type="information"

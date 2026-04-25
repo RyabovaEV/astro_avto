@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-const { message, type = "information", className = "" } = Astro.props;
+const { message, type = "information", className = "", ...attrs } = Astro.props;
 
 const typeClass = {
   attention: styles.attention,
@@ -21,6 +21,7 @@ const typeClass = {
 <div
   class:list={[styles.root, typeClass, className]}
   role="status"
+  {...attrs}
 >
   <p class={styles.text}>{message}</p>
 </div>
