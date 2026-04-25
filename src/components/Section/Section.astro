@@ -36,12 +36,12 @@ import styles from './Section.module.scss'
     {isH1 ? (
       <h1
         class={`${styles.title}`}
-        title={ariaName}
+        id={ariaName}
       >{title}</h1>
     ) : (
       <h2
         class={`${styles.title}`}
-        title={ariaName}
+        id={ariaName}
       >{title}</h2>
     )}
   </header>
