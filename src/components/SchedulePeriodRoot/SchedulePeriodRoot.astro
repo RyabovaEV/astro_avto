@@ -1,0 +1,77 @@
+---
+import styles from './SchedulePeriodRoot.module.scss'
+import type { RouteSchedule, RoutesComments } from '../../data/schedule';
+import ScheduleTable from '../ScheduleTable/ScheduleTable.astro';
+import ScheduleComment from '../ScheduleComment/ScheduleComment.astro';
+import SchedulePeriodSelect from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
+import Message from '../Message/Message.astro';
+import Section from '../Section/Section.astro';
+
+interface Props {
+  title: string;
+  switchAt: string;
+  switchAtLabel: string;
+  currentRoutes: RouteSchedule[];
+  currentComments: RoutesComments[];
+  nextRoutes?: RouteSchedule[];
+  nextComments?: RoutesComments[];
+}
+
+const {
+  title,
+  switchAt,
+  switchAtLabel,
+  currentRoutes,
+  currentComments,
+  nextRoutes = [],
+  nextComments,
+} = Astro.props;
+
+const hasNext = nextRoutes.length > 0;
+---
+
+<div
+  class={styles.main}
+  data-schedule-period-root
+  data-schedule-switch-at={switchAt}
+  data-schedule-has-next={hasNext ? 'true' : 'false'}
+>
+  <Section
+    title={title}
+    subtitle="Расписание"
+    ariaName="title-block"
+    isInfo
+    isH1
+  >
+    {hasNext && (
+      <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
+    )}
+    <!--{hasNext && (-->
+    <!--  <Message-->
+    <!--    message={`До ${switchAtLabel} действует текущее расписание. Новое можно посмотреть заранее.`}-->
+    <!--    type="comment"-->
+    <!--    data-schedule-period-note="before"-->
+    <!--  />-->
+    <!--)}-->
+    <!--{hasNext && (-->
+    <!--  <Message-->
+    <!--    message={`С ${switchAtLabel} действует новое расписание.`}-->
+    <!--    type="comment"-->
+    <!--    data-schedule-period-note="after"-->
+    <!--    hidden-->
+    <!--  />-->
+    <!--)}-->
+  </Section>
+
+  <div data-schedule-period="old">
+    <ScheduleTable routes={currentRoutes} />
+    <ScheduleComment comments={currentComments} />
+  </div>
+
+  {hasNext && (
+    <div data-schedule-period="new" hidden>
+      <ScheduleTable routes={nextRoutes} />
+      <ScheduleComment comments={nextComments ?? currentComments} />
+    </div>
+  )}
+</div>

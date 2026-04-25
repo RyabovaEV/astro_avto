@@ -36,76 +36,37 @@ class ScheduleDateGate {
     const control = root.querySelector<HTMLElement>('[data-schedule-period-control]');
     const select = root.querySelector<HTMLSelectElement>('[data-schedule-period-select]');
 
-    document.documentElement.dataset.scheduleDateGate = isAfterCutoff ? 'after-cutoff' : 'before-cutoff';
-
     if (!hasNext) {
       this.applyPeriod(root, 'old');
-      this.updatePeriodNotes(root, false);
       if (control) {
         control.hidden = true;
       }
       return;
     }
 
-    let activePeriod: 'old' | 'new' = 'old';
-
     if (isAfterCutoff) {
-      activePeriod = 'new';
-
+      this.applyPeriod(root, 'new');
       if (control) {
         control.hidden = true;
       }
-      this.disableOldOption(select);
-    } else {
-      if (select) {
-        select.value = activePeriod;
-        select.addEventListener('change', () => {
-          const selectedPeriod = this.isPeriod(select.value) ? select.value : 'old';
-          this.applyPeriod(root, selectedPeriod);
-        });
-      }
+      return;
     }
 
     if (select) {
-      select.value = activePeriod;
+      select.value = 'old';
+      select.addEventListener('change', () => {
+        const selectedPeriod = this.isPeriod(select.value) ? select.value : 'old';
+        this.applyPeriod(root, selectedPeriod);
+      });
     }
 
-    this.updatePeriodNotes(root, isAfterCutoff);
-    this.applyPeriod(root, activePeriod);
-  }
-
-  private updatePeriodNotes(root: HTMLElement, isAfterCutoff: boolean): void {
-    const beforeNote = root.querySelector<HTMLElement>('[data-schedule-period-note="before"]');
-    const afterNote = root.querySelector<HTMLElement>('[data-schedule-period-note="after"]');
-
-    if (beforeNote) {
-      beforeNote.hidden = isAfterCutoff;
-    }
-
-    if (afterNote) {
-      afterNote.hidden = !isAfterCutoff;
-    }
-  }
-
-  private disableOldOption(select: HTMLSelectElement | null): void {
-    if (!select) {
-      return;
-    }
-
-    const oldOption = select.querySelector<HTMLOptionElement>('option[value="old"]');
-    if (oldOption) {
-      oldOption.disabled = true;
-    }
-    select.value = 'new';
-    select.disabled = true;
+    this.applyPeriod(root, 'old');
   }
 
   private applyPeriod(root: HTMLElement, period: 'old' | 'new'): void {
     const blocks = root.querySelectorAll<HTMLElement>('[data-schedule-period]');
-
     blocks.forEach((block) => {
-      const blockPeriod = block.dataset.schedulePeriod;
-      block.hidden = blockPeriod !== period;
+      block.hidden = block.dataset.schedulePeriod !== period;
     });
   }
 

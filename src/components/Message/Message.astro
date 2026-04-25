@@ -7,9 +7,18 @@ interface Props {
   message: string;
   type?: MessageType;
   className?: string;
+  hidden?: boolean;
+
+  [key: string]: unknown;
 }
 
-const { message, type = "information", className = "", ...attrs } = Astro.props;
+const {
+  message,
+  type = "information",
+  className = "",
+  hidden,
+  ...attrs
+} = Astro.props;
 
 const typeClass = {
   attention: styles.attention,
@@ -21,6 +30,7 @@ const typeClass = {
 <div
   class:list={[styles.root, typeClass, className]}
   role="status"
+  hidden={hidden}
   {...attrs}
 >
   <p class={styles.text}>{message}</p>

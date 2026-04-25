@@ -11,6 +11,8 @@ import ScheduleComment
 import Message from "../../../components/Message/Message.astro";
 import SchedulePeriodSelect
   from "../../../components/SchedulePeriodSelect/SchedulePeriodSelect.astro";
+import SchedulePeriodRoot
+  from "../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 const switchAt = '2026-05-01T00:00:00+03:00';
@@ -39,48 +41,14 @@ const hasSuburbanNext = suburbanNextRoutes.length > 0;
   title="Расписание"
   sidebarItems={sidebarItems}
 >
-
-  <div
-    data-schedule-period-root
-    data-schedule-switch-at={switchAt}
-    data-schedule-has-next={hasSuburbanNext ? 'true' : 'false'}
-  >
-    <Section
-      title=`Пригородные маршруты`
-      subtitle="Расписание"
-      ariaName="title-block"
-      isInfo
-      isH1
-    >
-      {hasSuburbanNext && (
-        <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
-      )}
-      <Message
-        message={`До ${switchAtLabel} действует текущее расписание. Новое можно посмотреть заранее.`}
-        type="comment"
-        data-schedule-period-note="before"
-      />
-      <Message
-        message={`С ${switchAtLabel} действует новое расписание.`}
-        type="comment"
-        data-schedule-period-note="after"
-        hidden
-      />
-    </Section>
-    <div data-schedule-period="old">
-      <ScheduleTable routes={suburbanRoutes} />
-      <ScheduleComment comments={suburbanComments} />
-    </div>
-    {hasSuburbanNext && (
-      <div
-        data-schedule-period="new"
-        hidden
-      >
-        <ScheduleTable routes={suburbanNextRoutes} />
-        <ScheduleComment comments={suburbanComments} />
-      </div>
-    )}
-  </div>
+  <SchedulePeriodRoot
+    title="Пригородные маршруты"
+    switchAt={switchAt}
+    switchAtLabel={switchAtLabel}
+    currentRoutes={suburbanRoutes}
+    currentComments={suburbanComments}
+    nextRoutes={suburbanNextRoutes}
+  />
   <Message
     message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."
     type="information"

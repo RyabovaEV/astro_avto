@@ -2,7 +2,7 @@ import type { RouteSchedule } from "../schema.ts";
 
 export const suburbanNew: RouteSchedule[] = [
   {
-    number: "251",
+    number: "258",
     name: "Кириши – Черенцево",
     kind: "linear",
     departure: [
