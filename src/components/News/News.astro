@@ -53,7 +53,7 @@ if (showPagination) {
 
 <div class={styles.newsBlock}>
   <ul class={styles.newsList}>
-    {items.map(({ date, description, href, important, ulList }) => (
+    {items.map(({ date, description, href, linkLabel, important, ulList }) => (
       <li class={styles.newsItem}>
         <time datetime={date} class={styles.newsDate}>
           {new Date(date).toLocaleDateString('ru-RU')}
@@ -67,7 +67,7 @@ if (showPagination) {
               ))}
             </ul>
           )}
-          {href && <Link href={href} />}
+          {href && <Link href={href} label={linkLabel}/>}
         </div>
       </li>
     ))}
