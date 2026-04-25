@@ -1,4 +1,4 @@
-import type { RouteSchedule } from "./schema";
+import type { RouteSchedule } from "../schema.ts";
 
 export const suburbanNew: RouteSchedule[] = [
   {
