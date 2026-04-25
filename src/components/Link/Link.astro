@@ -1,16 +1,31 @@
 ---
-interface Props {
-  href?: string;
+interface LinkProps {
+  href: string;
+  isButton?: false;
+  type?: never;
   label?: string;
   className?: string;
   ariaLabel?: string;
   title?: string;
   target?: string;
   rel?: string;
-  isButton?: boolean;
   style?: 'link' | 'button';
-  type?: 'button' | 'submit' | 'reset';
 }
+
+interface ButtonProps {
+  href?: never;
+  isButton: true;
+  type?: 'button' | 'submit' | 'reset';
+  label?: string;
+  className?: string;
+  ariaLabel?: string;
+  title?: string;
+  target?: never;
+  rel?: never;
+  style?: never;
+}
+
+type Props = LinkProps | ButtonProps;
 
 const {
   href,
@@ -28,7 +43,7 @@ const {
 import styles from './Link.module.scss'
 ---
 
-{href && !isButton ? (
+{!isButton ? (
   <a
     href={href}
     class= {`${style === 'link' ? styles.link : styles.button} 
