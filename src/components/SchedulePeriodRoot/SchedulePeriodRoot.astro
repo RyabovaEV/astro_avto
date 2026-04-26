@@ -1,9 +1,10 @@
 ---
 import styles from './SchedulePeriodRoot.module.scss'
-import type { RouteSchedule, RoutesComments } from '../../data/schedule';
+import type {RouteSchedule, RoutesComments} from '../../data/schedule';
 import ScheduleTable from '../ScheduleTable/ScheduleTable.astro';
 import ScheduleComment from '../ScheduleComment/ScheduleComment.astro';
-import SchedulePeriodSelect from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
+import SchedulePeriodSelect
+  from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
 import Section from '../Section/Section.astro';
 
 interface Props {
@@ -36,7 +37,7 @@ const showToggle = hasOld && !isAfterCutoff;
   class={styles.main}
   data-schedule-period-root
   data-schedule-switch-at={switchAt}
-  data-schedule-has-old={hasOld  ? 'true' : 'false'}
+  data-schedule-has-old={hasOld ? 'true' : 'false'}
 >
   <Section
     title={title}
@@ -45,19 +46,27 @@ const showToggle = hasOld && !isAfterCutoff;
     isInfo
     isH1
   >
-    {showToggle  && (
+    {showToggle && (
       <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
     )}
   </Section>
 
-  <div data-schedule-period="old">
-    <ScheduleTable routes={oldRoutes} />
-    <ScheduleComment comments={oldComments ?? currentComments} />
+  <div
+    data-schedule-period="old"
+  >
+    <div class={styles.inner}>
+      <ScheduleTable routes={oldRoutes} />
+      <ScheduleComment comments={oldComments ?? currentComments} />
+    </div>
   </div>
 
-  <div data-schedule-period="current" hidden>
-    <ScheduleTable routes={currentRoutes} />
-    <ScheduleComment comments={currentComments} />
+  <div
+    data-schedule-period="current"
+    hidden
+  >
+    <div class={styles.inner}>
+      <ScheduleTable routes={currentRoutes} />
+      <ScheduleComment comments={currentComments} />
+    </div>
   </div>
-  )}
 </div>

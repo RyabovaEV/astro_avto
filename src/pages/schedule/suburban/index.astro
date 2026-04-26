@@ -1,6 +1,6 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import type {RouteSchedule} from '../../../data/schedule';
+import type {RouteSchedule, RoutesComments} from '../../../data/schedule';
 import {suburbanRoutes, suburbanComments} from '../../../data/schedule';
 import {getSidebarItems} from '../../../data/pathMenu';
 import Message from "../../../components/Message/Message.astro";
@@ -12,8 +12,11 @@ const switchAt = '2026-05-01T00:00:00+03:00';
 const switchAtLabel = '01.05.2026';
 const oldModulePath = '../../../data/schedule/suburban_old.ts';
 const oldModules = import.meta.glob('../../../data/schedule/suburban_old.ts');
+const oldModulePathComment = '../../../data/schedule/suburbanComments_old.ts';
+const oldModulesComment = import.meta.glob('../../../data/schedule/suburbanComments_old.ts');
 
 let suburbanOldRoutes: RouteSchedule[] = [];
+let suburbanOldComment: RoutesComments[] = [];
 
 if (oldModulePath in oldModules) {
   const moduleLoader = oldModules[oldModulePath];
@@ -21,6 +24,15 @@ if (oldModulePath in oldModules) {
   const maybeOldRoutes = (module as { suburbanOld?: RouteSchedule[] }).suburbanOld;
   if (Array.isArray(maybeOldRoutes)) {
     suburbanOldRoutes = maybeOldRoutes;
+  }
+}
+
+if (oldModulePathComment in oldModulesComment) {
+  const moduleLoader = oldModulesComment[oldModulePathComment];
+  const module = await moduleLoader();
+  const maybeOldComments = (module as { suburbanCommentsOld?: RoutesComments[] }).suburbanCommentsOld;
+  if (Array.isArray(maybeOldComments)) {
+    suburbanOldComment = maybeOldComments;
   }
 }
 ---
@@ -36,6 +48,7 @@ if (oldModulePath in oldModules) {
     currentRoutes={suburbanRoutes}
     currentComments={suburbanComments}
     oldRoutes={suburbanOldRoutes}
+    oldComments={suburbanOldComment}
   />
   <Message
     message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."

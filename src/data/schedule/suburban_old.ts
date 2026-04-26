@@ -2,15 +2,14 @@ import type { RouteSchedule } from "./schema";
 
 export const suburbanOld: RouteSchedule[] = [
   {
-    number: "258",
+    number: "251",
     name: "Кириши – Черенцево",
     kind: "linear",
     departure: [
       {
         time: "07:15",
         days: [
-          "р.д.",
-          "вс."
+          "р.д."
         ],
         note: "*"
       },
@@ -19,20 +18,13 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "р.д."
         ]
-      },
-      {
-        time: "20:15",
-        days: [
-          "вых.д."
-        ]
       }
     ],
     arrival: [
       {
         time: "08:17",
         days: [
-          "р.д.",
-          "вс."
+          "р.д."
         ]
       },
       {
@@ -40,13 +32,6 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "р.д."
         ]
-      },
-      {
-        time: "21:17",
-        days: [
-          "вых.д."
-        ],
-        note: "*"
       }
     ]
   },
@@ -94,11 +79,7 @@ export const suburbanOld: RouteSchedule[] = [
         ]
       },
       {
-        time: "20:15",
-        days: [
-          "р.д.",
-          "кр.пт."
-        ]
+        time: "20:15"
       }
     ],
     arrival: [
@@ -142,10 +123,6 @@ export const suburbanOld: RouteSchedule[] = [
       },
       {
         time: "21:07",
-        days: [
-          "р.д.",
-          "кр.пт."
-        ],
         note: "*"
       }
     ]
@@ -292,27 +269,6 @@ export const suburbanOld: RouteSchedule[] = [
     ]
   },
   {
-    number: "252а",
-    name: "От пл. Бровко по пр.Ленина-Садоводство-2 Выходные дни",
-    kind: "linear",
-    departure: [
-      {
-        time: "09:50"
-      },
-      {
-        time: "17:30"
-      }
-    ],
-    arrival: [
-      {
-        time: "10:15"
-      },
-      {
-        time: "17:55"
-      }
-    ]
-  },
-  {
     number: "254",
     name: "Кириши – Городище",
     kind: "linear",
@@ -370,12 +326,6 @@ export const suburbanOld: RouteSchedule[] = [
         ]
       },
       {
-        time: "10:35",
-        days: [
-          "сб."
-        ]
-      },
-      {
         time: "11:25",
         days: [
           "р.д."
@@ -390,9 +340,7 @@ export const suburbanOld: RouteSchedule[] = [
       {
         time: "20:10",
         days: [
-          "пт.",
-          "сб.",
-          "вс."
+          "пт."
         ]
       }
     ],
@@ -401,12 +349,6 @@ export const suburbanOld: RouteSchedule[] = [
         time: "06:50",
         days: [
           "р.д."
-        ]
-      },
-      {
-        time: "11:10",
-        days: [
-          "сб."
         ]
       },
       {
@@ -424,9 +366,7 @@ export const suburbanOld: RouteSchedule[] = [
       {
         time: "20:45",
         days: [
-          "пт.",
-          "сб.",
-          "вс."
+          "пт."
         ]
       }
     ]
@@ -440,13 +380,10 @@ export const suburbanOld: RouteSchedule[] = [
         time: "06:05"
       },
       {
-        time: "06:25"
+        time: "07:25"
       },
       {
         time: "10:00"
-      },
-      {
-        time: "11:00"
       },
       {
         time: "13:00"
@@ -458,10 +395,7 @@ export const suburbanOld: RouteSchedule[] = [
         time: "16:55"
       },
       {
-        time: "17:35",
-        days: [
-          "кр.пт."
-        ]
+        time: "17:35"
       }
     ],
     arrival: [
@@ -472,16 +406,7 @@ export const suburbanOld: RouteSchedule[] = [
         time: "08:25"
       },
       {
-        time: "09:25"
-      },
-      {
-        time: "10:15"
-      },
-      {
         time: "11:00"
-      },
-      {
-        time: "12:00"
       },
       {
         time: "14:00"
@@ -490,16 +415,10 @@ export const suburbanOld: RouteSchedule[] = [
         time: "15:55"
       },
       {
-        time: "17:00"
-      },
-      {
         time: "18:00"
       },
       {
-        time: "19:40",
-        days: [
-          "кр.вс."
-        ]
+        time: "18:50"
       }
     ]
   },
@@ -509,34 +428,24 @@ export const suburbanOld: RouteSchedule[] = [
     kind: "linear",
     departure: [
       {
-        time: "07:25"
+        time: "06:25"
       },
       {
-        time: "12:00"
+        time: "11:00"
       },
       {
         time: "14:00"
       }
-    ]
-  },
-  {
-    number: "255а*",
-    name: "Кириши – Борутино – Будогощь",
-    kind: "linear",
-    departure: [
-      {
-        time: "17:35",
-        days: [
-          "пт."
-        ]
-      }
     ],
     arrival: [
       {
-        time: "19:40",
-        days: [
-          "вс."
-        ]
+        time: "09:25"
+      },
+      {
+        time: "10:15"
+      },
+      {
+        time: "12:00"
       }
     ]
   },
@@ -569,7 +478,7 @@ export const suburbanOld: RouteSchedule[] = [
   },
   {
     number: "257, 257а",
-    name: "Кириши – Дубняги",
+    name: "Кириши – Чирково",
     kind: "linear",
     departure: [
       {
@@ -583,18 +492,18 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "вых.д."
         ],
-        note: "Дуняково сб."
+        note: "д.Дуняково сб."
       },
       {
         time: "13:50",
         days: [
           "р.д."
         ],
-        note: "Дуняково чт."
+        note: "д.Дуняково чт."
       },
       {
         time: "18:25",
-        note: "Дуняково чт."
+        note: "д.Дуняково чт."
       }
     ],
     arrival: [
@@ -612,13 +521,13 @@ export const suburbanOld: RouteSchedule[] = [
       },
       {
         time: "19:20",
-        note: "Дуняково вс."
+        note: "д.Дуняково вс."
       }
     ]
   },
   {
     number: "257б*",
-    name: "Кириши – Чирково –Дубняги",
+    name: "Кириши – Чирково - Дубняги",
     kind: "linear",
     arrival: [
       {
@@ -626,7 +535,7 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "р.д."
         ],
-        note: "Дуняково чт."
+        note: "д.Дуняково чт."
       }
     ]
   },
@@ -699,12 +608,6 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "вс."
         ]
-      },
-      {
-        time: "20:15",
-        days: [
-          "пт."
-        ]
       }
     ],
     arrival: [
@@ -727,113 +630,16 @@ export const suburbanOld: RouteSchedule[] = [
         days: [
           "вс."
         ]
-      },
-      {
-        time: "21:43",
-        days: [
-          "пт."
-        ],
-        note: "*"
       }
     ]
   },
   {
     number: "260",
-    name: "Кириши – Садоводство-3 Рабочие дни",
+    name: "Кириши – Садоводство-3",
     kind: "linear",
     departure: [
       {
         time: "06:00"
-      },
-      {
-        time: "08:20"
-      },
-      {
-        time: "08:50"
-      },
-      {
-        time: "09:30"
-      },
-      {
-        time: "10:00"
-      },
-      {
-        time: "10:40"
-      },
-      {
-        time: "13:00"
-      },
-      {
-        time: "14:10"
-      },
-      {
-        time: "15:20"
-      },
-      {
-        time: "16:40"
-      },
-      {
-        time: "17:50"
-      },
-      {
-        time: "19:00"
-      },
-      {
-        time: "20:30"
-      }
-    ],
-    arrival: [
-      {
-        time: "06:30"
-      },
-      {
-        time: "08:50"
-      },
-      {
-        time: "09:20"
-      },
-      {
-        time: "10:00"
-      },
-      {
-        time: "10:30"
-      },
-      {
-        time: "11:10"
-      },
-      {
-        time: "13:30"
-      },
-      {
-        time: "14:40"
-      },
-      {
-        time: "15:50"
-      },
-      {
-        time: "17:10"
-      },
-      {
-        time: "18:20"
-      },
-      {
-        time: "19:30"
-      },
-      {
-        time: "21:00"
-      }
-    ]
-  },
-  {
-    number: "260",
-    name: "Кириши – Садоводство-3 Выходные дни",
-    kind: "linear",
-    departure: [
-      {
-        time: "06:00"
-      },
-      {
-        time: "07:10"
       },
       {
         time: "08:20"
@@ -864,17 +670,11 @@ export const suburbanOld: RouteSchedule[] = [
       },
       {
         time: "19:00"
-      },
-      {
-        time: "20:30"
       }
     ],
     arrival: [
       {
         time: "06:30"
-      },
-      {
-        time: "07:40"
       },
       {
         time: "08:50"
@@ -905,48 +705,6 @@ export const suburbanOld: RouteSchedule[] = [
       },
       {
         time: "19:30"
-      },
-      {
-        time: "21:00"
-      }
-    ]
-  },
-  {
-    number: "260а",
-    name: "От пл. Бровко по пр.Ленина–Садоводство 3 Выходные дни",
-    kind: "linear",
-    departure: [
-      {
-        time: "07:30"
-      },
-      {
-        time: "08:40"
-      },
-      {
-        time: "11:20"
-      },
-      {
-        time: "16:10"
-      },
-      {
-        time: "18:30"
-      }
-    ],
-    arrival: [
-      {
-        time: "08:00"
-      },
-      {
-        time: "09:10"
-      },
-      {
-        time: "11:50"
-      },
-      {
-        time: "16:40"
-      },
-      {
-        time: "19:00"
       }
     ]
   },
@@ -956,79 +714,31 @@ export const suburbanOld: RouteSchedule[] = [
     kind: "circular",
     departure: [
       {
-        time: "08:50"
+        time: "08:30"
       },
       {
-        time: "18:55"
+        time: "18:10"
       }
     ]
   },
   {
-    number: "241, 241а",
-    name: "Будогощь – Крапивно",
-    kind: "linear",
-    departure: [
-      {
-        time: "06:55",
-        days: [
-          "ср.",
-          "сб."
-        ],
-        note: "заезд в Авдетово"
-      },
-      {
-        time: "15:00",
-        days: [
-          "ср.",
-          "пт.",
-          "сб."
-        ],
-        note: "заезд в д.Авдетово, д.Могилёво"
-      }
-    ],
-    arrival: [
-      {
-        time: "08:02",
-        days: [
-          "ср.",
-          "сб."
-        ],
-        note: "* заезд в д.Авдетово, д.Могилёво"
-      },
-      {
-        time: "15:55",
-        days: [
-          "ср.",
-          "пт.",
-          "вс."
-        ],
-        note: "заезд в д.Авдетово"
-      }
-    ]
-  },
-  {
-    number: "244а",
-    name: "Будогощь – Смолино",
+    number: "244",
+    name: "Будогощь - Смолино",
     kind: "linear",
     departure: [
       {
         time: "08:20",
         days: [
           "вт.",
-          "чт.",
-          "сб."
-        ],
-        note: "заезд в д.Змеева Новинка"
+          "чт."
+        ]
       },
       {
-        time: "18:00",
+        time: "16:38",
         days: [
           "вт.",
-          "чт.",
-          "сб.",
-          "вс."
-        ],
-        note: "заезд в д.Змеева Новинка"
+          "чт."
+        ]
       }
     ],
     arrival: [
@@ -1036,16 +746,48 @@ export const suburbanOld: RouteSchedule[] = [
         time: "09:13",
         days: [
           "вт.",
-          "чт.",
-          "сб."
+          "чт."
         ],
         note: "*"
       },
       {
-        time: "18:50",
+        time: "17:25",
         days: [
           "вт.",
-          "чт.",
+          "чт."
+        ]
+      }
+    ]
+  },
+  {
+    number: "245",
+    name: "Будогощь - Клинково",
+    kind: "linear",
+    departure: [
+      {
+        time: "07:20"
+      },
+      {
+        time: "16:50",
+        days: [
+          "пн.",
+          "ср.",
+          "пт.",
+          "сб.",
+          "вс."
+        ]
+      }
+    ],
+    arrival: [
+      {
+        time: "07:50"
+      },
+      {
+        time: "17:20",
+        days: [
+          "пн.",
+          "ср.",
+          "пт.",
           "сб.",
           "вс."
         ]
@@ -1053,129 +795,85 @@ export const suburbanOld: RouteSchedule[] = [
     ]
   },
   {
-    number: "245",
-    name: "Будогощь – Клинково",
-    kind: "linear",
-    departure: [
-      {
-        time: "07:20"
-      },
-      {
-        time: "16:50"
-      }
-    ],
-    arrival: [
-      {
-        time: "07:50",
-        note: "*"
-      },
-      {
-        time: "17:20"
-      }
-    ]
-  },
-  {
     number: "246",
-    name: "Будогощь – Половинник",
+    name: "Будогощь - Половинник",
     kind: "linear",
     departure: [
       {
-        time: "06:55",
+        time: "06:50",
         days: [
-          "пн."
-        ]
-      },
-      {
-        time: "08:20",
-        days: [
-          "ср.",
-          "пт.",
-          "вс."
-        ]
-      },
-      {
-        time: "15:00"
-      }
-    ],
-    arrival: [
-      {
-        time: "07:38",
-        days: [
-          "пн."
-        ],
-        note: "*"
-      },
-      {
-        time: "09:10",
-        days: [
-          "ср.",
-          "пт.",
-          "вс."
-        ],
-        note: "*"
-      },
-      {
-        time: "15:50"
-      }
-    ]
-  },
-  {
-    number: "247",
-    name: "Будогощь – Луг",
-    kind: "linear",
-    departure: [
-      {
-        time: "08:20",
-        days: [
-          "пн."
-        ]
-      },
-      {
-        time: "06:55",
-        days: [
-          "вт.",
+          "пн.",
           "чт.",
-          "пт.",
-          "вс."
+          "сб."
         ]
       },
       {
         time: "15:00",
         days: [
           "пн.",
-          "вт.",
           "чт.",
           "сб."
-        ],
-        note: "(Могилево) (Солоницы вт, чт.)"
+        ]
       }
     ],
     arrival: [
       {
-        time: "09:10",
+        time: "07:38",
         days: [
-          "пн."
-        ],
-        note: "*"
+          "пн.",
+          "чт.",
+          "сб."
+        ]
       },
+      {
+        time: "15:50",
+        days: [
+          "пн.",
+          "чт.",
+          "сб."
+        ]
+      }
+    ]
+  },
+  {
+    number: "247",
+    name: "Будогощь - Луг",
+    kind: "linear",
+    departure: [
+      {
+        time: "06:55",
+        days: [
+          "вт.",
+          "ср.",
+          "пт.",
+          "вс."
+        ]
+      },
+      {
+        time: "15:00",
+        note: "д.Могилево, д.Солоницы ср."
+      }
+    ],
+    arrival: [
       {
         time: "07:37",
         days: [
           "вт.",
-          "чт.",
+          "ср.",
           "пт.",
           "вс."
         ],
-        note: "* (Могилево) (Солоницы вт, чт.)"
+        note: "*"
       },
       {
         time: "15:35",
         days: [
-          "пн.",
           "вт.",
-          "чт.",
-          "сб."
-        ]
+          "ср.",
+          "пт.",
+          "вс."
+        ],
+        note: "д.Солоницы ср."
       }
     ]
   }
