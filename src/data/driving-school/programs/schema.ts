@@ -1,8 +1,10 @@
+import { number } from "astro:schema"
+
 interface Subjects {
   name: string,
-  total: number,
-  theory: number | null
-  practice: number | null
+  total: string | number,
+  theory: string | number | null,
+  practice: string | number | null,
   exam: string
 }
 
@@ -12,9 +14,9 @@ interface Sections {
 }
 
 interface Summary {
-  total: number,
-  theory: number,
-  practice: number,
+  total: string | number,
+  theory: string | number,
+  practice: string | number,
 }
 
 export interface Program {

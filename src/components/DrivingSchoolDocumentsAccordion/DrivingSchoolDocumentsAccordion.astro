@@ -44,7 +44,7 @@ const relForNewTab = (href: string) =>
                   <a
                     href={link.href}
                     target="_blank"
-                    rel={relForNewTab(link.href)}
+                    rel={relForNewTab(link.href ?? '')}
                   >
                     {link.label}
                   </a>
@@ -92,7 +92,7 @@ const relForNewTab = (href: string) =>
                             <a
                               href={link.href}
                               target="_blank"
-                              rel={relForNewTab(link.href)}
+                              rel={relForNewTab(link.href ?? '')}
                             >
                               {link.label}
                             </a>

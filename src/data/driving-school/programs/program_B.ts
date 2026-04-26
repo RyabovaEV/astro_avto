@@ -3,13 +3,13 @@ import type {Program} from "./schema.ts"
 export const program_B: Program = {
   sections: [
     {
-      title: "Учебные предметы базового цикла",
+      title: "Базовый цикл",
       subjects: [
         {
           name: "Основы законодательства Российской Федерации в сфере дорожного движения",
-          total: 42,
-          theory: 30,
-          practice: 12,
+          total: 44,
+          theory: 26,
+          practice: 18,
           exam: "Зачет"
         },
         {
@@ -27,7 +27,7 @@ export const program_B: Program = {
           exam: "-"
         },
         {
-          name: "Первая помощь при дорожно-транспортном происшествии",
+          name: "Оказание первой помощи пострадавшим в дорожно-транспортном происшествии",
           total: 16,
           theory: 8,
           practice: 8,
@@ -36,12 +36,12 @@ export const program_B: Program = {
       ]
     },
     {
-      title: "Учебные предметы специального цикла",
+      title: "Специальный цикл",
       subjects: [
         {
           name: "Устройство и техническое обслуживание транспортных средств категории \"В\" как объектов управления",
-          total: 20,
-          theory: 18,
+          total: 16,
+          theory: 14,
           practice: 2,
           exam: "Зачет"
         },
@@ -51,18 +51,11 @@ export const program_B: Program = {
           theory: 8,
           practice: 4,
           exam: "Зачет"
-        },
-        {
-          name: "Вождение транспортных средств категории \"B\" (с механической трансмиссией)",
-          total: 56,
-          theory: 0,
-          practice: 56,
-          exam: "КЗ"
         }
       ]
     },
     {
-      title: "Учебные предметы профессионального цикла",
+      title: "Профессиональный цикл",
       subjects: [
         {
           name: "Организация и выполнение грузовых перевозок автомобильным транспортом",
@@ -77,7 +70,26 @@ export const program_B: Program = {
           theory: 6,
           practice: 0,
           exam: "Зачет"
+        },
+        {
+          name: "Организация и выполнение пассажирских перевозок автомобильным транспортом (дополнительно)",
+          total: 11,
+          theory: 1,
+          practice: 0,
+          exam: "Зачет"
         }
+      ]
+    },
+    {
+      title: "Практическая подготовка",
+      subjects: [
+        {
+          name: "Вождение транспортных средств категории \"В\" (с механической трансмиссией / с автоматической трансмиссией)",
+          total: "58/56",
+          theory: 0,
+          practice: "58/56",
+          exam: "КЗ"
+        },
       ]
     },
     {
@@ -93,10 +105,9 @@ export const program_B: Program = {
       ]
     }
   ],
-  summary:
-    {
-      total: 190,
-      theory: 100,
-      practice: 90
-    }
+  summary: {
+    total: "190/188",
+    theory: 92,
+    practice: "98/96"
+  }
 }
