@@ -1,6 +1,6 @@
-import type { RouteSchedule } from "../schema.ts";
+import type { RouteSchedule } from "./schema";
 
-export const suburbanNew: RouteSchedule[] = [
+export const suburbanOld: RouteSchedule[] = [
   {
     number: "258",
     name: "Кириши – Черенцево",

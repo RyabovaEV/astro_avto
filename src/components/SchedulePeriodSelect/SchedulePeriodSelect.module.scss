@@ -1,10 +1,8 @@
 @use "../../styles/core" as *;
 
 .control {
-  margin-bottom: var(--space-2);
   display: grid;
   gap: var(--space-1);
-  max-width: 28rem;
 }
 
 .label {
@@ -13,25 +11,35 @@
   color: var(--accent-text-color);
 }
 
-.select {
-  width: 100%;
-  padding: fluid(10, 8) var(--space-2);
-  font-size: fluid(15, 14);
-  color: var(--main-text-color);
-  background-color: var(--color-white);
+.toggle {
+  display: inline-flex;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
-  transition-duration: var(--transition-duration);
+  overflow: hidden;
+}
 
-  &:focus-visible {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent);
+.button {
+  padding: fluid(8, 6) fluid(16, 12);
+  font-size: fluid(15, 14);
+  color: var(--light-text-color);
+  background-color: var(--bg-secondary);
+  border: none;
+  border-right: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background-color var(--transition-duration), color var(--transition-duration);
+
+  &:last-child {
+    border-right: none;
   }
 
-  &:disabled {
-    color: var(--light-text-color);
-    background-color: var(--bg-secondary);
-    cursor: not-allowed;
+  &:hover {
+    background-color: var(--color-primary-50);
+    color: var(--accent-text-color);
+  }
+
+  &[data-active="true"] {
+    background-color: var(--color-primary-50);
+    color: var(--color-primary-700);
+    font-weight: 600;
   }
 }

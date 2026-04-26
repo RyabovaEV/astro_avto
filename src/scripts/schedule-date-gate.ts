@@ -30,48 +30,43 @@ class ScheduleDateGate {
       return;
     }
 
-    const hasNext = root.dataset.scheduleHasNext === 'true';
-    const now = new Date();
-    const isAfterCutoff = now >= switchAt;
-    const control = root.querySelector<HTMLElement>('[data-schedule-period-control]');
-    const select = root.querySelector<HTMLSelectElement>('[data-schedule-period-select]');
+    const hasOld = root.dataset.scheduleHasOld === 'true';
+    const isAfterCutoff = new Date() >= switchAt;
 
-    if (!hasNext) {
-      this.applyPeriod(root, 'old');
-      if (control) {
-        control.hidden = true;
-      }
+    // дата наступила или нет старого расписания — просто показываем текущее
+    if (!hasOld || isAfterCutoff) {
       return;
     }
 
-    if (isAfterCutoff) {
-      this.applyPeriod(root, 'new');
-      if (control) {
-        control.hidden = true;
-      }
-      return;
-    }
-
-    if (select) {
-      select.value = 'old';
-      select.addEventListener('change', () => {
-        const selectedPeriod = this.isPeriod(select.value) ? select.value : 'old';
-        this.applyPeriod(root, selectedPeriod);
-      });
-    }
-
-    this.applyPeriod(root, 'old');
+    // до даты переключения — вешаем обработчики на кнопки
+    this.bindButtons(root);
   }
 
-  private applyPeriod(root: HTMLElement, period: 'old' | 'new'): void {
+  private bindButtons(root: HTMLElement): void {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-schedule-period-btn]');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const period = btn.dataset.schedulePeriodBtn;
+        if (!this.isPeriod(period)) return;
+
+        buttons.forEach((b) => b.removeAttribute('data-active'));
+        btn.dataset.active = 'true';
+
+        this.applyPeriod(root, period);
+      });
+    });
+  }
+
+  private applyPeriod(root: HTMLElement, period: 'current' | 'old'): void {
     const blocks = root.querySelectorAll<HTMLElement>('[data-schedule-period]');
     blocks.forEach((block) => {
       block.hidden = block.dataset.schedulePeriod !== period;
     });
   }
 
-  private isPeriod(value: unknown): value is 'old' | 'new' {
-    return value === 'old' || value === 'new';
+  private isPeriod(value: unknown): value is 'current' | 'old' {
+    return value === 'current' || value === 'old';
   }
 }
 

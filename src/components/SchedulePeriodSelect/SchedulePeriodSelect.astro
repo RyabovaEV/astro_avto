@@ -9,9 +9,22 @@ const { switchAtLabel } = Astro.props;
 ---
 
 <div class={styles.control} data-schedule-period-control>
-  <label class={styles.label} for="schedule-period-select">Период расписания</label>
-  <select class={styles.select} id="schedule-period-select" data-schedule-period-select>
-    <option value="old">Текущее расписание</option>
-    <option value="new">Новое расписание (с {switchAtLabel})</option>
-  </select>
+  <p class={styles.label}>Период расписания</p>
+  <div class={styles.toggle}>
+    <button
+      class={styles.button}
+      data-schedule-period-btn="old"
+      data-active="true"
+      type="button"
+    >
+      Текущее
+    </button>
+    <button
+      class={styles.button}
+      data-schedule-period-btn="current"
+      type="button"
+    >
+      Новое (с {switchAtLabel})
+    </button>
+  </div>
 </div>

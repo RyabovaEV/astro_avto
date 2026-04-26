@@ -1,36 +1,27 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
 import { getSidebarItems } from '../../../data/pathMenu';
-import Section from "../../../components/Section/Section.astro";
-import {
-  cityComments,
-  cityRoutes
-} from "../../../data/schedule";
-import ScheduleTable
-  from "../../../components/ScheduleTable/ScheduleTable.astro";
-import ScheduleComment
-  from "../../../components/ScheduleComment/ScheduleComment.astro";
-import Message from "../../../components/Message/Message.astro";
-import SchedulePeriodRoot
-  from "../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro";
+import type { RouteSchedule } from '../../../data/schedule';
+import { cityComments, cityRoutes } from '../../../data/schedule';
+import Message from '../../../components/Message/Message.astro';
+import SchedulePeriodRoot from '../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro';
 
 const sidebarItems = getSidebarItems('/schedule');
 const switchAt = '2026-05-01T00:00:00+03:00';
 const switchAtLabel = '01.05.2026';
-const nextModulePath = '../../../data/schedule/nextSchedule/city_next.ts';
-const nextModules = import.meta.glob('../../../data/schedule/nextSchedule/city_next.ts');
+const oldModulePath = '../../../data/schedule/city_old.ts';
+const oldModules = import.meta.glob('../../../data/schedule/city_old.ts');
 
-let cityNextRoutes: RouteSchedule[] = [];
+let cityOldRoutes: RouteSchedule[] = [];
 
-if (nextModulePath in nextModules) {
-  const moduleLoader = nextModules[nextModulePath];
+if (oldModulePath in oldModules) {
+  const moduleLoader = oldModules[oldModulePath];
   const module = await moduleLoader();
-  const maybeNextRoutes = (module as { cityNew?: RouteSchedule[] }).cityNew;
-  if (Array.isArray(maybeNextRoutes)) {
-    cityNextRoutes = maybeNextRoutes;
+  const maybeOldRoutes = (module as { cityOld?: RouteSchedule[] }).cityOld;
+  if (Array.isArray(maybeOldRoutes)) {
+    cityOldRoutes = maybeOldRoutes;
   }
 }
-
 ---
 
 <SectionLayout title="Расписание" sidebarItems={sidebarItems}>
@@ -40,7 +31,10 @@ if (nextModulePath in nextModules) {
     switchAtLabel={switchAtLabel}
     currentRoutes={cityRoutes}
     currentComments={cityComments}
-    nextRoutes={cityNextRoutes}
+    oldRoutes={cityOldRoutes}
   />
-  <Message message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано." type="information"/>
+  <Message
+    message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."
+    type="information"
+  />
 </SectionLayout>

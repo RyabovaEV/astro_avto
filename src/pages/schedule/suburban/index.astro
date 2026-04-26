@@ -1,40 +1,28 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import ScheduleTable
-  from '../../../components/ScheduleTable/ScheduleTable.astro';
 import type {RouteSchedule} from '../../../data/schedule';
 import {suburbanRoutes, suburbanComments} from '../../../data/schedule';
 import {getSidebarItems} from '../../../data/pathMenu';
-import Section from "../../../components/Section/Section.astro";
-import ScheduleComment
-  from "../../../components/ScheduleComment/ScheduleComment.astro";
 import Message from "../../../components/Message/Message.astro";
-import SchedulePeriodSelect
-  from "../../../components/SchedulePeriodSelect/SchedulePeriodSelect.astro";
 import SchedulePeriodRoot
   from "../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro";
 
 const sidebarItems = getSidebarItems('/schedule');
 const switchAt = '2026-05-01T00:00:00+03:00';
 const switchAtLabel = '01.05.2026';
-const nextModulePath = '../../../data/schedule/nextSchedule/suburban_next.ts';
-const nextModules = import.meta.glob('../../../data/schedule/nextSchedule/suburban_next.ts');
+const oldModulePath = '../../../data/schedule/suburban_old.ts';
+const oldModules = import.meta.glob('../../../data/schedule/suburban_old.ts');
 
-let suburbanNextRoutes: RouteSchedule[] = [];
+let suburbanOldRoutes: RouteSchedule[] = [];
 
-if (nextModulePath in nextModules) {
-  const moduleLoader = nextModules[nextModulePath];
+if (oldModulePath in oldModules) {
+  const moduleLoader = oldModules[oldModulePath];
   const module = await moduleLoader();
-  const maybeNextRoutes = (module as {
-    suburbanNew?: RouteSchedule[]
-  }).suburbanNew;
-
-  if (Array.isArray(maybeNextRoutes)) {
-    suburbanNextRoutes = maybeNextRoutes;
+  const maybeOldRoutes = (module as { suburbanOld?: RouteSchedule[] }).suburbanOld;
+  if (Array.isArray(maybeOldRoutes)) {
+    suburbanOldRoutes = maybeOldRoutes;
   }
 }
-
-const hasSuburbanNext = suburbanNextRoutes.length > 0;
 ---
 
 <SectionLayout
@@ -47,7 +35,7 @@ const hasSuburbanNext = suburbanNextRoutes.length > 0;
     switchAtLabel={switchAtLabel}
     currentRoutes={suburbanRoutes}
     currentComments={suburbanComments}
-    nextRoutes={suburbanNextRoutes}
+    oldRoutes={suburbanOldRoutes}
   />
   <Message
     message="В процессе перевозок возможны изменения и дополнения в расписании о чем будет дополнительно информировано."

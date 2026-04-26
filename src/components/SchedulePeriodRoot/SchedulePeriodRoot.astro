@@ -4,7 +4,6 @@ import type { RouteSchedule, RoutesComments } from '../../data/schedule';
 import ScheduleTable from '../ScheduleTable/ScheduleTable.astro';
 import ScheduleComment from '../ScheduleComment/ScheduleComment.astro';
 import SchedulePeriodSelect from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
-import Message from '../Message/Message.astro';
 import Section from '../Section/Section.astro';
 
 interface Props {
@@ -13,9 +12,10 @@ interface Props {
   switchAtLabel: string;
   currentRoutes: RouteSchedule[];
   currentComments: RoutesComments[];
-  nextRoutes?: RouteSchedule[];
-  nextComments?: RoutesComments[];
+  oldRoutes?: RouteSchedule[];
+  oldComments?: RoutesComments[];
 }
+
 
 const {
   title,
@@ -23,18 +23,20 @@ const {
   switchAtLabel,
   currentRoutes,
   currentComments,
-  nextRoutes = [],
-  nextComments,
+  oldRoutes = [],
+  oldComments,
 } = Astro.props;
 
-const hasNext = nextRoutes.length > 0;
+const hasOld = oldRoutes.length > 0;
+const isAfterCutoff = new Date() >= new Date(switchAt);
+const showToggle = hasOld && !isAfterCutoff;
 ---
 
 <div
   class={styles.main}
   data-schedule-period-root
   data-schedule-switch-at={switchAt}
-  data-schedule-has-next={hasNext ? 'true' : 'false'}
+  data-schedule-has-old={hasOld  ? 'true' : 'false'}
 >
   <Section
     title={title}
@@ -43,35 +45,19 @@ const hasNext = nextRoutes.length > 0;
     isInfo
     isH1
   >
-    {hasNext && (
+    {showToggle  && (
       <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
     )}
-    <!--{hasNext && (-->
-    <!--  <Message-->
-    <!--    message={`До ${switchAtLabel} действует текущее расписание. Новое можно посмотреть заранее.`}-->
-    <!--    type="comment"-->
-    <!--    data-schedule-period-note="before"-->
-    <!--  />-->
-    <!--)}-->
-    <!--{hasNext && (-->
-    <!--  <Message-->
-    <!--    message={`С ${switchAtLabel} действует новое расписание.`}-->
-    <!--    type="comment"-->
-    <!--    data-schedule-period-note="after"-->
-    <!--    hidden-->
-    <!--  />-->
-    <!--)}-->
   </Section>
 
   <div data-schedule-period="old">
+    <ScheduleTable routes={oldRoutes} />
+    <ScheduleComment comments={oldComments ?? currentComments} />
+  </div>
+
+  <div data-schedule-period="current" hidden>
     <ScheduleTable routes={currentRoutes} />
     <ScheduleComment comments={currentComments} />
   </div>
-
-  {hasNext && (
-    <div data-schedule-period="new" hidden>
-      <ScheduleTable routes={nextRoutes} />
-      <ScheduleComment comments={nextComments ?? currentComments} />
-    </div>
   )}
 </div>
