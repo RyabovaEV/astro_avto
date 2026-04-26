@@ -2,15 +2,16 @@
 import DocsModule from './Docs.module.scss'
 import Link from "../Link/Link.astro";
 import type {News} from "../../data/news";
+import type { Links } from "../../data/links";
 
 interface Props {
-  links: []
+  links: Links[]; // Исправлено: массив объектов Links
   numberDocsItems?: number
 }
 
 const {links,   numberDocsItems} = Astro.props
 
-let itemsLink: News[]
+let itemsLink: Links[]; // Исправлено: тип изменён на Links[]
 
 itemsLink =
   numberDocsItems !== undefined
