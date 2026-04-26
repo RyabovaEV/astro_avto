@@ -7,14 +7,16 @@ import type { SidebarItem } from '../../components/Sidebar/Sidebar.astro';
 interface Props {
   title: string;
   sidebarItems: SidebarItem[];
+  pageTitle?: string;
+  description?: string;
 }
 
-const { title, sidebarItems } = Astro.props;
+const { title, sidebarItems, pageTitle, description } = Astro.props;
 
 import styles from './SectionLayout.module.scss';
 ---
 
-<Layout>
+<Layout  title={pageTitle} description={description}>
   <div class={styles.wrapper}>
     <div class={styles.sidebarDesktop}>
       <Sidebar title={title} items={sidebarItems} />

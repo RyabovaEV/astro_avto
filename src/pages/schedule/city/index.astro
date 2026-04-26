@@ -1,10 +1,11 @@
 ---
 import SectionLayout from '../../../layouts/SectionLayout/SectionLayout.astro';
-import { getSidebarItems } from '../../../data/pathMenu';
-import type { RouteSchedule } from '../../../data/schedule';
-import { cityComments, cityRoutes } from '../../../data/schedule';
+import {getSidebarItems} from '../../../data/pathMenu';
+import type {RouteSchedule} from '../../../data/schedule';
+import {cityComments, cityRoutes} from '../../../data/schedule';
 import Message from '../../../components/Message/Message.astro';
-import SchedulePeriodRoot from '../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro';
+import SchedulePeriodRoot
+  from '../../../components/SchedulePeriodRoot/SchedulePeriodRoot.astro';
 
 const sidebarItems = getSidebarItems('/schedule');
 const switchAt = '2026-05-01T00:00:00+03:00';
@@ -24,7 +25,12 @@ if (oldModulePath in oldModules) {
 }
 ---
 
-<SectionLayout title="Расписание" sidebarItems={sidebarItems}>
+<SectionLayout
+  title="Расписание"
+  pageTitle="Расписание городских маршрутов"
+  description="Расписание городских автобусных маршрутов Киришей. Время отправления, актуальное расписание."
+  sidebarItems={sidebarItems}
+>
   <SchedulePeriodRoot
     title="Городские маршруты"
     switchAt={switchAt}

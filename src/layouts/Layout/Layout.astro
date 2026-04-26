@@ -5,38 +5,36 @@ import BackToTop from "../../components/BackToTop/BackToTop.astro";
 import styles from './Layout.module.scss'
 
 import "../../styles/main.scss";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Официальные пассажирские перевозки в Киришах и районе: расписание и маршруты на сайте. Обучение вождению в нашей автошколе.',
+} = Astro.props;
+
+const siteName = 'Киришские пассажирские автоперевозки';
+const pageTitle = title ? `${title} — ${siteName}` : siteName;
 ---
 
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  />
-  <meta name="description" content="Официальные пассажирские перевозки в Киришах и районе: расписание и маршруты на сайте. Обучение вождению в нашей автошколе." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
   <meta name="keywords" content="Киришские пассажирские автоперевозки" />
-  <link
-    rel="icon"
-    type="image/x-icon"
-    href="/favicons/favicon.ico"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="/favicons/favicon-32x32.png"
-  />
+  <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/favicons/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <meta
-    name="generator"
-    content={Astro.generator}
-  />
-  <title>Киришские пассажирские автоперевозки</title>
+  <meta name="generator" content={Astro.generator} />
+  <title>{pageTitle}</title>
 </head>
 <body class={styles.layout}>
 <div class={styles.headerStickySentinel} data-header-sticky-sentinel aria-hidden="true"></div>
