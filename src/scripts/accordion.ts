@@ -13,14 +13,14 @@ class Accordion {
     });
   }
 
-  private scrollPanelIntoView(panel: HTMLElement) {
+  private scrollTriggerIntoView(trigger: HTMLElement) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const header = document.querySelector<HTMLElement>(Accordion.SELECTORS.header);
     const headerOffset = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
-    const targetTop = window.scrollY + panel.getBoundingClientRect().top - headerOffset;
+    const triggerTop = window.scrollY + trigger.getBoundingClientRect().top - headerOffset;
 
     window.scrollTo({
-      top: Math.max(0, targetTop),
+      top: Math.max(0, triggerTop),
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
   }
@@ -63,12 +63,9 @@ class Accordion {
           return;
         }
         items.forEach((other) => this.setItemOpen(other, other === item));
-        const panel = item.querySelector<HTMLElement>(Accordion.SELECTORS.panel);
-        if (panel) {
-          requestAnimationFrame(() => {
-            this.scrollPanelIntoView(panel);
-          });
-        }
+        requestAnimationFrame(() => {
+          this.scrollTriggerIntoView(trigger);
+        });
       });
     });
   }
