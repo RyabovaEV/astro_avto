@@ -20,12 +20,13 @@ import styles from './Sidebar.module.scss';
 ---
 
 {layout === 'tabs' ? (
-  <nav class={styles.sidebar__tabs} aria-label="Разделы">
+  <nav class={styles.sidebar__tabs} aria-label="Разделы" data-tabs-nav>
     {links.map(({ href, title, isActive }) => (
       <a
         href={href}
         class={`${styles.sidebar__tab} ${isActive ? styles.sidebar__tab_active : ''}`}
         aria-current={isActive ? 'page' : undefined}
+        data-active={isActive ? 'true' : undefined}
       >
         {title}
       </a>
