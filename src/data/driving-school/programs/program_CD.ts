@@ -3,7 +3,7 @@ import type {Program} from "./schema.ts"
 export const program_CD: Program = {
   sections: [
     {
-      title: "Cпециальный цикла",
+      title: "Специальный цикл",
       subjects: [
         {
           name: "Устройство и техническое обслуживание транспортных средств категории \"D\" как объектов управления",
