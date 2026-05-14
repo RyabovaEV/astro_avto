@@ -1,0 +1,36 @@
+---
+import styles from './HeroBuilding.module.scss';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+
+const services = [
+  'Пассажирские перевозки',
+  'Обучение вождению',
+  'Ремонт автотранспорта',
+];
+---
+
+<div class={styles.hero}>
+  <div class={styles.content}>
+    {subtitle && <p class={styles.subtitle}>{subtitle}</p>}
+    <h1 class={styles.title}>{title}</h1>
+    <ul class={styles.list}>
+      {services.map((service) => (
+        <li class={styles.item}>{service}</li>
+      ))}
+    </ul>
+  </div>
+  <img
+    src="/images/bus.svg"
+    alt="Автобус"
+    class={styles.image}
+    width="525"
+    height="323"
+    loading="eager"
+  />
+</div>

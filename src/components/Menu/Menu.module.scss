@@ -112,6 +112,7 @@
       padding: var(--space-2) 0;
       border-bottom: 1px solid var(--border-gray);
 
+
       &:last-child {
         border-bottom: none;
         padding-bottom: 0;
@@ -143,6 +144,7 @@
       font-size: 0.6em;
       line-height: 1;
       transition: transform 0.25s ease;
+
     }
 
     .menu__item[data-accordion-open][data-has-submenu] > .menu__link::after {
@@ -163,6 +165,7 @@
       overflow: hidden;
       transition: max-height 0.3s ease;
       background: transparent;
+      box-shadow: none;
     }
 
     .menu__item[data-accordion-open] > .menu__submenu {
