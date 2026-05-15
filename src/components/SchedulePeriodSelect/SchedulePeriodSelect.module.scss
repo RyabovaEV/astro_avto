@@ -3,6 +3,10 @@
 .control {
   display: grid;
   gap: var(--space-1);
+
+  &[hidden] {
+    display: none;
+  }
 }
 
 .label {

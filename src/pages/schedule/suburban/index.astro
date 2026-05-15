@@ -10,6 +10,9 @@ import SchedulePeriodRoot
 const sidebarItems = getSidebarItems('/schedule');
 const switchAt = '2026-05-01T00:00:00+03:00';
 const switchAtLabel = '01.05.2026';
+const oldFrom = '2026-04-01';
+const newTo = '2026-09-30';
+
 const oldModulePath = '../../../data/schedule/suburban_old.ts';
 const oldModules = import.meta.glob('../../../data/schedule/suburban_old.ts');
 const oldModulePathComment = '../../../data/schedule/suburbanComments_old.ts';
@@ -47,6 +50,8 @@ if (oldModulePathComment in oldModulesComment) {
     title="Пригородные маршруты"
     switchAt={switchAt}
     switchAtLabel={switchAtLabel}
+    oldFrom={oldFrom}
+    newTo={newTo}
     currentRoutes={suburbanRoutes}
     currentComments={suburbanComments}
     oldRoutes={suburbanOldRoutes}

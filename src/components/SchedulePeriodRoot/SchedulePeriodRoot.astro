@@ -3,25 +3,30 @@ import styles from './SchedulePeriodRoot.module.scss'
 import type {RouteSchedule, RoutesComments} from '../../data/schedule';
 import ScheduleTable from '../ScheduleTable/ScheduleTable.astro';
 import ScheduleComment from '../ScheduleComment/ScheduleComment.astro';
-import SchedulePeriodSelect
-  from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
+import SchedulePeriodSelect from '../SchedulePeriodSelect/SchedulePeriodSelect.astro';
 import Section from '../Section/Section.astro';
+import Message from '../Message/Message.astro';
 
 interface Props {
   title: string;
   switchAt: string;
   switchAtLabel: string;
+  /** Дата начала старого расписания, например '2026-04-01' */
+  oldFrom: string;
+  /** Дата окончания нового расписания, например '2026-09-30' */
+  newTo: string;
   currentRoutes: RouteSchedule[];
   currentComments: RoutesComments[];
   oldRoutes?: RouteSchedule[];
   oldComments?: RoutesComments[];
 }
 
-
 const {
   title,
   switchAt,
   switchAtLabel,
+  oldFrom,
+  newTo,
   currentRoutes,
   currentComments,
   oldRoutes = [],
@@ -29,8 +34,22 @@ const {
 } = Astro.props;
 
 const hasOld = oldRoutes.length > 0;
-const isAfterCutoff = new Date() >= new Date(switchAt);
-const showToggle = hasOld && !isAfterCutoff;
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function calcOldTo(switchAtStr: string): string {
+  const d = new Date(switchAtStr);
+  d.setDate(d.getDate() - 1);
+  return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+const oldFromFormatted = formatDate(oldFrom);
+const oldToFormatted = calcOldTo(switchAt);
+const newFromFormatted = formatDate(switchAt);
+const newToFormatted = formatDate(newTo);
 ---
 
 <div
@@ -46,24 +65,40 @@ const showToggle = hasOld && !isAfterCutoff;
     isInfo
     isH1
   >
-    {showToggle && (
+    {hasOld && (
       <SchedulePeriodSelect switchAtLabel={switchAtLabel} />
     )}
+
+    <!--
+      Оба сообщения всегда в DOM.
+      Скрипт переключает их через hidden вместе с блоками расписания.
+    -->
+    {hasOld && (
+      <Message
+        data-schedule-period-message="old"
+        message={`Расписание действует с ${oldFromFormatted} по ${oldToFormatted}`}
+        type="comment"
+        hidden={true}
+      />
+    )}
+    <Message
+      data-schedule-period-message="current"
+      message={`Расписание действует с ${newFromFormatted} по ${newToFormatted}`}
+      type="comment"
+      hidden={true}
+    />
   </Section>
 
-  <div
-    data-schedule-period="old"
-  >
-    <div class={styles.inner}>
-      <ScheduleTable routes={oldRoutes} />
-      <ScheduleComment comments={oldComments ?? currentComments} />
+  {hasOld && (
+    <div data-schedule-period="old" hidden>
+      <div class={styles.inner}>
+        <ScheduleTable routes={oldRoutes} />
+        <ScheduleComment comments={oldComments ?? currentComments} />
+      </div>
     </div>
-  </div>
+  )}
 
-  <div
-    data-schedule-period="current"
-    hidden
-  >
+  <div data-schedule-period="current" hidden>
     <div class={styles.inner}>
       <ScheduleTable routes={currentRoutes} />
       <ScheduleComment comments={currentComments} />

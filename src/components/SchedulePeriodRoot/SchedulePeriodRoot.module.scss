@@ -9,3 +9,12 @@
   flex-direction: column;
   gap: 25px;
 }
+
+/*
+  До того как скрипт отработал и проставил data-schedule-ready,
+  скрываем переключатель периода чтобы не было мигания.
+  После инициализации скрипт сам управляет видимостью через hidden.
+*/
+.main:not([data-schedule-ready]) [data-schedule-period-control] {
+  visibility: hidden;
+}
